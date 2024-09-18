@@ -1,10 +1,10 @@
-# Laravel 11 + Vue 3.3 with Vite Setup
+# Laravel 10 + Vue 3.3 with Vite Setup
 
-This guide will help you set up a Laravel 11 project with Vue 3.3 and use Vite as the build tool.
+This guide will help you set up a Laravel 10 project with Vue 3.3 and use Vite as the build tool.
 
 ## Prerequisites
 
-- **PHP >= 8.1**: Required for Laravel 11
+- **PHP >= 8.1**: Required for Laravel 10
 - **Composer**: For managing PHP dependencies
 - **Node.js & npm**: For managing JavaScript dependencies and running Vite
 - **MySQL or SQLite**: Database for Laravel
@@ -17,7 +17,7 @@ This guide will help you set up a Laravel 11 project with Vue 3.3 and use Vite a
 
    ```bash
    composer create-project laravel/laravel name-project 
-   or `composer create-project laravel/laravel name-project:^11.0`
+   or `composer create-project laravel/laravel name-project:^10.x`
 
 2. Go to the project directory:
 
@@ -103,7 +103,7 @@ Accessible at http://localhost:8000
    ```bash
    Run `npm run dev`
 
-Accessible at http://localhost:8000
+Accessible at http://localhost:8080
 
 
 ## Version
@@ -112,7 +112,7 @@ PHP 8.2.12 (cli) (built: Oct 24 2023 21:15:15) (ZTS Visual C++ 2019 x64)
 Copyright (c) The PHP Group
 Zend Engine v4.2.12, Copyright (c) Zend Technologies
 
-Laravel Framework 11.23.5
+Laravel Framework 10.3.3
 
 Nodejs v18.20.4
 
