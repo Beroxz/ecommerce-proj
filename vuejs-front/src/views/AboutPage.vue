@@ -3,7 +3,7 @@
     <h1>Products</h1>
     <ul>
       <li v-for="product in products" :key="product.id">
-        <img :src="product.image" alt="product.name" />
+        <img :src="`${product.image}`" :alt="product.name" :style="{ width: '250px', height: '250px' }" />
         <p>{{ product.name }} - {{ product.price }}</p>
       </li>
     </ul>

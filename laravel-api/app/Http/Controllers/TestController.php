@@ -14,7 +14,7 @@ class TestController extends Controller
                     'id' => 1,
                     'name' => 'Succulent',
                     'price' => '$10.00',
-                    'image' => 'path/to/succulent.jpg',
+                    'image' => 'https://images.squarespace-cdn.com/content/v1/56923fa6a976af0bfc533475/4487beac-be01-4ad5-8133-3276fb81972b/IMG_7938.jpg',
                 ],
                 [
                     'id' => 2,

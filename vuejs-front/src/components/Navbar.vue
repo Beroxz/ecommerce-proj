@@ -2,6 +2,15 @@
   <nav class="navbar">
     <div class="container">
       <a href="#" class="logo">Perdis.</a>
+
+      <div class="search-wrapper">
+        <div class="search-container">
+          <i class="fa fa-search search-icon"></i>
+          <input type="text" class="search-bar" placeholder="Search..." />
+        </div>
+        <!-- <button class="search-button">Search</button> -->
+      </div>
+
       <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li class="dropdown">
@@ -13,45 +22,11 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#">Pages</a>
-          <ul class="dropdown-content">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Coupons</a></li>
-        <li class="dropdown">
-          <a href="#">Blog</a>
-          <ul class="dropdown-content">
-            <li><a href="#">Recipes</a></li>
-            <li><a href="#">Nutrition Tips</a></li>
-          </ul>
+          <a href="#">About Us</a>
         </li>
         <li><a href="#">Contact</a></li>
+        <li><a href="#">Login</a></li>
       </ul>
-      <div class="user-actions">
-        <a href="#" class="user-icon">
-          <div class="icon-container">
-            <span><i class="fas fa-user"></i></span>
-          </div>
-          <div class="text-container">
-            <span style="color: #dbd7d7">Hello<br /></span>
-            <span>Register</span>
-          </div>
-        </a>
-
-        <a href="#" class="icon">
-          <i class="fas fa-heart"></i>
-          <span class="badge">0</span>
-        </a>
-        <a href="#" class="icon">
-          <i class="fas fa-shopping-bag"></i>
-          <span class="badge">1</span>
-        </a>
-        <a href="#" class="icon">
-          <i class="fas fa-search"></i>
-        </a>
-      </div>
     </div>
   </nav>
 </template>
@@ -64,9 +39,7 @@ export default {
 
 <style scoped>
 .navbar {
-  /* background-color: #a2c36c; */
-  background-color: #678e61;
-  /* background-color: #10a894; */
+  background-color: #ededed;
   padding: 10px 0;
   color: #fff;
   min-height: 90px;
@@ -82,19 +55,67 @@ export default {
 
 ul li a {
   font-size: 18px;
-  font-weight: 400;
-  color: #333;
+  font-weight: 600;
+  color: #3f3e3e;
   text-decoration: none;
-}
-
-ul li a:hover {
 }
 
 .logo {
   font-size: 36px;
   font-weight: bold;
-  color: #fff;
+  color: #3f3e3e;
   text-decoration: none;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.search-bar {
+  padding: 8px 36px 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 280px;
+  box-sizing: border-box;
+}
+
+.search-button {
+  background-color: #678e61;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color 0.3s;
+}
+
+.search-bar:hover {
+  border: 1px solid #696767;
+}
+
+.search-bar:focus {
+  border: 1px solid #696767;
+  background-color: #f9f9f9;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #333;
+  pointer-events: none;
 }
 
 .nav-links {
@@ -105,12 +126,17 @@ ul li a:hover {
 }
 
 .nav-links li {
-  margin-right: 20px;
+  margin-right: 70px;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #fff;
+  color: #333;
+}
+
+.nav-links a:hover {
+  text-decoration: none;
+  color: #678e61;
 }
 
 .dropdown {
@@ -137,71 +163,44 @@ ul li a:hover {
   display: block;
 }
 
-.user-actions {
-  display: flex;
-  align-items: center;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .nav-links li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
 }
 
-.user-icon {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #fff;
-  margin-right: 20px;
-}
+@media (max-width: 480px) {
+  .logo {
+    font-size: 28px;
+  }
 
-.user-icon i {
-  font-size: 18px;
-  margin-right: 5px;
-}
+  .search-bar {
+    font-size: 14px;
+    padding: 6px 24px 6px 8px;
+  }
 
-.icon {
-  color: #fff;
-  margin-right: 15px;
-}
+  .search-button {
+    padding: 6px 10px;
+  }
 
-.user-icon {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.user-icon:hover {
-  color: #dbd7d7;
-}
-
-.icon-container {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.icon-container i {
-  font-size: 24px;
-}
-
-.text-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.text-container span {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-.badge {
-  background-color: #fff;
-  color: #383737;
-  padding: 2px 5px;
-  border-radius: 50%;
-  font-size: 12px;
-  position: relative;
-  top: -10px;
-  left: 10px;
+  .nav-links a {
+    font-size: 16px;
+  }
 }
 </style>

@@ -6,6 +6,10 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      redirect: '/home'  // Redirect ไปที่ /home เมื่อเข้าสู่ /
+    },
+    {
+      path: '/home',
       name: 'home',
       component: HomePage
     },
