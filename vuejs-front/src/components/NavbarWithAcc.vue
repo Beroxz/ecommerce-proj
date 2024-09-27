@@ -64,10 +64,7 @@ export default {
 
 <style scoped>
 .navbar {
-  /* background-color: #a2c36c; */
-  /* background-color: #678e61; */
   background-color: #EDEDED;
-  /* background-color: #10a894; */
   padding: 10px 0;
   color: #fff;
   min-height: 90px;

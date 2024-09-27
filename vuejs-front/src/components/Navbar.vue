@@ -8,24 +8,22 @@
           <i class="fa fa-search search-icon"></i>
           <input type="text" class="search-bar" placeholder="Search..." />
         </div>
-        <!-- <button class="search-button">Search</button> -->
       </div>
 
-      <ul class="nav-links">
+      <div class="menu-toggle" @click="toggleMenu">
+        <i :class="menuOpen ? 'fa fa-times' : 'fa fa-bars'"></i>
+      </div>
+
+      <ul class="nav-links" :class="{ active: menuOpen }">
         <li><a href="#">Home</a></li>
         <li class="dropdown">
-          <a href="#">Shop</a>
-          <ul class="dropdown-content">
-            <li><a href="#">Fruits</a></li>
-            <li><a href="#">Vegetables</a></li>
-            <li><a href="#">Dairy</a></li>
-          </ul>
+          <a href="#/shop">Shop</a>
         </li>
         <li class="dropdown">
-          <a href="#">About Us</a>
+          <a href="#/about">About Us</a>
         </li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="#/contact">Contact</a></li>
+        <li><a href="#/login">Login</a></li>
       </ul>
     </div>
   </nav>
@@ -34,6 +32,16 @@
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {
+      menuOpen: false,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    },
+  },
 };
 </script>
 
@@ -43,6 +51,15 @@ export default {
   padding: 10px 0;
   color: #fff;
   min-height: 90px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: #ededed;
+  padding: 5px 0;
 }
 
 .container {
@@ -87,17 +104,6 @@ ul li a {
   border-radius: 10px;
   width: 280px;
   box-sizing: border-box;
-}
-
-.search-button {
-  background-color: #678e61;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  margin-left: 5px;
-  transition: background-color 0.3s;
 }
 
 .search-bar:hover {
@@ -164,6 +170,12 @@ ul li a {
 }
 
 /* Responsive Styles */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  color: #333;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -173,6 +185,12 @@ ul li a {
   .nav-links {
     flex-direction: column;
     margin-top: 10px;
+    display: none;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
   }
 
   .nav-links li {
@@ -182,6 +200,11 @@ ul li a {
 
   .search-bar {
     width: 100%;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
   }
 }
 
