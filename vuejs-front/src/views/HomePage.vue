@@ -508,9 +508,10 @@ p {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 1200px) {
   .hero {
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .tip,
