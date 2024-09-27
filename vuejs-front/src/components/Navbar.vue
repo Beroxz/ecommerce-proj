@@ -23,7 +23,20 @@
           <a href="#/about">About Us</a>
         </li>
         <li><a href="#/contact">Contact</a></li>
-        <li><a href="#/login">Login</a></li>
+        <!-- <li><a href="#/login">Login</a></li> -->
+        <div class="icon-container">
+          <div class="icon-item">
+            <a href="#/cart" class="icon">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="badge">1</span>
+            </a>
+          </div>
+          <div class="icon-item">
+            <a href="#/profile" class="icon">
+              <i class="fas fa-user"></i>
+            </a>
+          </div>
+        </div>
       </ul>
     </div>
   </nav>
@@ -68,13 +81,6 @@ export default {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-ul li a {
-  font-size: 18px;
-  font-weight: 600;
-  color: #3f3e3e;
-  text-decoration: none;
 }
 
 .logo {
@@ -125,10 +131,13 @@ ul li a {
 }
 
 .nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-links li {
@@ -143,6 +152,40 @@ ul li a {
 .nav-links a:hover {
   text-decoration: none;
   color: #678e61;
+}
+
+ul li a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3f3e3e;
+  text-decoration: none;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.icon-item {
+  position: relative;
+}
+
+.icon {
+  font-size: 24px;
+  color: #333;
+  text-decoration: none;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-size: 12px;
 }
 
 .dropdown {

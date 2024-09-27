@@ -35,7 +35,8 @@
           :key="product.id"
         >
           <div>
-            <img :src="requireImage(product.image)" :alt="product.name" />
+            <!-- <img :src="requireImage(product.image)" :alt="product.name" /> -->
+            <img src="@/assets/products/1.png" :alt="product.name" />
           </div>
 
           <h3>{{ product.name }}</h3>
@@ -121,6 +122,30 @@
               how to care for my new plants."
             </p>
           </div>
+        </div>
+      </section>
+
+      <!-- Service Section -->
+      <section class="services-section">
+        <div class="service-item">
+          <i class="fas fa-truck service-icon"></i>
+          <h3>Flexible Delivery</h3>
+          <p>Fast and reliable delivery options.</p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-undo service-icon"></i>
+          <h3>100% Money Back</h3>
+          <p>Guaranteed refund on all purchases.</p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-shield-alt service-icon"></i>
+          <h3>Secure Payment</h3>
+          <p>Safe and encrypted payment systems.</p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-headset service-icon"></i>
+          <h3>24 Hour Support</h3>
+          <p>Available around the clock for any queries.</p>
         </div>
       </section>
     </section>
@@ -305,6 +330,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
+  margin-bottom: 40px;
 }
 
 .product-card {
@@ -317,7 +343,7 @@ export default {
 }
 
 .product-card:hover {
-  transform: scale(1.05); /* ขยาย card เมื่อ hover */
+  transform: scale(1.05);
 }
 
 .product-card img {
@@ -395,7 +421,7 @@ export default {
 
 h2,
 h3 {
-  color: #2c3e50;
+  color: #494747;
 }
 
 .care-tips,
@@ -436,11 +462,44 @@ h3 {
 h4 {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #2c3e50;
+  color: #494747;
 }
 
 p {
   color: #666;
+}
+
+.services-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.service-item {
+  flex: 1;
+  max-width: 200px;
+  margin: 20px;
+}
+
+.service-icon {
+  font-size: 48px;
+  color: #678e61;
+  margin-bottom: 10px;
+}
+
+.service-item h3 {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.service-item p {
+  font-size: 14px;
+  color: #555;
 }
 
 @media (max-width: 768px) {
