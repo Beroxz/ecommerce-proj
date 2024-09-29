@@ -27,6 +27,20 @@
 
     <!-- Product Section -->
     <section class="product-section">
+      <h2>Categories</h2>
+      <div class="category-grid">
+        <div
+          class="category-card"
+          v-for="category in categories"
+          :key="category.id"
+        >
+          <img :src="category.image" :alt="category.name" />
+          <h3>{{ category.name }}</h3>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
       <h2>New Arrivals</h2>
       <div class="product-grid">
         <div
@@ -47,18 +61,6 @@
               <i class="fas fa-shopping-cart"></i>
             </button>
           </div>
-        </div>
-      </div>
-
-      <h2>Categories</h2>
-      <div class="category-grid">
-        <div
-          class="category-card"
-          v-for="category in categories"
-          :key="category.id"
-        >
-          <img :src="category.image" :alt="category.name" />
-          <h3>{{ category.name }}</h3>
         </div>
       </div>
     </section>
@@ -325,12 +327,19 @@ export default {
   text-align: center;
 }
 
+.divider {
+  height: 2px;
+  background-color: #cccccca8;
+  margin: 20px 190px;
+}
+
 .product-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
   margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .product-card {
@@ -388,6 +397,8 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .category-card {
@@ -441,6 +452,10 @@ h3 {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.tip:hover {
+  transform: scale(1.05);
 }
 
 .review img {

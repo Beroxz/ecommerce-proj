@@ -15,6 +15,16 @@ const router = createRouter({
       redirect: '/home'  // Redirect ไปที่ /home เมื่อเข้าสู่ /
     },
     {
+      path: '/login',
+      name: 'LoginPage',
+      component: () => import('../views/LoginPage.vue')
+    },
+    {
+      path: '/register',
+      name: 'RegisterPage',
+      component: () => import('../views/RegisterPage.vue')
+    },
+    {
       path: '/home',
       name: 'HomePage',
       component: HomePage
@@ -28,7 +38,7 @@ const router = createRouter({
       path: '/shop',
       name: 'ShopPage',
       component: () => import('../views/ShopPage.vue')
-    }
+    },
   ]
 })
 
