@@ -39,6 +39,7 @@
 
 <script>
 export default {
+  name: "Login",
   data() {
     return {
       username: "",
@@ -51,8 +52,9 @@ export default {
   methods: {
     handleLogin() {
       if (this.username === "admin" && this.password === "password123") {
-        alert("Login Successful");
-        // เช่น router.push('/dashboard');
+        this.$emit("loginSuccess", "admin");
+      } else if (this.username === "user" && this.password === "userpassword") {
+        this.$emit("loginSuccess", "customer");
       } else {
         this.errorMessage = "Invalid username or password";
       }

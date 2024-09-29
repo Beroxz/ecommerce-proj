@@ -16,15 +16,15 @@
 
       <ul class="nav-links" :class="{ active: menuOpen }">
         <li><a href="#/home">Home</a></li>
-        <li class="dropdown">
+        <li v-if="userRole === 'customer'">
           <a href="#/shop">Shop</a>
         </li>
-        <li class="dropdown">
+        <li>
           <a href="#/about">About Us</a>
         </li>
         <li><a href="#/contact">Contact</a></li>
-        <li><a href="#/login">Login</a></li>
-        <div class="icon-container">
+        <li v-if="userRole === 'guest'"><a href="#/login">Login</a></li>
+        <div class="icon-container" v-if="userRole === 'customer'">
           <div
             class="icon-item"
             @mouseenter="showTooltip('Cart')"
@@ -63,6 +63,7 @@ export default {
     return {
       menuOpen: false,
       tooltipMessage: "",
+      userRole: "customer",
     };
   },
   methods: {
