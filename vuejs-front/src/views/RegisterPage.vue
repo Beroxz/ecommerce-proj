@@ -2,7 +2,7 @@
   <div class="content">
     <div class="register-container">
       <div class="register-image">
-        <img src="../assets/regist.png" alt="Register Image" />
+        <img src="../assets/img/regist.png" alt="Register Image" />
       </div>
 
       <div class="register-form">

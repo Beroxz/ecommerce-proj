@@ -18,7 +18,7 @@
       </div>
       <div class="hero-section">
         <img
-          src="@/assets/hero-image.png"
+          src="@/assets/img/hero-image.png"
           alt="Hero image"
           class="hero-image"
         />
@@ -79,7 +79,7 @@
         <h3>How to Take Care of Your Plants</h3>
         <div class="care-tips">
           <div class="tip">
-            <img src="@/assets/tip1.png" alt="Sunlight Tips" />
+            <img src="@/assets/img/tip1.png" alt="Sunlight Tips" />
             <h4>Sunlight</h4>
             <p>
               Most indoor plants thrive in indirect sunlight. Avoid placing
@@ -87,7 +87,7 @@
             </p>
           </div>
           <div class="tip">
-            <img src="@/assets/tip2.png" alt="Watering Tips" />
+            <img src="@/assets/img/tip2.png" alt="Watering Tips" />
             <h4>Watering</h4>
             <p>
               Water your plants only when the top layer of soil feels dry.
@@ -95,7 +95,7 @@
             </p>
           </div>
           <div class="tip">
-            <img src="@/assets/tip3.png" alt="Fertilizer Tips" />
+            <img src="@/assets/img/tip3.png" alt="Fertilizer Tips" />
             <h4>Fertilizer</h4>
             <p>
               Use a balanced fertilizer once a month to keep your plants healthy
@@ -110,14 +110,14 @@
         <h3>Customer Reviews</h3>
         <div class="reviews">
           <div class="review">
-            <img src="@/assets/review1.png" alt="Customer 1" />
+            <img src="@/assets/img/review1.png" alt="Customer 1" />
             <h4>Jane Doe</h4>
             <p>
               "Great quality plants! My living room has never looked better."
             </p>
           </div>
           <div class="review">
-            <img src="@/assets/review2.png" alt="Customer 2" />
+            <img src="@/assets/img/review2.png" alt="Customer 2" />
             <h4>John Smith</h4>
             <p>
               "The staff was very helpful, and they gave me the best advice on

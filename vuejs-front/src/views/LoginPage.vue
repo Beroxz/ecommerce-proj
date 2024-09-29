@@ -2,7 +2,7 @@
   <div class="content">
     <div class="login-container">
       <div class="login-image">
-        <img src="../assets/login-img.png" alt="Login Image" />
+        <img src="../assets/img/login-img.png" alt="Login Image" />
       </div>
 
       <div class="login-form">

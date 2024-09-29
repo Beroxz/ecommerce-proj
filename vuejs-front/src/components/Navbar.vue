@@ -25,16 +25,30 @@
         <li><a href="#/contact">Contact</a></li>
         <li><a href="#/login">Login</a></li>
         <div class="icon-container">
-          <div class="icon-item">
+          <div
+            class="icon-item"
+            @mouseenter="showTooltip('Cart')"
+            @mouseleave="hideTooltip"
+          >
             <a href="#/cart" class="icon">
               <i class="fas fa-shopping-bag"></i>
               <span class="badge">1</span>
             </a>
+            <span v-if="tooltipMessage === 'Cart'" class="tooltip">{{
+              tooltipMessage
+            }}</span>
           </div>
-          <div class="icon-item">
+          <div
+            class="icon-item"
+            @mouseenter="showTooltip('Profile')"
+            @mouseleave="hideTooltip"
+          >
             <a href="#/profile" class="icon">
               <i class="fas fa-user"></i>
             </a>
+            <span v-if="tooltipMessage === 'Profile'" class="tooltip">{{
+              tooltipMessage
+            }}</span>
           </div>
         </div>
       </ul>
@@ -48,11 +62,18 @@ export default {
   data() {
     return {
       menuOpen: false,
+      tooltipMessage: "",
     };
   },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
+    },
+    showTooltip(message) {
+      this.tooltipMessage = message;
+    },
+    hideTooltip() {
+      this.tooltipMessage = "";
     },
   },
 };
@@ -186,6 +207,21 @@ ul li a {
   padding: 3px 6px;
   border-radius: 50%;
   font-size: 12px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0.75;
 }
 
 .dropdown {
