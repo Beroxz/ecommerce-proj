@@ -6,25 +6,30 @@
       </div>
 
       <div class="login-form">
-        <h2>Log in</h2>
-        <!-- <h6>Enter your details below</h6> -->
+        <h2>Log in to Exclusive</h2>
         <form @submit.prevent="handleLogin">
+          <!-- Email field -->
           <div class="form-group">
-            <label for="username">Username or E-mail</label>
-            <input type="text" id="username" v-model="username" required />
+            <label for="email">E-mail</label>
+            <input type="text" id="email" v-model="formData.email" />
+            <span v-if="errors.email" class="error-message">
+              <i class="fas fa-exclamation-circle"></i>
+              {{ errors.email }}
+            </span>
           </div>
 
+          <!-- Password field -->
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" v-model="password" required />
+            <input type="password" id="password" v-model="formData.password" />
+            <span v-if="errors.password" class="error-message">
+              <i class="fas fa-exclamation-circle"></i>
+              {{ errors.password }}
+            </span>
           </div>
 
           <button type="submit">Login</button>
         </form>
-
-        <div v-if="errorMessage" class="error-message">
-          {{ errorMessage }}
-        </div>
 
         <div class="register-link">
           <p>
@@ -37,46 +42,90 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Login",
-  data() {
-    return {
-      username: "",
-      password: "",
-      errorMessage: "",
-      email: "",
-      password: "",
-    };
-  },
-  methods: {
-    handleLogin() {
-      if (this.username === "admin" && this.password === "password123") {
-        this.$emit("loginSuccess", "admin");
-      } else if (this.username === "user" && this.password === "userpassword") {
-        this.$emit("loginSuccess", "customer");
-      } else {
-        this.errorMessage = "Invalid username or password";
-      }
-    },
-    async login() {
-      try {
-        const response = await axios.post("http://localhost:8000/api/login", {
-          email: this.email,
-          password: this.password,
+<script setup>
+import { useAuthStore } from "@/stores/auth";
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
+import Toast from "@/utils/toast";
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const formData = reactive({
+  email: "",
+  password: "",
+});
+
+const errors = reactive({
+  email: "",
+  password: "",
+});
+
+const validateEmail = (email) => {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+};
+
+const validateForm = () => {
+  let isValid = true;
+
+  if (!formData.email.trim()) {
+    errors.email = "Email is required";
+    isValid = false;
+  } else if (!validateEmail(formData.email)) {
+    errors.email = "Invalid email format (@)";
+    isValid = false;
+  } else {
+    errors.email = "";
+  }
+
+  if (!formData.password.trim()) {
+    errors.password = "Password is required";
+    isValid = false;
+  } else {
+    errors.password = "";
+  }
+
+  return isValid;
+};
+
+const handleLogin = async () => {
+  if (validateForm()) {
+    try {
+      await authStore.authenticate("login", formData);
+      if (!Object.keys(authStore.errors).length > 0) {
+        Toast.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "You will be redirected to the home page.",
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          router.push("/home");
         });
-
-        // Save the token
-        localStorage.setItem("token", response.data.token);
-
-        // Redirect to a different page
-        this.$router.push("/dashboard");
-      } catch (error) {
-        console.error(error);
-        alert("Login failed.");
+      } else if (Object.keys(authStore.errors).length > 0) {
+        Toast.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: Object.values(authStore.errors).flat().join(", "),
+        });
       }
-    },
-  },
+    } catch (error) {
+      console.error("Login failed", error);
+      Toast.fire({
+        icon: "error",
+        title: "Login failed",
+        text: error.message || "An error occurred",
+      });
+    }
+  } else {
+    Toast.fire({
+      icon: "warning",
+      title: "Please fill in all required fields",
+      text: "Check your form data again",
+    });
+  }
 };
 </script>
 
@@ -128,8 +177,20 @@ label {
 
 input {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  outline: none;
 }
 
 button {
@@ -147,7 +208,7 @@ button:hover {
 
 .error-message {
   margin-top: 10px;
-  color: red;
+  color: rgb(173, 65, 65);
 }
 
 .register-link {

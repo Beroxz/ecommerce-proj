@@ -9,45 +9,53 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    // Login function
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+        // Validate request inputs
+        $fields = $request->validate([
+            'email' => 'required|string|email|exists:users',
+            'password' => 'required|string',
         ]);
 
+        // Attempt to find the user by email
         $user = User::where('email', $request->email)->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        // Check if user exists and the password is correct
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
+        // Return a token upon successful login
         return response()->json([
-            'token' => $user->createToken('login-token')->plainTextToken
+            'token' => $user->createToken('login-token')->plainTextToken,
         ]);
     }
+
+    // Register function
     public function register(Request $request)
     {
-        $request->validate([
+        // Validate request inputs
+        $fields = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        // Create a new user
+        $user = User::create($fields);
+        $token = $user->createToken('register-token ' .$request->name);
 
+        // Return a token upon successful registration
         return response()->json([
-            'token' => $user->createToken('register-token')->plainTextToken,
+            'token' => $token->plainTextToken,
             'user' => $user,
         ]);
     }
 
+    // Logout function
     public function logout(Request $request)
     {
         // Revoke the token that was used to authenticate the current request

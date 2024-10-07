@@ -10,9 +10,9 @@ export default {
       products: [],
     };
   },
-  created() {
-    this.fetchProducts();
-  },
+  // created() {
+  //   this.fetchProducts();
+  // },
   methods: {
     async fetchProducts() {
       try {

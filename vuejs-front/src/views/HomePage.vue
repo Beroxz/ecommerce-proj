@@ -58,7 +58,7 @@
           <div class="price-cart-container">
             <span class="price">{{ product.price }}</span>
             <button @click="addToCart(product)" class="cart-btn">
-              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-eye"></i>
             </button>
           </div>
         </div>

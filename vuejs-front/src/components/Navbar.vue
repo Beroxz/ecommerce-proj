@@ -63,7 +63,7 @@ export default {
     return {
       menuOpen: false,
       tooltipMessage: "",
-      userRole: "customer",
+      userRole: "guest",
     };
   },
   methods: {
