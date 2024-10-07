@@ -14,7 +14,7 @@
           Discover our curated collection of plants, perfect for any space.
           Brighten your day and purify your air with the beauty of nature.
         </p>
-        <button class="shop-now-btn">Shop Now</button>
+        <button class="shop-now-btn" @click="$router.push('/shop')">Shop Now</button>
       </div>
       <div class="hero-section">
         <img
