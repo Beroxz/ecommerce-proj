@@ -12,27 +12,30 @@ class AuthController extends Controller
     // Login function
     public function login(Request $request)
     {
-        // Validate request inputs
-        $fields = $request->validate([
-            'email' => 'required|string|email|exists:users',
-            'password' => 'required|string',
-        ]);
-
-        // Attempt to find the user by email
-        $user = User::where('email', $request->email)->first();
-
-        // Check if user exists and the password is correct
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+        try {
+            $fields = $request->validate([
+                'email' => 'required|string|email|exists:users',
+                'password' => 'required|string',
             ]);
-        }
 
-        // Return a token upon successful login
-        return response()->json([
-            'token' => $user->createToken('login-token')->plainTextToken,
-        ]);
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'errors' => ['Please check your username and password.']
+                ], 422);
+            }
+
+            return response()->json([
+                'token' => $user->createToken('login-token')->plainTextToken,
+            ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json([
+                'errors' => ['Unable to connect to the database. Please check your server.']
+            ], 500);
+        }
     }
+
 
     // Register function
     public function register(Request $request)
@@ -46,7 +49,7 @@ class AuthController extends Controller
 
         // Create a new user
         $user = User::create($fields);
-        $token = $user->createToken('register-token ' .$request->name);
+        $token = $user->createToken('register-token ' . $request->name);
 
         // Return a token upon successful registration
         return response()->json([

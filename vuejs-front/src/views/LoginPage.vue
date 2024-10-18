@@ -92,31 +92,22 @@ const validateForm = () => {
 
 const handleLogin = async () => {
   if (validateForm()) {
-    try {
-      await authStore.authenticate("login", formData);
-      if (!Object.keys(authStore.errors).length > 0) {
-        Toast.fire({
-          icon: "success",
-          title: "Login Successful",
-          text: "You will be redirected to the home page.",
-          timer: 2000,
-          showConfirmButton: false,
-        }).then(() => {
-          router.push("/home");
-        });
-      } else if (Object.keys(authStore.errors).length > 0) {
-        Toast.fire({
-          icon: "error",
-          title: "Login Failed",
-          text: Object.values(authStore.errors).flat().join(", "),
-        });
-      }
-    } catch (error) {
-      console.error("Login failed", error);
+    await authStore.authenticate("login", formData);
+    if (!Object.keys(authStore.errors).length > 0) {
+      Toast.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "You will be redirected to the home page.",
+        timer: 2000,
+        showConfirmButton: false,
+      }).then(() => {
+        router.push("/home");
+      });
+    } else if (Object.keys(authStore.errors).length > 0) {
       Toast.fire({
         icon: "error",
-        title: "Login failed",
-        text: error.message || "An error occurred",
+        title: "Login Failed",
+        text: Object.values(authStore.errors).flat().join(", "),
       });
     }
   } else {

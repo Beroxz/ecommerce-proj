@@ -45,7 +45,7 @@ export default {
     async fetchProducts() {
       this.$emit("loading", true);
       try {
-        const response = await axios.get("http://localhost:8000/api/tests");
+        const response = await axios.get("/api/tests");
         this.products = response.data;
       } catch (error) {
         console.error("Error fetching products:", error);

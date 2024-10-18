@@ -11,6 +11,8 @@ This guide will help you set up a Laravel 10 project with Vue 3.3 and use Vite a
 
 ## Installation
 
+composer global require laravel/installer
+
 ### 1. Laravel Installation
 
 1. **Create a new Laravel project**:
