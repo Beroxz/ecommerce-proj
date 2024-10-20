@@ -1,123 +1,29 @@
-# Laravel 10 + Vue 3.3 with Vite Setup
+# Laravel E-commerce Website
+E-commerce application built with Laravel, Vue.js, Tailwind.css and Alpine.js. <br>
 
-This guide will help you set up a Laravel 10 project with Vue 3.3 and use Vite as the build tool.
+## Installation 
+Make sure you have environment setup properly. You will need MySQL, PHP8.1, Node.js and composer.
 
-## Prerequisites
+### Install Laravel Website + API
+1. Download the project (or clone using GIT)
+2. Copy `.env.example` into `.env` and configure database credentials
+3. Navigate to the project's root directory using terminal
+4. Run `composer install`
+5. Set the encryption key by executing `php artisan key:generate --ansi`
+6. Run migrations `php artisan migrate --seed`
+7. Start local server by executing `php artisan serve`
+8. Open new terminal and navigate to the project root directory
+9. Run `npm install`
+10. Run `npm run dev` to start vite server for Laravel frontend
 
-- **PHP >= 8.1**: Required for Laravel 10
-- **Composer**: For managing PHP dependencies
-- **Node.js & npm**: For managing JavaScript dependencies and running Vite
-- **MySQL or SQLite**: Database for Laravel
-
-## Installation
-
-composer global require laravel/installer
-
-### 1. Laravel Installation
-
-1. **Create a new Laravel project**:
-
-   ```bash
-   composer create-project laravel/laravel name-project 
-   or `composer create-project laravel/laravel name-project:^10.x`
-
-2. Go to the project directory:
-
-   ```bash
-   cd name-project
-
-3. Set up the connection to the database:
-
-   Copy .env.example to .env and set the database.
-   
-   ```bash
-   cp .env.example .env
-
-   Edit the database settings in the .env file:
-   
-   ```.env
-   DB_DATABASE=your_database_name
-   DB_USERNAME=your_username
-   DB_PASSWORD=your_password
-
-4. Generate application key:
-
-   ```bash
-   php artisan key:generate
-
-### 2. Installing Vue 3.3 and Vite
-
-1. Install Node dependencies:
-
-   ```bash
-   npm install
-   npm install vue@3
-
-2. Install Vite and related plugins:
-
-   ```bash
-   npm install vite @vitejs/plugin-vue
-
-3. Configure Vite:
-
-   Edit the vite.config.js file:
-
-   ```javascript
-   import { defineConfig } from 'vite';
-   import vue from '@vitejs/plugin-vue';
-   import laravel from 'laravel-vite-plugin';
-
-   export default defineConfig({
-      plugins: [
-         laravel({
-               input: 'resources/js/app.js',
-               refresh: true,
-         }),
-         vue()
-      ],
-   });
-
-4. Set up the resources/js/app.js file:
-
-   ```javascript
-   import { createApp } from 'vue';
-   import App from './App.vue';
-
-   createApp(App).mount('#app');
-
-5. Add Vue components to the Blade Template:
-   
-   Edit the file resources/views/welcome.blade.php or any other file to add the Vue component:
-   ```html
-   <div id="app"></div>
-   @vite('resources/js/app.js')
-
-
-## Running the project ##
-
-## Run the Laravel server: 
-   ```bash
-   Run `php artisan serve` 
-
-Accessible at http://localhost:8000
-
-## Run Vite:
-   ```bash
-   Run `npm run dev`
-
-Accessible at http://localhost:8080
-
-
-## Version
-
-PHP 8.2.12 (cli) (built: Oct 24 2023 21:15:15) (ZTS Visual C++ 2019 x64)
-Copyright (c) The PHP Group
-Zend Engine v4.2.12, Copyright (c) Zend Technologies
-
-Laravel Framework 10.3.3
-
-Nodejs v18.20.4
-
-@vitejs/plugin-vue@5.1.3
-vue@3.5.5
-@vue/server-renderer@3.5.5
+### Install Vue.js Admin Panel
+1. Navigate to `backend` folder
+2. Run `npm install`
+3. Copy `backend/.env.example` into `backend/.env`
+4. Make sure `VITE_API_BASE_URL` key in `backend/.env` is set to your Laravel API host (Default: http://localhost:8000)
+5. Run `npm run dev`
+6. Open Vue.js Admin Panel in browser and login with
+    ```
+    admin@example.com
+    admin123
+    ```
