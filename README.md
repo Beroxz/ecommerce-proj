@@ -30,3 +30,6 @@ Make sure you have environment setup properly. You will need MySQL, PHP8.1, Node
 
 ## ถ้ามีปัญหา ในการ save image  run คำสั่งนี้ 
 `php artisan storage:link`
+
+## https://mailtrap.io/
+สำหรับ สมัคร vertify email demo
