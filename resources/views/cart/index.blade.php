@@ -38,7 +38,7 @@
                                     <div class="flex justify-between mb-3">
                                         <h3 x-text="product.title"></h3>
                                         <span class="text-lg font-semibold">
-                                            $<span x-text="product.price"></span>
+                                            ฿<span x-text="product.price"></span>
                                         </span>
                                     </div>
                                     <div class="flex justify-between items-center">
