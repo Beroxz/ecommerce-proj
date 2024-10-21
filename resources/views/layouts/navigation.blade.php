@@ -2,7 +2,7 @@
     mobileMenuOpen: false,
     cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
 }" @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between bg-slate-800 shadow-md text-white">
+    class="flex justify-between bg-nav-custom shadow-md text-white">
     <div>
         <a href="{{ route('home') }}" class="block py-navbar-item pl-5 text-xl">Perdis</a>
     </div>
@@ -87,7 +87,7 @@
                     </ul>
                 </li>
             @else
-                <li>
+                {{-- <li>
                     <a href="{{ route('login') }}"
                         class="flex items-center py-2 px-3 transition-colors hover:bg-slate-800">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
@@ -102,6 +102,12 @@
                     <a href="{{ route('register') }}"
                         class="block text-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors w-full">
                         Register now
+                    </a>
+                </li> --}}
+                <li class="px-3 py-3">
+                    <a href="{{ route('login') }}"
+                        class="block text-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors w-full">
+                        Login
                     </a>
                 </li>
             @endif
@@ -183,7 +189,7 @@
                     </ul>
                 </li>
             @else
-                <li>
+                {{-- <li>
                     <a href="{{ route('login') }}"
                         class="flex items-center py-navbar-item px-navbar-item hover:bg-slate-900">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
@@ -198,6 +204,12 @@
                     <a href="{{ route('register') }}"
                         class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5">
                         Register now
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="{{ route('login') }}"
+                        class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5">
+                        Login
                     </a>
                 </li>
             @endif
