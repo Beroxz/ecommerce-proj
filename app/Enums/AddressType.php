@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum AddressType: string
 {
-    case Shipping = 'shipping';
-    case Billing = 'billing';
+    case Shipping = 'Shipping';
+    case Billing = 'Billing';
 }
