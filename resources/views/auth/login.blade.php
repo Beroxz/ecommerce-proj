@@ -18,10 +18,10 @@
 
         @csrf
         <div class="mb-4">
-            <x-input type="email" name="email" placeholder="Your email address" :value="old('email')"/>
+            <x-input type="email" name="email" placeholder="Email address" :value="old('email')"/>
         </div>
         <div class="mb-4">
-            <x-input type="password" name="password" placeholder="Your password" :value="old('password')" />
+            <x-input type="password" name="password" placeholder="Password" :value="old('password')" />
         </div>
         <div class="flex justify-between items-center mb-5">
             <div class="flex items-center">

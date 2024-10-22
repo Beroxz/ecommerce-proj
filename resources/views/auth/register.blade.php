@@ -20,10 +20,10 @@
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <div class="mb-4">
-            <x-input placeholder="Your name" type="text" name="name" :value="old('name')" />
+            <x-input placeholder="Name" type="text" name="name" :value="old('name')" />
         </div>
         <div class="mb-4">
-            <x-input placeholder="Your Email" type="email" name="email" :value="old('email')" />
+            <x-input placeholder="Email" type="email" name="email" :value="old('email')" />
         </div>
         <div class="mb-4">
             <x-input placeholder="Password" type="password" name="password" />
@@ -33,7 +33,7 @@
         </div>
 
         <button class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full">
-            Signup
+            Register
         </button>
     </form>
 </x-app-layout>
