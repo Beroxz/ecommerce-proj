@@ -7,7 +7,7 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class IndexController extends Controller
 {
     public function index()
     {
@@ -55,9 +55,9 @@ class ProductController extends Controller
                     ->orWhere('products.description', 'like', "%$search%");
             })
 
-            ->paginate(10);
+            ->get();
 
-        return view('product.index', [
+        return view('index', [
             'products' => $products
         ]);
 

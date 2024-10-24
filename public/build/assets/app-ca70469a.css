@@ -704,6 +704,9 @@ select {
 .-ml-px {
   margin-left: -1px;
 }
+.mr-1 {
+  margin-right: 0.25rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -1870,3 +1873,14 @@ body {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+

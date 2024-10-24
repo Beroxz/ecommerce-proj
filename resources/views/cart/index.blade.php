@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
-        <h1 class="text-3xl font-bold mb-6">Your Cart Items</h1>
+        <h1 class="text-3xl font-bold mb-6">Your Order</h1>
 
         <div x-data="{
             cartItems: {{ json_encode(
@@ -69,11 +69,29 @@
 
                         <form action="{{ route('cart.checkout') }}" method="post">
                             @csrf
+
+                            <!-- Payment Method Selection -->
+                            <div class="mb-4">
+                                <span class="font-semibold">Payment Method</span>
+                                <div class="flex items-center">
+                                    <label class="mr-4">
+                                        <input type="radio" name="payment_method" value="cash_on_delivery"
+                                            class="mr-2" checked>
+                                        Cash on Delivery
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="payment_method" value="credit_card" class="mr-2">
+                                        Credit Card
+                                    </label>
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn-primary w-full py-3 text-lg">
                                 Proceed to Payment
                             </button>
                         </form>
                     </div>
+
                 </div>
                 <!--/ Product Items -->
             </template>
