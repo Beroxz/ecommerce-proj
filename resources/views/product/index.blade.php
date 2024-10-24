@@ -73,9 +73,10 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                     <h5 class="font-bold">฿{{ number_format($product->price, 2) }}</h5>
                 </div>
                 <div class="flex justify-end py-3 px-4">
-                    <button class="btn-primary" @click="addToCart()">
+                    <button class="btn-primary flex items-center gap-2" @click="addToCart()">
+                        <i class="fas fa-cart-plus"></i>
                         Add to Cart
-                    </button>
+                    </button>                    
                 </div>
             </div>
             <!--/ Product Item -->

@@ -5,6 +5,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guestOrVerified'])->group(function () {
@@ -12,7 +13,7 @@ Route::middleware(['guestOrVerified'])->group(function () {
         return redirect('/home');
     });
 
-    Route::get('/home', [ProductController::class, 'index'])->name('home');
+    Route::get('/home', [IndexController::class, 'index'])->name('home');
     Route::get('/shop', [ProductController::class, 'index'])->name('shop');
     Route::get('/category/{category:slug}', [ProductController::class, 'byCategory'])->name('byCategory');
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
