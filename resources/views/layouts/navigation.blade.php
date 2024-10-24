@@ -2,9 +2,9 @@
     mobileMenuOpen: false,
     cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
 }" @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between bg-nav-custom shadow-md text-white">
-    <div style="width: 30%; padding-left: 15px;">
-        <a href="{{ route('home') }}" class="block py-navbar-item pl-5 text-2xl">Perdis</a>
+    class="flex justify-between bg-gray shadow-md text-white">
+    <div style="padding-left: 15px;">
+        <a href="{{ route('home') }}" class="block py-navbar-item pl-5 text-4xl text-gray-700 font-bold">Perdis</a>
     </div>
 
     <!-- Responsive Menu -->
@@ -24,6 +24,14 @@
                     class="relative flex items-center justify-between py-2 px-3 transition-colors">
                     <div class="flex items-center">
                         Shop
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home') }}"
+                    class="relative flex items-center justify-between py-2 px-3 transition-colors">
+                    <div class="flex items-center">
+                        About Us
                     </div>
                 </a>
             </li>
@@ -132,22 +140,27 @@
         </ul>
     </div>
     <!--/ Responsive Menu -->
-    <nav class="hidden md:flex">
+    <nav class="hidden md:flex mr-6">
         <ul class="grid grid-flow-col items-center">
-            <li>
-                <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-lg">
+            <li class="mr-2">
+                <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
                     Home
                 </a>
             </li>
-            <li>
+            <li class="mr-2">
                 <a href="{{ route('shop') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-lg">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
                     Shop
                 </a>
             </li>
-            <li>
+            <li class="mr-2">
+                <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
+                    About Us
+                </a>
+            </li>
+            <li class="mr-2">
                 <a href="{{ route('cart.index') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-gray-700 hover:text-base-custom font-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -155,13 +168,13 @@
                     </svg>
                     
                     <small x-show="cartItemsCount" x-transition x-cloak x-text="cartItemsCount"
-                        class="absolute z-[100] top-4 -right-3 py-[2px] px-[8px] rounded-full bg-red-500"></small>
+                        class="absolute z-[100] top-4 -right-3 py-[2px] px-[8px] rounded-full bg-red-500 text-white"></small>
                 </a>
             </li>
             @if (!Auth::guest())
                 <li x-data="{ open: false }" class="relative">
                     <a @click="open = !open"
-                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5">
+                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 text-gray-700 font-bold">
                         <span class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -179,7 +192,7 @@
                     </a>
                     <ul @click.outside="open = false" x-show="open" x-transition x-cloak
                         class="absolute z-10 right-0 bg-slate-800 py-2 w-48">
-                        <li>
+                        <li class="mr-4">
                             <a href="{{ route('profile') }}" class="flex px-3 py-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -189,7 +202,7 @@
                                 My Profile
                             </a>
                         </li>
-                        <li>
+                        <li class="mr-4">
                             <a href="{{ route('order.index') }}" class="flex px-3 py-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -199,7 +212,7 @@
                                 My Orders
                             </a>
                         </li>
-                        <li>
+                        <li class="mr-4">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
@@ -218,7 +231,7 @@
                     </ul>
                 </li>
             @else
-                {{-- <li>
+                {{-- <li class="mr-4">
                     <a href="{{ route('login') }}"
                         class="flex items-center py-navbar-item px-navbar-item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
@@ -229,22 +242,27 @@
                         Login
                     </a>
                 </li>
-                <li>
+                <li class="mr-4">
                     <a href="{{ route('register') }}"
                         class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5">
                         Register now
                     </a>
                 </li> --}}
-                <li>
+                <li class="mr-4">
+                    <a href="{{ route('login') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
+                        Login
+                    </a>
+                </li>
+                {{-- <li class="mr-4">
                     <a href="{{ route('login') }}"
                         class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5">
                         Login
                     </a>
-                </li>
+                </li> --}}
             @endif
         </ul>
     </nav>
-    <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-4 block md:hidden">
+    <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-4 block md:hidden text-gray-700 hover:text-base-custom">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
             stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
