@@ -28,6 +28,12 @@ class ProductController extends Controller
         return $this->renderProducts($query);
     }
 
+    public function byAllCategories()
+    {
+        $query = Product::query()->where('published', 1);
+        return $this->renderProducts($query);
+    }
+
     public function view(Product $product)
     {
         return view('product.view', ['product' => $product]);
@@ -60,6 +66,5 @@ class ProductController extends Controller
         return view('product.index', [
             'products' => $products
         ]);
-
     }
 }

@@ -5,8 +5,15 @@ $categoryList = \App\Models\Category::getActiveAsTree();
 ?>
 
 <x-app-layout>
-    <x-category-list :category-list="$categoryList" class="-ml-5 -mt-5 -mr-5 px-4" />
-
+    <!-- Header Section -->
+    <div class="container mx-auto mt-4 mb-6">
+        <h1 class="text-gray-700 text-2xl font-bold">Shop</h1>
+        <div class="mt-2">
+            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
+            <span class="text-gray-700">/</span>
+            <span class="text-gray-700">Shop</span>
+        </div>
+    </div>
     <div class="flex gap-2 items-center p-3 pb-0" x-data="{
         selectedSort: '{{ request()->get('sort', '-updated_at') }}',
         searchKeyword: '{{ request()->get('search') }}',
@@ -31,7 +38,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
             <x-input type="text" name="search" placeholder="Search for the products" x-model="searchKeyword" />
         </form>
         <x-input x-model="selectedSort" @change="updateUrl" type="select" name="sort"
-            class="w-full focus:border-purple-600 focus:ring-purple-600 border-gray-300 rounded">
+            class="w-full focus:border-indigo-500 focus:ring-indigo-600 border-gray-300 rounded">
             <option value="price">Price (ASC)</option>
             <option value="-price">Price (DESC)</option>
             <option value="title">Title (ASC)</option>
@@ -39,7 +46,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
             <option value="-updated_at">Last Modified at the top</option>
             <option value="updated_at">Last Modified at the bottom</option>
         </x-input>
-
+        <x-category-list :category-list="$categoryList" />
     </div>
 
     <?php if ( $products->count() === 0 ): ?>

@@ -1,7 +1,15 @@
 <x-app-layout>
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
-        <h1 class="text-gray-700 text-3xl font-bold mb-6">Your Order</h1>
-
+        {{-- <h1 class="text-gray-700 text-3xl font-bold mb-6">Your Order</h1> --}}
+        <!-- Header Section -->
+        <div class="container mx-auto mt-4 mb-6">
+            <h1 class="text-gray-700 text-2xl font-bold">Shopping Cart</h1>
+            <div class="mt-2">
+                <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
+                <span class="text-gray-700">/</span>
+                <span class="text-gray-700">Shopping Cart</span>
+            </div>
+        </div>
         <div x-data="{
             cartItems: {{ json_encode(
                 $products->map(

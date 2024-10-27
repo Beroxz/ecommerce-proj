@@ -13,16 +13,16 @@
                 <h2 class="text-lg font-bold">Quick Links</h2>
                 <ul class="mt-2 space-y-1">
                     <li>
-                        <a href="{{ route('home') }}" class="text-white hover:text-gray-400">Home</a>
+                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('shop') }}" class="text-white hover:text-gray-400">Shop</a>
+                        <a href="{{ route('shop') }}" class="text-white hover:text-slate-600">Shop</a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}" class="text-white hover:text-gray-400">About Us</a>
+                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">About Us</a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}" class="text-white hover:text-gray-400">Contact</a>
+                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -30,7 +30,7 @@
                 <h2 class="text-lg font-bold">Follow Us</h2>
                 <ul class="flex space-x-4 justify-center mt-6">
                     <li>
-                        <a href="#" class="text-white hover:text-gray-400">
+                        <a href="#" class="text-white hover:text-slate-600">
                             <!-- Facebook Logo -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor"
                                 viewBox="0 0 24 24">
@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-white hover:text-gray-400">
+                        <a href="#" class="text-white hover:text-slate-600">
                             <!-- Twitter Logo -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor"
                                 viewBox="0 0 24 24">
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-white hover:text-gray-400">
+                        <a href="#" class="text-white hover:text-slate-600">
                             <!-- Mail Logo -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor"
                                 viewBox="0 0 24 24">
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-white hover:text-gray-400">
+                        <a href="#" class="text-white hover:text-slate-600">
                             <!-- YouTube Logo -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor"
                                 viewBox="0 0 24 24">
@@ -70,11 +70,23 @@
                         </a>
                     </li>
                 </ul>
-
             </div>
         </div>
-        <div class="mt-4 text-center">
-            <p class="text-sm">&copy; 2024 Perdis E-Commerce Wesite. All rights reserved.</p>
+
+        <!-- Add a separator -->
+        <div class="mt-8 my-4 border-b border-gray-500"></div>
+
+        <div class="mt-4 flex justify-center items-center text-center">
+            <!-- Copyright Notice Section -->
+            <div class="w-1/2 flex justify-center">
+                <p class="text-sm">&copy; 2024 Perdis E-Commerce Website. All rights reserved.</p>
+            </div>
+            <!-- Payment Method Section -->
+            <div class="w-1/2 flex justify-center">
+                <img src="{{ asset('/storage/imgfront/footer-payment-2.png') }}" alt="Payment Methods"
+                    class="mx-auto mt-2 w-48">
+            </div>
         </div>
+
     </div>
 </footer>

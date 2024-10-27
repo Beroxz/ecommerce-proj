@@ -142,7 +142,7 @@ footer {
 
 .bg-nav-custom {
   --tw-bg-opacity: 1;
-  background-color: #678e61;
+  background-color: #678e6198;
 }
 
 .bg-primary {
@@ -152,7 +152,7 @@ footer {
 
 .bg-footer-custom {
   --tw-bg-opacity: 1;
-  background-color: #678e61;
+  background-color: #678e6198;
 }
 
 .text-green-primary {
@@ -162,3 +162,25 @@ footer {
 
 
 /* ################################################################ */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+}
+
+.tab-button {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab-button.active {
+  background: #ccc;
+}
+
+.tab-button:hover {
+  background: #f0f0f0; 
+}

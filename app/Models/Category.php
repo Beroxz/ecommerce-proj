@@ -74,4 +74,9 @@ class Category extends Model
             }
         }
     }
+
+    public static function getAll()
+    {
+        return Category::orderBy('parent_id')->get();
+    }
 }

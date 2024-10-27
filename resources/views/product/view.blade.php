@@ -1,4 +1,13 @@
 <x-app-layout>
+    <!-- Header Section -->
+    <div class="container mx-auto mt-4 mb-6">
+        <h1 class="text-gray-700 text-2xl font-bold">Product Details</h1>
+        <div class="mt-2">
+            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
+            <span class="text-gray-700">/</span>
+            <span class="text-gray-700">{{ $product->title }}</span>
+        </div>
+    </div>
     <div x-data="productItem({{ json_encode([
         'id' => $product->id,
         'slug' => $product->slug,
