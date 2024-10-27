@@ -7,13 +7,14 @@
         {{ prepend }}
       </span>
       <template v-if="type === 'select'">
-        <select :name="name"
-                :required="required"
-                :value="props.modelValue"
-                :class="inputClasses"
-                @change="onChange($event.target.value)">
-          <option v-for="option of selectOptions" :value="option.key">{{ option.text }}</option>
-        </select>
+       <select :name="name"
+        :required="required"
+        v-model="props.modelValue"
+        :class="inputClasses"
+        @change="onChange($event.target.value)">
+        <!-- <option value="" disabled selected>{{ label }}</option> Placeholder -->
+        <option v-for="option of selectOptions" :key="option.key" :value="option.key">{{ option.text }}</option>
+       </select>
       </template>
       <template v-else-if="type === 'textarea'">
       <textarea :name="name"

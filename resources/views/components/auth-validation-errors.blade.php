@@ -3,7 +3,7 @@
 @if ($errors->any())
     <div {{ $attributes->merge(['class' => 'p-3 rounded-md bg-red-600 text-white']) }}>
         <div class="font-medium">
-            {{ __('Whoops! Something went wrong.') }}
+            {{ __('!! Something went wrong.') }}
         </div>
 
         <ul class="mt-3 list-disc list-inside text-sm">

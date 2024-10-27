@@ -15,12 +15,31 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
+        // Seed Admin
         User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('admin123'),
             'email_verified_at' => now(),
-            'is_admin' => true
+            'role' => 1,
+        ]);
+
+        // Seed Seller
+        User::create([
+            'name' => 'Seller',
+            'email' => 'seller@example.com',
+            'password' => bcrypt('seller123'),
+            'email_verified_at' => now(),
+            'role' => 2,
+        ]);
+
+        // Seed User
+        User::create([
+            'name' => 'User',
+            'email' => 'user@example.com',
+            'password' => bcrypt('user123'),
+            'email_verified_at' => now(),
+            'role' => 3,
         ]);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Nette\Utils\DateTime;
 
 class UserResource extends JsonResource
-{
+{ 
     public static $wrap = false;
 
     /**
@@ -21,6 +21,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'role' => $this->is_admin ? '1' : ($this->is_seller ? '2' : '3'),
             'created_at' => (new DateTime($this->created_at))->format('Y-m-d H:i:s'),
         ];
     }

@@ -7,6 +7,9 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Api\User;
+use App\Models\Customer;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
@@ -44,7 +47,24 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
         $data = $request->validated();
-        $data['is_admin'] = true;
+
+        switch ($data['role']) {
+            case 1: // admin
+                $data['is_admin'] = true;
+                $data['is_seller'] = false; // admin ไม่ใช่ seller
+                break;
+            case 2: // seller
+                $data['is_admin'] = false; // seller ไม่ใช่ admin
+                $data['is_seller'] = true;
+                break;
+            case 3: // user
+                $data['is_admin'] = false; // user ไม่ใช่ admin
+                $data['is_seller'] = false; // user ไม่ใช่ seller
+                break;
+            default:
+                throw new \InvalidArgumentException('Invalid role specified');
+        }
+
         $data['email_verified_at'] = date('Y-m-d H:i:s');
         $data['password'] = Hash::make($data['password']);
 
@@ -52,9 +72,13 @@ class UserController extends Controller
         $data['updated_by'] = $request->user()->id;
 
         $user = User::create($data);
+      
+
 
         return new UserResource($user);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -67,15 +91,49 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
+        $emailValidation = [
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+        ];
+
+        $validator = \Validator::make($data, $emailValidation);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed.',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        if (isset($data['role'])) {
+            switch ($data['role']) {
+                case 1: // admin
+                    $data['is_admin'] = true;
+                    $data['is_seller'] = false;
+                    break;
+                case 2: // seller
+                    $data['is_admin'] = false;
+                    $data['is_seller'] = true;
+                    break;
+                case 3: // user
+                    $data['is_admin'] = false;
+                    $data['is_seller'] = false;
+                    break;
+                default:
+                    throw new \InvalidArgumentException('Invalid role specified');
+            }
+        }
+
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
+
         $data['updated_by'] = $request->user()->id;
 
         $user->update($data);
 
         return new UserResource($user);
     }
+
 
     /**
      * Remove the specified resource from storage.

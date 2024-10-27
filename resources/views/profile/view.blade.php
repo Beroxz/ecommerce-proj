@@ -169,7 +169,7 @@
                         <label for="sameAsBillingAddress" class="text-gray-700">
                             <input @change="$event.target.checked ? shippingAddress = {...billingAddress} : ''"
                                    id="sameAsBillingAddress" type="checkbox"
-                                   class="text-purple-600 focus:ring-purple-600 mr-2"> Same as Billing
+                                   class="text-green-600 focus:ring-green-500 mr-2"> Same as Billing
                         </label>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-3">
@@ -278,7 +278,7 @@
                         <x-input
                             type="password"
                             name="new_password_confirmation"
-                            placeholder="Repeat New Password"
+                            placeholder="Confirm New Password"
                             class="w-full focus:border-purple-600 focus:ring-purple-600 border-gray-300 rounded"
                         />
                     </div>

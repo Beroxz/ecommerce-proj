@@ -65,6 +65,16 @@
                   </svg>
                 </button>
               </header>
+
+              <!-- Alert for Errors -->
+              <div
+                v-if="errors"
+                class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
+                role="alert"
+              >
+                <span class="font-medium">Error!</span> {{ errors }}
+              </div>
+
               <form @submit.prevent="onSubmit">
                 <div class="bg-white px-4 pt-5 pb-4">
                   <CustomInput class="mb-2" v-model="user.name" label="Name" />
@@ -79,7 +89,17 @@
                     v-model="user.password"
                     label="Password"
                   />
+                  <div class="mb-2 w-1/2">
+                    <CustomInput
+                      type="select"
+                      :select-options="roleOptions"
+                      v-model="user.role"
+                      label="Role"
+                      class="w-full"
+                    />
+                  </div>
                 </div>
+
                 <footer
                   class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
                 >
@@ -121,6 +141,8 @@ import CustomInput from "../../components/core/CustomInput.vue";
 import store from "../../store/index.js";
 import Spinner from "../../components/core/Spinner.vue";
 
+const errors = ref(null);
+
 const props = defineProps({
   modelValue: Boolean,
   user: {
@@ -133,7 +155,14 @@ const user = ref({
   id: props.user.id,
   name: props.user.name,
   email: props.user.email,
+  role: props.user.role,
 });
+
+const roleOptions = [
+  { key: "1", text: "Admin" },
+  { key: "2", text: "Seller" },
+  { key: "3", text: "User" },
+];
 
 const loading = ref(false);
 
@@ -149,39 +178,53 @@ onUpdated(() => {
     id: props.user.id,
     name: props.user.name,
     email: props.user.email,
+    role: props.user.role,
   };
 });
 
 function closeModal() {
   show.value = false;
   emit("close");
+  errors.value = null;
 }
-
 function onSubmit() {
   loading.value = true;
   if (user.value.id) {
-    store.dispatch("updateUser", user.value).then((response) => {
-      loading.value = false;
-      if (response.status === 200) {
-        // TODO show notification
-        store.dispatch("getUsers");
-        closeModal();
-      }
-    });
+    store
+      .dispatch("updateUser", user.value)
+      .then((response) => {
+        loading.value = false;
+        if (response.status === 200) {
+          store.dispatch("getUsers");
+          closeModal();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        loading.value = false;
+        if (err.response && err.response.status === 422) {
+          errors.value =
+            Object.values(err.response?.data?.errors).flat().join(" , ") ||
+            "An unexpected error occurred.";
+        }
+      });
   } else {
     store
       .dispatch("createUser", user.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 201) {
-          // TODO show notification
           store.dispatch("getUsers");
           closeModal();
         }
       })
       .catch((err) => {
         loading.value = false;
-        debugger;
+        if (err.response && err.response.status === 422) {
+          errors.value =
+            Object.values(err.response?.data?.errors).flat().join(" , ") ||
+            "An unexpected error occurred.";
+        }
       });
   }
 }

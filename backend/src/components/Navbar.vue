@@ -1,13 +1,18 @@
 <template>
   <header class="flex justify-between items-center p-3 h-14 shadow bg-white">
-    <button @click="emit('toggle-sidebar')"
-            class="flex items-center justify-center rounded transition-colors w-8 h-8 text-gray-700 hover:bg-black/10">
-      <MenuIcon class="w-6"/>
+    <button
+      @click="emit('toggle-sidebar')"
+      class="flex items-center justify-center rounded transition-colors w-8 h-8 text-gray-700 hover:bg-black/10"
+    >
+      <MenuIcon class="w-6" />
     </button>
     <Menu as="div" class="relative inline-block text-left">
       <MenuButton class="flex items-center">
-        <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-full w-8 mr-2">
-        <small>{{currentUser.name}}</small>
+        <img
+          src="https://randomuser.me/api/portraits/men/1.jpg"
+          class="rounded-full w-8 mr-2"
+        />
+        <small>{{ currentUser.name }}</small>
         <ChevronDownIcon
           class="h-5 w-5 text-violet-200 hover:text-violet-100"
           aria-hidden="true"
@@ -65,26 +70,22 @@
 </template>
 
 <script setup>
-import {MenuIcon, LogoutIcon, UserIcon} from '@heroicons/vue/outline'
-import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
-import {ChevronDownIcon} from '@heroicons/vue/solid'
+import { MenuIcon, LogoutIcon, UserIcon } from "@heroicons/vue/outline";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { ChevronDownIcon } from "@heroicons/vue/solid";
 import store from "../store";
 import router from "../router";
-import {computed} from "vue";
+import { computed } from "vue";
 
-const emit = defineEmits(['toggle-sidebar'])
+const emit = defineEmits(["toggle-sidebar"]);
 
 const currentUser = computed(() => store.state.user.data);
 
 function logout() {
-  store.dispatch('logout')
-    .then(() => {
-      router.push({name: 'login'})
-    })
+  store.dispatch("logout").then(() => {
+    router.push({ name: "login" });
+  });
 }
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,19 +1,14 @@
-<?php
-/** @var \Illuminate\Database\Eloquent\Collection $products */
-$categoryList = \App\Models\Category::getActiveAsTree();
-?>
-
 <x-app-layout>
     <!-- Hero Section -->
     <section class="hero bg-gray py-1 px-6">
         <div class="container mx-auto flex flex-col-reverse lg:flex-row items-center">
             <div class="hero-content lg:w-1/2 text-center lg:text-left">
-                <h1 class="text-5xl font-bold mb-4">
+                <h1 class="text-4xl font-bold mb-4">
                     <span class="highlight-black">Bring </span>
-                    <span class="text-green-600">Nature </span>
+                    <span class="text-green-primary">Nature </span>
                     <span class="highlight-black">to </span>
                     <span class="highlight-black">Your </span>
-                    <span class="text-green-600">Home </span>
+                    <span class="text-green-primary">Home </span>
                 </h1>
                 <p class="text-2xl mb-6">
                     Discover our curated collection of plants, perfect for any space.
@@ -22,7 +17,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                 <a href="{{ route('shop') }}" class="btn-primary">Shop Now</a>
             </div>
             <div class="hero-section lg:w-1/2">
-                <img src="{{ asset('/storage/images/front/img/hero-image.png') }}" alt="Hero image"
+                <img src="{{ asset('/storage/imgfront/hero-image.png') }}" alt="Hero image"
                     class="w-full lg:w-3/4 mx-auto" />
             </div>
         </div>
@@ -31,7 +26,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
     <!-- Categories Section -->
     <section class="categories py-16 bg-white">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Explore Plant Categories</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">Explore Plant Categories</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {{-- @foreach ($categories as $category)
                     <div class="category-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
@@ -48,7 +43,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
     <!-- Products Section -->
     <section class="products py-16 bg-gray">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Featured Products</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">Featured Products</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($products as $product)
                     <div class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
@@ -93,7 +88,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
     <!-- Plant Care Tips Section -->
     <section class="plant-care-tips py-16 bg-white">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Plant Care Tips</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Tips</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {{-- @foreach ($plantCareTips as $tip)
                     <div class="tip-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">

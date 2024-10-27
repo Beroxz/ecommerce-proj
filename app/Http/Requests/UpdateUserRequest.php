@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -25,9 +26,10 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['max:55'],
-            'email' => ['email'],
-            'password' => ['nullable', Password::min(8)->numbers()->letters()->symbols()]
+            'name' => ['required', 'max:55'],
+            'email' => ['required',  'email'],
+            'role' => ['required', Rule::in([1, 2, 3])],
+            'password' => ['nullable', Password::min(8)->numbers()->letters()]
         ];
     }
 }

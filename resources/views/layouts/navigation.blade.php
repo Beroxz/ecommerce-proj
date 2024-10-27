@@ -2,9 +2,9 @@
     mobileMenuOpen: false,
     cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
 }" @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between bg-gray shadow-md text-white">
+    class="flex justify-between bg-nav-custom shadow-md text-white">
     <div style="padding-left: 15px;">
-        <a href="{{ route('home') }}" class="block py-navbar-item pl-5 text-4xl text-gray-700 font-bold">Perdis</a>
+        <a href="{{ route('home') }}" class="block py-navbar-item pl-5 text-4xl font-bold">Perdis</a>
     </div>
 
     <!-- Responsive Menu -->
@@ -44,7 +44,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        {{-- Cart --}}
+                        Cart
                     </div>
                     <!-- Cart Items Counter -->
                     <small x-show="cartItemsCount" x-transition x-text="cartItemsCount" x-cloak
@@ -81,15 +81,14 @@
                                 My Profile
                             </a>
                         </li>
-                        <li class=">
-                            <a href="{{ route('order.index') }}"
-                            class="flex items-center px-3 py-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                            My Orders
+                        <li>
+                            <a href="{{ route('order.index') }}" class="flex px-3 py-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                                My Orders
                             </a>
                         </li>
                         <li class=">
@@ -140,33 +139,36 @@
         </ul>
     </div>
     <!--/ Responsive Menu -->
+
     <nav class="hidden md:flex mr-6">
         <ul class="grid grid-flow-col items-center">
             <li class="mr-2">
-                <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
+                <a href="{{ route('home') }}"
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
                     Home
                 </a>
             </li>
             <li class="mr-2">
                 <a href="{{ route('shop') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
                     Shop
                 </a>
             </li>
             <li class="mr-2">
-                <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
+                <a href="{{ route('home') }}"
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
                     About Us
                 </a>
             </li>
             <li class="mr-2">
                 <a href="{{ route('cart.index') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-gray-700 hover:text-base-custom font-bold">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item font-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    
+
                     <small x-show="cartItemsCount" x-transition x-cloak x-text="cartItemsCount"
                         class="absolute z-[100] top-4 -right-3 py-[2px] px-[8px] rounded-full bg-red-500 text-white"></small>
                 </a>
@@ -174,14 +176,14 @@
             @if (!Auth::guest())
                 <li x-data="{ open: false }" class="relative">
                     <a @click="open = !open"
-                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 text-gray-700 font-bold">
+                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 font-bold">
                         <span class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            My Account
+                            {{-- My Account --}}
                         </span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
                             fill="currentColor">
@@ -191,7 +193,7 @@
                         </svg>
                     </a>
                     <ul @click.outside="open = false" x-show="open" x-transition x-cloak
-                        class="absolute z-10 right-0 bg-slate-800 py-2 w-48">
+                        class="absolute z-10 right-0 bg-slate-800 py-2 w-48 rounded-lg">
                         <li class="mr-4">
                             <a href="{{ route('profile') }}" class="flex px-3 py-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
@@ -249,7 +251,8 @@
                     </a>
                 </li> --}}
                 <li class="mr-4">
-                    <a href="{{ route('login') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl text-gray-700 hover:text-base-custom font-bold">
+                    <a href="{{ route('login') }}"
+                        class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
                         Login
                     </a>
                 </li>
@@ -262,7 +265,7 @@
             @endif
         </ul>
     </nav>
-    <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-4 block md:hidden text-gray-700 hover:text-base-custom">
+    <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-4 block md:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
             stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
-        <h1 class="text-3xl font-bold mb-6">Your Order</h1>
+        <h1 class="text-gray-700 text-3xl font-bold mb-6">Your Order</h1>
 
         <div x-data="{
             cartItems: {{ json_encode(
@@ -48,7 +48,7 @@
                                                 class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16" />
                                         </div>
                                         <a href="#" @click.prevent="removeItemFromCart()"
-                                            class="text-purple-600 hover:text-purple-500">Remove</a>
+                                            class="text-indigo-700 hover:text-indigo-600">Remove</a>
                                     </div>
                                 </div>
                             </div>

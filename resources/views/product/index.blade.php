@@ -76,7 +76,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                     <button class="btn-primary flex items-center gap-2" @click="addToCart()">
                         <i class="fas fa-cart-plus"></i>
                         Add to Cart
-                    </button>                    
+                    </button>
                 </div>
             </div>
             <!--/ Product Item -->

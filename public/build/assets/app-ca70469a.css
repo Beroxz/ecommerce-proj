@@ -609,7 +609,7 @@ select {
 }
 .btn-primary:hover {
   --tw-bg-opacity: 1;
-  background-color: #678E61;
+  background-color: #678e61;
 }
 .btn-primary:active {
   --tw-bg-opacity: 1;
@@ -863,6 +863,9 @@ select {
 .w-\[400px\] {
   width: 400px;
 }
+.w-\[500px\] {
+  width: 500px;
+}
 .w-8 {
   width: 2rem;
 }
@@ -1085,7 +1088,7 @@ select {
 }
 .bg-nav-custom {
   --tw-bg-opacity: 1;
-  background-color: #678E61;
+  background-color: #678e61;
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1883,4 +1886,3 @@ footer {
   padding: 10px;
   text-align: center;
 }
-
