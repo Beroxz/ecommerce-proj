@@ -57,9 +57,12 @@ class IndexController extends Controller
 
             ->get();
 
-        return view('index', [
-            'products' => $products
-        ]);
+        $tools = \App\Models\Tool::where('published', '=', 1)->get();
 
+        return view('index', [
+            'products' => $products,
+            'tools' => $tools,
+            'categories' => Category::getAll(),
+        ]);
     }
 }
