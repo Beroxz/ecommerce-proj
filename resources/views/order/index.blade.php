@@ -4,7 +4,7 @@
 
 <x-app-layout>
     <div class="container mx-auto lg:w-2/3 p-5">
-        <h1 class="text-3xl font-bold mb-2">My Orders</h1>
+        <h1 class="text-gray-700 text-3xl font-bold mb-2">My Orders</h1>
         <div class="bg-white rounded-lg p-3 overflow-x-auto">
             <table class="table-auto w-full">
                 <thead>

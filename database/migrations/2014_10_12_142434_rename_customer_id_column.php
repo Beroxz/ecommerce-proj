@@ -15,6 +15,8 @@ return new class extends Migration
     {
          Schema::table('customers', function (Blueprint $table) {
              $table->renameColumn('id', 'user_id');
+
+             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
          });
     }
 
@@ -27,6 +29,8 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
              $table->renameColumn('user_id', 'id');
+
+             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
          });
     }
 };

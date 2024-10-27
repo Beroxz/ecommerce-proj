@@ -7,7 +7,6 @@
 
     <title>{{ config('app.name', 'Laravel E-commerce Website') }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('logo.svg') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM5t4eD2j0KP2A/S96Rf4e5P3SY2eGKTfl0gOQ" crossorigin="anonymous">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

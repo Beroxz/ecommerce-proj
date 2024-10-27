@@ -144,19 +144,19 @@
         <ul class="grid grid-flow-col items-center">
             <li class="mr-2">
                 <a href="{{ route('home') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
                     Home
                 </a>
             </li>
             <li class="mr-2">
                 <a href="{{ route('shop') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
                     Shop
                 </a>
             </li>
             <li class="mr-2">
                 <a href="{{ route('home') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
                     About Us
                 </a>
             </li>
@@ -168,7 +168,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-
+                    {{-- Cart --}}
                     <small x-show="cartItemsCount" x-transition x-cloak x-text="cartItemsCount"
                         class="absolute z-[100] top-4 -right-3 py-[2px] px-[8px] rounded-full bg-red-500 text-white"></small>
                 </a>
@@ -252,7 +252,7 @@
                 </li> --}}
                 <li class="mr-4">
                     <a href="{{ route('login') }}"
-                        class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold">
+                        class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
                         Login
                     </a>
                 </li>
