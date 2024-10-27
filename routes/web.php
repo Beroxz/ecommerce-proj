@@ -15,6 +15,7 @@ Route::middleware(['guestOrVerified'])->group(function () {
 
     Route::get('/home', [IndexController::class, 'index'])->name('home');
     Route::get('/shop', [ProductController::class, 'index'])->name('shop');
+    Route::get('/category/all', [ProductController::class, 'byAllCategories'])->name('byAllCategories');
     Route::get('/category/{category:slug}', [ProductController::class, 'byCategory'])->name('byCategory');
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 

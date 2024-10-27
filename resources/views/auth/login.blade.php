@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form method="POST" action="{{ route('login') }}" class="max-w-md mx-auto p-6 my-16">
+    <form method="POST" action="{{ route('login') }}" class="max-w-md mx-auto p-6 my-16 bg-white shadow-md rounded-lg">
         <h2 class="text-gray-700 text-4xl font-semibold text-center mb-5">
             Log in to Exclusive
         </h2>
