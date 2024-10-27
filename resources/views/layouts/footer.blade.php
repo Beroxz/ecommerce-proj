@@ -4,7 +4,7 @@
             <div class="w-1/3 mx-2">
                 <h2 class="text-lg font-bold">About Us</h2>
                 <p class="mt-2">
-                    At [Perdis], we are committed to providing the best service to our customers. Our passion for nature
+                    Our passion for nature
                     drives us to offer a wide selection of high-quality plants and trees that can enhance any space,
                     whether it’s your home, garden, or office.
                 </p>

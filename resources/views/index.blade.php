@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <section class="hero bg-gray py-1 px-6">
+    <section class="hero bg-gray py-3 px-6">
         <div class="container mx-auto flex flex-col-reverse lg:flex-row items-center">
             <div class="hero-content lg:w-1/2 text-center lg:text-left">
                 <h1 class="text-4xl font-bold mb-4">
@@ -24,16 +24,10 @@
     </section>
 
     <!-- Categories Section -->
-    <section class="categories py-16 bg-white">
+    <section class="categories py-12 bg-white rounded-xl">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Explore Plant Categories</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">Categories</h2>
             <div class="relative">
-                <button
-                    class="absolute left-0 top-1/2 transform -translate-y-1/2 text-4xl text-gray p-2 rounded-full z-10 bg-white shadow"
-                    id="scroll-left">
-                    <span>&#8249;</span>
-                </button>
-
                 <div id="category-container"
                     class="overflow-x-auto whitespace-nowrap scroll-smooth no-scrollbar mx-8 overflow-hidden">
                     <div class="flex gap-4">
@@ -46,10 +40,13 @@
                         @endforeach
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-center mt-6 gap-12">
+                <button class="text-4xl text-gray" id="scroll-left">
+                    <span>&#8249;</span>
+                </button>
 
-                <button
-                    class="absolute right-0 top-1/2 transform -translate-y-1/2 text-4xl text-gray p-2 rounded-full z-10 bg-white shadow"
-                    id="scroll-right">
+                <button class="text-4xl text-gray" id="scroll-right">
                     <span>&#8250;</span>
                 </button>
             </div>
@@ -57,7 +54,7 @@
     </section>
 
     <!-- Products Section -->
-    <section class="products py-16 bg-gray">
+    <section class="products py-12 bg-gray rounded-xl">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl text-gray-700 font-bold mb-8">Featured Products</h2>
 
@@ -96,7 +93,7 @@
     </section>
 
     <!-- Plant Care Tips Section -->
-    <section class="plant-care-tips py-16 bg-white">
+    <section class="plant-care-tips py-12 bg-white rounded-xl">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Tips</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
