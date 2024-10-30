@@ -20,6 +20,11 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'created_by', 'user_id');
+    }
+
     private function _getAddresses(): HasOne
     {
         return $this->hasOne(CustomerAddress::class, 'customer_id', 'user_id');

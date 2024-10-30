@@ -14,7 +14,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status', 'total_price', 'created_by', 'updated_by'];
+    protected $fillable = ['status', 'total_price', 'seller_id' , 'created_by', 'updated_by'];
 
     public function isPaid()
     {

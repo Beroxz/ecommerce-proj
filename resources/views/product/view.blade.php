@@ -76,6 +76,10 @@
                     {{ $product->title }}
                 </h1>
                 <div class="text-xl font-bold mb-6">฿{{ number_format($product->price, 2) }}</div>
+                <div class="mb-4">
+                    <span class="text-lg font-semibold">Store:</span>
+                    <span class="text-gray-600">{{ $seller->store_name }}</span>
+                </div>
                 @if ($product->quantity === 0)
                     <div class="bg-red-400 text-white py-2 px-3 rounded mb-3">
                         The product is out of stock

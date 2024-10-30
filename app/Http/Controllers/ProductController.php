@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Seller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,13 @@ class ProductController extends Controller
 
     public function view(Product $product)
     {
-        return view('product.view', ['product' => $product]);
+        $seller = Seller::find($product->seller_id);
+        return view('product.view', [
+            'product' => $product,
+            'seller' => $seller
+        ]);
     }
+
 
     private function renderProducts(Builder $query)
     {

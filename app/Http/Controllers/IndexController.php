@@ -6,14 +6,25 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $query = Product::query();
+        $allProducts = $this->getAllProduct();
+        $newProducts = $this->getNewProduct();
+        $bestSellProducts = $this->getBestSellProducts();
 
-        return $this->renderProducts($query);
+        $tools = \App\Models\Tool::where('published', '=', 1)->get();
+
+        return view('index', [
+            'allProducts' => $allProducts,
+            'newProducts' => $newProducts,
+            'bestSellProducts' => $bestSellProducts,
+            'tools' => $tools,
+            'categories' => Category::getAll(),
+        ]);
     }
 
     public function byCategory(Category $category)
@@ -33,36 +44,30 @@ class IndexController extends Controller
         return view('product.view', ['product' => $product]);
     }
 
-    private function renderProducts(Builder $query)
+    //all
+    public function getAllProduct()
     {
-        $search = \request()->get('search');
-        $sort = \request()->get('sort', '-updated_at');
+        return Product::where('published', '=', 1)->get();
+    }
 
-        if ($sort) {
-            $sortDirection = 'asc';
-            if ($sort[0] === '-') {
-                $sortDirection = 'desc';
-            }
-            $sortField = preg_replace('/^-?/', '', $sort);
-
-            $query->orderBy($sortField, $sortDirection);
-        }
-        $products = $query
+    //new
+    public function getNewProduct()
+    {
+        return Product::where('created_at', '>=', Carbon::now()->subDays(3))
             ->where('published', '=', 1)
-            ->where(function ($query) use ($search) {
-                /** @var $query \Illuminate\Database\Eloquent\Builder */
-                $query->where('products.title', 'like', "%$search%")
-                    ->orWhere('products.description', 'like', "%$search%");
-            })
-
             ->get();
+    }
 
-        $tools = \App\Models\Tool::where('published', '=', 1)->get();
-
-        return view('index', [
-            'products' => $products,
-            'tools' => $tools,
-            'categories' => Category::getAll(),
-        ]);
+    //bestSeller
+    public function getBestSellProducts()
+    {
+        return Product::select('products.id', 'products.slug', 'products.title', 'products.description', 'products.price')
+            ->join('order_items AS oi', 'oi.product_id', 'products.id')
+            ->join('orders AS o', 'o.id', 'oi.order_id')
+            ->where('o.status', '=', 'Paid')
+            ->where('published', '=', 1)
+            ->groupBy('products.id', 'products.title', 'products.slug', 'products.description', 'products.price', 'products.seller_id', 'products.is_promotion', 'products.quantity', 'products.published', 'products.created_by', 'products.updated_by')
+            ->orderByRaw('COUNT(oi.product_id) DESC')
+            ->get();
     }
 }

@@ -46,6 +46,13 @@
           <CustomInput
             type="checkbox"
             class="mb-2"
+            v-model="product.is_promotion"
+            label="Promotion!!"
+            :errors="errors['promotion']"
+          />
+          <CustomInput
+            type="checkbox"
+            class="mb-2"
             v-model="product.published"
             label="Published"
             :errors="errors['published']"
@@ -120,6 +127,7 @@ const product = ref({
   price: null,
   quantity: null,
   published: false,
+  is_promotion: false,
   categories: [],
 });
 
@@ -147,7 +155,7 @@ onMounted(() => {
 function onSubmit($event, close = false) {
   loading.value = true;
   errors.value = {};
-  product.value.quantity = product.value.quantity || null;
+  product.value.quantity =  product.value.quantity == null ? 0 : product.value.quantity;
   if (product.value.id) {
     store
       .dispatch("updateProduct", product.value)

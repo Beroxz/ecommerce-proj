@@ -159,9 +159,9 @@ const user = ref({
 });
 
 const roleOptions = [
-  { key: "1", text: "Admin" },
-  { key: "2", text: "Seller" },
-  { key: "3", text: "User" },
+  { key: 1, text: "Admin" },
+  { key: 2, text: "Seller" },
+  { key: 3, text: "User" },
 ];
 
 const loading = ref(false);

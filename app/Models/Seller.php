@@ -13,6 +13,8 @@ class Seller extends Model
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
+        'hostSeller_name',
+        'hostSeller_last_name',
         'store_name',           // ชื่อร้าน
         'store_phone',          // เบอร์โทรศัพท์ร้าน
         'store_description',    // รายละเอียดร้าน
@@ -26,7 +28,6 @@ class Seller extends Model
         'updated_by',           // ID ของผู้ปรับปรุง
     ];
 
-    // ความสัมพันธ์กับผู้ใช้ (ผู้สร้างและผู้ปรับปรุง)
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');

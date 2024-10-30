@@ -6,6 +6,8 @@ import Products from "../views/Products/Products.vue";
 import Users from "../views/Users/Users.vue";
 import Customers from "../views/Customers/Customers.vue";
 import CustomerView from "../views/Customers/CustomerView.vue";
+import Sellers from "../views/Sellers/Sellers.vue";
+import SellerView from "../views/Sellers/SellerView.vue";
 import Orders from "../views/Orders/Orders.vue";
 import OrderView from "../views/Orders/OrderView.vue";
 import RequestPassword from "../views/RequestPassword.vue";
@@ -74,6 +76,18 @@ const routes = [
         path: 'customers/:id',
         name: 'app.customers.view',
         component: CustomerView
+      },
+      {
+        path: "sellers",
+        name: "app.sellers",
+        component: Sellers
+        // meta: { requiresAuth: true, roles: [1] }, 
+      },
+      {
+        path: "sellers/:id",
+        name: "app.sellers.view",
+        component: SellerView
+        // meta: { requiresAuth: true, roles: [1] }, 
       },
       {
         path: 'orders',

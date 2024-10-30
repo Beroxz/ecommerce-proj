@@ -14,16 +14,21 @@ class Product extends Model
     use HasSlug;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'price', 'is_promotion', 'quantity', 'published', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'slug', 'description', 'price', 'seller_id', 'is_promotion', 'quantity', 'published', 'created_by', 'updated_by'];
 
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public static function getFillableColumns()
+    {
+        return (new static)->getFillable();
     }
 
     public function getRouteKeyName()

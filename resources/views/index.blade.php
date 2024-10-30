@@ -66,8 +66,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6" id="product-grid">
-                @foreach ($products as $product)
-                    <div class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg {{ $product->type }}">
+                <!-- All Products -->
+                @foreach ($allProducts as $product)
+                    <div class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
                         <a href="{{ route('product.view', $product->slug) }}">
                             <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
                                 alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
@@ -75,22 +76,42 @@
 
                         <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
                         <p class="text-green-700 font-bold">฿{{ number_format($product->price, 2) }}</p>
+                    </div>
+                @endforeach
+            </div>
 
-                        {{-- <button onclick="location.href='{{ route('product.view', $product->slug) }}'"
-                            class="btn-primary hover:btn-primary text-white py-2 px-4 rounded mt-4 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            </svg>
-                        </button> --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden" id="new-products">
+                <!-- New Products -->
+                @foreach ($newProducts as $product)
+                    <div class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
+                        <a href="{{ route('product.view', $product->slug) }}">
+                            <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
+                                alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
+                        </a>
+
+                        <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
+                        <p class="text-green-700 font-bold">฿{{ number_format($product->price, 2) }}</p>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden" id="best-seller-products">
+                <!-- Best Selling Products -->
+                @foreach ($bestSellProducts as $product)
+                    <div class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
+                        <a href="{{ route('product.view', $product->slug) }}">
+                            <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
+                                alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
+                        </a>
+
+                        <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
+                        <p class="text-green-700 font-bold">฿{{ number_format($product->price, 2) }}</p>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
+
 
     <!-- Plant Care Tips Section -->
     <section class="plant-care-tips py-12 bg-white rounded-xl">
@@ -114,16 +135,22 @@
 
 <script>
     function showTab(tabName) {
-        const productItems = document.querySelectorAll('.product-item');
-        productItems.forEach(item => {
-            if (tabName === 'all' || item.classList.contains(tabName)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+        const allProducts = document.getElementById('product-grid');
+        const newProducts = document.getElementById('new-products');
+        const bestSellerProducts = document.getElementById('best-seller-products');
 
-        // เปลี่ยนสไตล์ปุ่มแท็บ
+        allProducts.classList.add('hidden');
+        newProducts.classList.add('hidden');
+        bestSellerProducts.classList.add('hidden');
+
+        if (tabName === 'all') {
+            allProducts.classList.remove('hidden');
+        } else if (tabName === 'new') {
+            newProducts.classList.remove('hidden');
+        } else if (tabName === 'bestseller') {
+            bestSellerProducts.classList.remove('hidden');
+        }
+
         const tabButtons = document.querySelectorAll('.tab-button');
         tabButtons.forEach(button => {
             button.classList.remove('active');
@@ -132,6 +159,7 @@
     }
 
     showTab('all');
+
 
     const categoryLinks = document.querySelectorAll('.category-item');
     const container = document.getElementById('category-container');

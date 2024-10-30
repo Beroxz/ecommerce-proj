@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Middleware\Admin;
+use App\Http\Middleware\AdminOrSeller;
 use App\Http\Middleware\GuestOrVerified;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'guestOrVerified' => GuestOrVerified::class,
-            'admin' => Admin::class
+            'adminOrSeller' => AdminOrSeller::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

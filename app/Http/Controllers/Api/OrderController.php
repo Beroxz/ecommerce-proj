@@ -13,6 +13,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -27,10 +28,12 @@ class OrderController extends Controller
         $search = request('search', '');
         $sortField = request('sort_field', 'updated_at');
         $sortDirection = request('sort_direction', 'desc');
+        $userId = Auth::id();
 
         $query = Order::query()
             ->withCount('items')
             ->with('user.customer')
+            ->where('seller_id', $userId)
             ->where('id', 'like', "%{$search}%")
             ->orderBy($sortField, $sortDirection)
             ->paginate($perPage);

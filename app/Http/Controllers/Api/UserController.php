@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Api\User;
 use App\Models\Customer;
+use App\Models\Seller;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -48,32 +49,35 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        switch ($data['role']) {
-            case 1: // admin
-                $data['is_admin'] = true;
-                $data['is_seller'] = false; // admin ไม่ใช่ seller
-                break;
-            case 2: // seller
-                $data['is_admin'] = false; // seller ไม่ใช่ admin
-                $data['is_seller'] = true;
-                break;
-            case 3: // user
-                $data['is_admin'] = false; // user ไม่ใช่ admin
-                $data['is_seller'] = false; // user ไม่ใช่ seller
-                break;
-            default:
-                throw new \InvalidArgumentException('Invalid role specified');
+        if (!in_array($data['role'], [1, 2, 3])) {
+            throw new \InvalidArgumentException('Invalid role specified');
         }
 
-        $data['email_verified_at'] = date('Y-m-d H:i:s');
+        $data['email_verified_at'] = now();
         $data['password'] = Hash::make($data['password']);
 
         $data['created_by'] = $request->user()->id;
         $data['updated_by'] = $request->user()->id;
 
         $user = User::create($data);
-      
 
+        if ($data['role'] === 2) {
+            $seller = new Seller();
+            $names = explode(" ", $user->name);
+            $seller->user_id = $user->id;
+            $seller->hostSeller_name = $names[0];
+            $seller->hostSeller_last_name = $names[1] ?? '';
+            $seller->save();
+        }
+
+        if ($data['role'] === 3) {
+            $customer = new Customer();
+            $names = explode(" ", $user->name);
+            $customer->user_id = $user->id;
+            $customer->first_name = $names[0];
+            $customer->last_name = $names[1] ?? '';
+            $customer->save();
+        }
 
         return new UserResource($user);
     }
@@ -105,22 +109,10 @@ class UserController extends Controller
         }
 
         if (isset($data['role'])) {
-            switch ($data['role']) {
-                case 1: // admin
-                    $data['is_admin'] = true;
-                    $data['is_seller'] = false;
-                    break;
-                case 2: // seller
-                    $data['is_admin'] = false;
-                    $data['is_seller'] = true;
-                    break;
-                case 3: // user
-                    $data['is_admin'] = false;
-                    $data['is_seller'] = false;
-                    break;
-                default:
-                    throw new \InvalidArgumentException('Invalid role specified');
+            if (!in_array($data['role'], [1, 2, 3])) {
+                throw new \InvalidArgumentException('Invalid role specified');
             }
+            $data['role'] = $data['role'];
         }
 
         if (!empty($data['password'])) {

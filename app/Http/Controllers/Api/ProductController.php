@@ -17,11 +17,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $perPage = request('per_page', 10);
@@ -37,17 +33,14 @@ class ProductController extends Controller
         return ProductListResource::collection($query);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
+
         $data['created_by'] = $request->user()->id;
         $data['updated_by'] = $request->user()->id;
+        $data['seller_id'] = $request->user()->id;
+        $data['is_promotion'] = $request->input('is_promotion', false);
 
         /** @var \Illuminate\Http\UploadedFile[] $images */
         $images = $data['images'] ?? [];
@@ -62,24 +55,11 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
         return new ProductResource($product);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Product      $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(ProductRequest $request, Product $product)
     {
         $data = $request->validated();
@@ -104,9 +84,6 @@ class ProductController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
     {
@@ -124,8 +101,6 @@ class ProductController extends Controller
     }
 
     /**
-     *
-     *
      * @param UploadedFile[] $images
      * @return string
      * @throws \Exception
@@ -143,7 +118,7 @@ class ProductController extends Controller
             if (!Storage::exists($path)) {
                 Storage::makeDirectory($path, 0755, true);
             }
-            $name = Str::random().'.'.$image->getClientOriginalExtension();
+            $name = Str::random() . '.' . $image->getClientOriginalExtension();
             if (!Storage::putFileAS('public/' . $path, $image, $name)) {
                 throw new \Exception("Unable to save file \"{$image->getClientOriginalName()}\"");
             }

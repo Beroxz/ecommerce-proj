@@ -17,14 +17,30 @@ class ReportController extends Controller
 
     public function orders()
     {
-        $query = Order::query();
+        $userId = auth()->user()->id;
+        $userRole = auth()->user()->role;
+
+        if ($userRole == 1) {
+            $query = Order::query();
+        } else {
+            $query = Order::where('seller_id', $userId);
+        }
 
         return $this->prepareDataForBarChart($query, 'Orders By Day');
     }
 
     public function customers()
     {
-        $query = Customer::query();
+        $userId = auth()->user()->id;
+        $userRole = auth()->user()->role;
+
+        if ($userRole == 1) {
+            $query = Customer::query();
+        } else {
+            $query = Customer::whereHas('orders', function ($query) use ($userId) {
+                $query->where('seller_id', $userId);
+            });
+        }
 
         return $this->prepareDataForBarChart($query, 'Customers By Day');
     }

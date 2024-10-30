@@ -32,7 +32,8 @@ class ProductRequest extends FormRequest
             'price' => ['required', 'numeric', 'min:0.01'],
             'quantity' => ['nullable', 'numeric', 'min:0'],
             'description' => ['nullable', 'string'],
-            'published' => ['required', 'boolean']
+            'published' => ['required', 'boolean'],
+            'is_promotion' => ['boolean']
         ];
     }
 }
