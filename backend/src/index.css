@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Asangha';
+  src: url('/fonts/Asangha/Asangha-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Asangha', sans-serif;
+}
+
+.font-semibold {
+  font-family: 'Asangha', sans-serif;
+  font-weight: 600;
+}
+
+.font-semibold.sm { font-size: 12px; }
+.font-semibold.md { font-size: 16px; }
+.font-semibold.lg { font-size: 20px; }
+.font-semibold.xl { font-size: 24px; }
+
+.font-bold {
+  font-family: 'Asangha', sans-serif;
+  font-weight: 700;
+}
+
+.font-bold.sm { font-size: 12px; }
+.font-bold.md { font-size: 16px; }
+.font-bold.lg { font-size: 20px; }
+.font-bold.xl { font-size: 24px; }
+
 .ck-content > blockquote,
 .ck-content > dl,
 .ck-content > dd,
