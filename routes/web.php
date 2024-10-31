@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -14,6 +15,7 @@ Route::middleware(['guestOrVerified'])->group(function () {
     });
 
     Route::get('/home', [IndexController::class, 'index'])->name('home');
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
     Route::get('/shop', [ProductController::class, 'index'])->name('shop');
     Route::get('/category/all', [ProductController::class, 'byAllCategories'])->name('byAllCategories');
     Route::get('/category/{category:slug}', [ProductController::class, 'byCategory'])->name('byCategory');

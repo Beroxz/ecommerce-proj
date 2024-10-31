@@ -13,7 +13,7 @@
         <p class="text-center text-gray-500 mb-6">
             or
             <a href="{{ route('login') }}" class="text-indigo-700 hover:text-indigo-600">
-                Remember Your Password?
+                remember your password?
             </a>
         </p>
 

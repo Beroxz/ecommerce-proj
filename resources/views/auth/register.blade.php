@@ -6,7 +6,7 @@
         <p class="text-center text-gray-500 mb-6">
             Enter your details below, or
             <a href="{{ route('login') }}" class="text-sm text-indigo-700 hover:text-indigo-600">
-                already have an account? Log in.
+                already have an account?
             </a>
         </p>
 

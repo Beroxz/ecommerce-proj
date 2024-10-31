@@ -47,7 +47,8 @@ class IndexController extends Controller
     //all
     public function getAllProduct()
     {
-        return Product::where('published', '=', 1)->get();
+        return Product::where('published', '=', 1)
+            ->paginate(8);
     }
 
     //new
@@ -55,7 +56,7 @@ class IndexController extends Controller
     {
         return Product::where('created_at', '>=', Carbon::now()->subDays(3))
             ->where('published', '=', 1)
-            ->get();
+            ->paginate(8);
     }
 
     //bestSeller
@@ -68,6 +69,6 @@ class IndexController extends Controller
             ->where('published', '=', 1)
             ->groupBy('products.id', 'products.title', 'products.slug', 'products.description', 'products.price', 'products.seller_id', 'products.is_promotion', 'products.quantity', 'products.published', 'products.created_by', 'products.updated_by')
             ->orderByRaw('COUNT(oi.product_id) DESC')
-            ->get();
+            ->paginate(8);
     }
 }

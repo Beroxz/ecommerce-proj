@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('home') }}"
+                <a href="{{ route('about') }}"
                     class="relative flex items-center justify-between py-2 px-3 transition-colors">
                     <div class="flex items-center">
                         About Us
@@ -155,7 +155,7 @@
                 </a>
             </li>
             <li class="mr-2">
-                <a href="{{ route('home') }}"
+                <a href="{{ route('about') }}"
                     class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
                     About Us
                 </a>

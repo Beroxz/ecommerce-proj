@@ -48,7 +48,7 @@
                     }
                 }" action="{{ route('profile.update') }}" method="post">
                     @csrf
-                    <h2 class="text-xl font-semibold mb-2">Profile Details</h2>
+                    <h2 class="text-gray-700 text-xl font-semibold mb-2">Profile Details</h2>
                     <div class="grid grid-cols-2 gap-3 mb-3">
                         <x-input
                             type="text"
@@ -84,7 +84,7 @@
                         />
                     </div>
 
-                    <h2 class="text-xl mt-6 font-semibold mb-2">Billing Address</h2>
+                    <h2 class="text-xl text-gray-700 mt-6 font-semibold mb-2">Billing Address</h2>
                     <div class="grid grid-cols-2 gap-3 mb-3">
                         <div>
                             <x-input
@@ -165,7 +165,7 @@
                     </div>
 
                     <div class="flex justify-between mt-6 mb-2">
-                        <h2 class="text-xl font-semibold">Shipping Address</h2>
+                        <h2 class="text-xl text-gray-700 font-semibold">Shipping Address</h2>
                         <label for="sameAsBillingAddress" class="text-gray-700">
                             <input @change="$event.target.checked ? shippingAddress = {...billingAddress} : ''"
                                    id="sameAsBillingAddress" type="checkbox"
@@ -257,7 +257,7 @@
             <div class="bg-white p-3 shadow rounded-lg">
                 <form action="{{route('profile_password.update')}}" method="post">
                     @csrf
-                    <h2 class="text-xl font-semibold mb-2">Update Password</h2>
+                    <h2 class="text-xl text-gray-700 font-semibold mb-2">Update Password</h2>
                     <div class="mb-3">
                         <x-input
                             type="password"
