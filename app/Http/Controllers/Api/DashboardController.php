@@ -106,6 +106,32 @@ class DashboardController extends Controller
         return $query->get();
     }
 
+    public function ordersByState()
+    {
+        $fromDate = $this->getFromDate();
+        $query = Order::query()
+            ->select([
+                DB::raw('LOWER(a.state) as state_name'),
+                DB::raw('count(orders.id) as count'),
+                'users.name as user_name'
+            ])
+            ->join('users', 'orders.created_by', '=', 'users.id')
+            ->join('customer_addresses AS a', 'users.id', '=', 'a.customer_id')
+            ->where('status', OrderStatus::Paid->value)
+            ->where('a.type', AddressType::Billing->value)
+            ->groupBy('state_name', 'user_name')
+            ->orderBy('count', 'DESC');
+
+        if ($fromDate) {
+            $query->where('orders.created_at', '>', $fromDate);
+        }
+
+        return $query->get();
+    }
+
+
+
+
     public function latestCustomers()
     {
         $userRole = auth()->user()->role;
