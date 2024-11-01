@@ -6,6 +6,7 @@
       'bg-orange-400': order.status === 'Shipped',
       'bg-red-500': order.status === 'Cancelled',
       'bg-gray-400': order.status === 'Unpaid',
+      'bg-yellow-500': order.status === 'Delivered',
     }"
     >{{ order.status }}</span
   >

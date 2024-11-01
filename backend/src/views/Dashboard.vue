@@ -94,9 +94,9 @@
     <div
       class="bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
     >
-      <label class="text-lg font-semibold block mb-2">Orders by Country</label>
-      <template v-if="!loading.ordersByCountry">
-        <DoughnutChart :width="140" :height="200" :data="ordersByCountry" />
+      <label class="text-lg font-semibold block mb-2">Orders by Province</label>
+      <template v-if="!loading.ordersByState">
+        <DoughnutChart :width="140" :height="200" :data="ordersByState" />
       </template>
       <Spinner v-else text="" class="" />
     </div>
@@ -143,7 +143,7 @@ const loading = ref({
   productsCount: true,
   paidOrders: true,
   totalIncome: true,
-  ordersByCountry: true,
+  ordersByState: true,
   latestCustomers: true,
   latestOrders: true,
 });
@@ -151,7 +151,7 @@ const customersCount = ref(0);
 const productsCount = ref(0);
 const paidOrders = ref(0);
 const totalIncome = ref(0);
-const ordersByCountry = ref([]);
+const ordersByState = ref([]);
 const latestCustomers = ref([]);
 const latestOrders = ref([]);
 
@@ -162,7 +162,7 @@ function updateDashboard() {
     productsCount: true,
     paidOrders: true,
     totalIncome: true,
-    ordersByCountry: true,
+    ordersByState: true,
     latestCustomers: true,
     latestOrders: true,
   };
@@ -195,9 +195,9 @@ function updateDashboard() {
       loading.value.totalIncome = false;
     });
   axiosClient
-    .get(`/dashboard/orders-by-country`, { params: { d } })
-    .then(({ data: countries }) => {
-      loading.value.ordersByCountry = false;
+    .get(`/dashboard/orders-by-province`, { params: { d } })
+    .then(({ data: provinces }) => {
+      loading.value.ordersByState = false;
       const chartData = {
         labels: [],
         datasets: [
@@ -207,11 +207,11 @@ function updateDashboard() {
           },
         ],
       };
-      countries.forEach((c) => {
-        chartData.labels.push(c.name);
+      provinces.forEach((c) => {
+        chartData.labels.push(c.state_name);
         chartData.datasets[0].data.push(c.count);
       });
-      ordersByCountry.value = chartData;
+      ordersByState.value = chartData;
     });
 
   axiosClient

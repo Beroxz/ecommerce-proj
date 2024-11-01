@@ -30,13 +30,18 @@
       <thead>
         <tr>
           <TableHeaderCell
-            field="user_id"
+            field="id"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('user_id')"
+            @click="sortCustomers('id')"
           >
             ID
           </TableHeaderCell>
+          <TableHeaderCell
+            field="store_image"
+            @click="sortSellers('store_image')"
+            >Profile Store</TableHeaderCell
+          >
           <TableHeaderCell
             field="hostSeller_name"
             :sort-field="sortField"
@@ -107,8 +112,9 @@
         </tr>
       </tbody>
       <tbody v-else>
-        <tr v-for="(seller, index) of sellers.data" :key="seller.user_id">
-          <td class="border-b p-2">{{ seller.user_id }}</td>
+        <tr v-for="(seller, index) of sellers.data" :key="seller.id">
+          <td class="border-b p-2">{{ seller.id }}</td>
+          <td>{{ seller.store_image }}</td>
           <td class="border-b p-2">{{ seller.hostSeller_name }}</td>
           <td class="border-b p-2">{{ seller.hostSeller_last_name }}</td>
           <td class="border-b p-2">{{ seller.store_name }}</td>
@@ -144,7 +150,7 @@
                       <router-link
                         :to="{
                           name: 'app.sellers.view',
-                          params: { id: seller.user_id },
+                          params: { id: seller.id },
                         }"
                         :class="[
                           active ? 'bg-indigo-600 text-white' : 'text-gray-900',

@@ -1,36 +1,46 @@
 <template>
-  <div v-if="order">
+  <div v-if="order" class="p-6 bg-white shadow-md rounded-lg">
     <!--  Order Details-->
     <div>
       <h2
-        class="flex justify-between items-center text-xl font-semibold pb-2 border-b border-gray-300"
+        class="flex justify-between items-center text-2xl font-semibold pb-4 border-b border-gray-300"
       >
         Order Details
         <OrderStatus :order="order" />
       </h2>
-      <table>
+      <table class="w-full mt-4">
         <tbody>
           <tr>
-            <td class="font-bold py-1 px-2">Order #</td>
-            <td>{{ order.id }}</td>
+            <td class="font-bold py-2 px-4">Order #</td>
+            <td class="py-2 px-4">{{ order.id }}</td>
           </tr>
           <tr>
-            <td class="font-bold py-1 px-2">Order Date</td>
-            <td>{{ order.created_at }}</td>
+            <td class="font-bold py-2 px-4">Order Date</td>
+            <td class="py-2 px-4">{{ order.created_at }}</td>
           </tr>
           <tr>
-            <td class="font-bold py-1 px-2">Order Status</td>
-            <td>
-              <select v-model="order.status" @change="onStatusChange">
-                <option v-for="status of orderStatuses" :value="status">
+            <td class="font-bold py-2 px-4">Order Status</td>
+            <td class="py-2 px-4">
+              <select
+                v-model="order.status"
+                @change="onStatusChange"
+                class="border rounded p-1"
+              >
+                <option
+                  v-for="status of orderStatuses"
+                  :value="status"
+                  :key="status"
+                >
                   {{ status }}
                 </option>
               </select>
             </td>
           </tr>
           <tr>
-            <td class="font-bold py-1 px-2">SubTotal</td>
-            <td>{{ $filters.currencyTHB(order.total_price) }}</td>
+            <td class="font-bold py-2 px-4">SubTotal</td>
+            <td class="py-2 px-4">
+              {{ $filters.currencyTHB(order.total_price) }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -39,24 +49,24 @@
 
     <!--  Customer Details-->
     <div>
-      <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">
+      <h2 class="text-2xl font-semibold mt-6 pb-4 border-b border-gray-300">
         Customer Details
       </h2>
-      <table>
+      <table class="w-full mt-4">
         <tbody>
           <tr>
-            <td class="font-bold py-1 px-2">Full Name</td>
-            <td>
+            <td class="font-bold py-2 px-4">Full Name</td>
+            <td class="py-2 px-4">
               {{ order.customer.first_name }} {{ order.customer.last_name }}
             </td>
           </tr>
           <tr>
-            <td class="font-bold py-1 px-2">Email</td>
-            <td>{{ order.customer.email }}</td>
+            <td class="font-bold py-2 px-4">Email</td>
+            <td class="py-2 px-4">{{ order.customer.email }}</td>
           </tr>
           <tr>
-            <td class="font-bold py-1 px-2">Phone</td>
-            <td>{{ order.customer.phone }}</td>
+            <td class="font-bold py-2 px-4">Phone</td>
+            <td class="py-2 px-4">{{ order.customer.phone }}</td>
           </tr>
         </tbody>
       </table>
@@ -64,13 +74,13 @@
     <!--/  Customer Details-->
 
     <!--  Addresses Details-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
       <div>
-        <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">
+        <h2 class="text-2xl font-semibold pb-4 border-b border-gray-300">
           Billing Address
         </h2>
         <!--  Billing Address Details-->
-        <div>
+        <div class="mt-2">
           {{ order.customer.billingAddress.address1 }},
           {{ order.customer.billingAddress.address2 }} <br />
           {{ order.customer.billingAddress.city }},
@@ -81,11 +91,11 @@
         <!--/  Billing Address Details-->
       </div>
       <div>
-        <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">
+        <h2 class="text-2xl font-semibold pb-4 border-b border-gray-300">
           Shipping Address
         </h2>
         <!--  Shipping Address Details-->
-        <div>
+        <div class="mt-2">
           {{ order.customer.shippingAddress.address1 }},
           {{ order.customer.shippingAddress.address2 }} <br />
           {{ order.customer.shippingAddress.city }},
@@ -96,27 +106,33 @@
         <!--/  Shipping Address Details-->
       </div>
     </div>
-    <!--/  Customer Details-->
+    <!--/  Addresses Details-->
 
     <!--    Order Items-->
-    <div>
-      <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">
+    <div class="mt-6">
+      <h2 class="text-2xl font-semibold pb-4 border-b border-gray-300">
         Order Items
       </h2>
-      <div v-for="item of order.items">
+      <div
+        v-for="item of order.items"
+        :key="item.product.id"
+        class="border-b pb-4 mb-4"
+      >
         <!-- Order Item -->
         <div class="flex flex-col sm:flex-row items-center gap-4">
           <a
             href="#"
             class="w-36 h-32 flex items-center justify-center overflow-hidden"
           >
-            <img :src="item.product.image" class="object-cover" alt="" />
+            <img
+              :src="item.product.image"
+              class="object-cover"
+              alt="Product Image"
+            />
           </a>
           <div class="flex flex-col justify-between flex-1">
             <div class="flex justify-between mb-3">
-              <h3>
-                {{ item.product.title }}
-              </h3>
+              <h3 class="text-lg font-semibold">{{ item.product.title }}</h3>
             </div>
             <div class="flex justify-between items-center">
               <div class="flex items-center">Qty: {{ item.quantity }}</div>
@@ -127,7 +143,6 @@
           </div>
         </div>
         <!--/ Order Item -->
-        <hr class="my-3" />
       </div>
     </div>
     <!--/    Order Items-->
@@ -168,4 +183,27 @@ function onStatusChange() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+}
+
+h2 {
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.border-b {
+  border-bottom-width: 2px;
+}
+
+.border-gray-300 {
+  border-color: #d1d5db;
+}
+</style>
