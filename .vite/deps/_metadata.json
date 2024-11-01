@@ -1,0 +1,37 @@
+{
+  "hash": "fb8b0304",
+  "configHash": "fb0a47c8",
+  "lockfileHash": "c9ef84a2",
+  "browserHash": "a4c35988",
+  "optimized": {
+    "alpinejs": {
+      "src": "../../node_modules/alpinejs/dist/module.esm.js",
+      "file": "alpinejs.js",
+      "fileHash": "5bcf6e27",
+      "needsInterop": false
+    },
+    "@alpinejs/collapse": {
+      "src": "../../node_modules/@alpinejs/collapse/dist/module.esm.js",
+      "file": "@alpinejs_collapse.js",
+      "fileHash": "7254fc01",
+      "needsInterop": false
+    },
+    "lodash": {
+      "src": "../../node_modules/lodash/lodash.js",
+      "file": "lodash.js",
+      "fileHash": "2a809ee9",
+      "needsInterop": true
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "6dddfefa",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-HKJ2B2AA": {
+      "file": "chunk-HKJ2B2AA.js"
+    }
+  }
+}

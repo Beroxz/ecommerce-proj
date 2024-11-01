@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CountrySeeder::class,
             ThailandAddressSeeder::class,
+            SellerSeeder::class,
         ]);
     }
 }

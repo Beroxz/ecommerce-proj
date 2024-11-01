@@ -42,7 +42,7 @@
                   {{
                     category.id
                       ? `Update category: "${props.category.name}"`
-                      : "Create new Category"
+                      : 'Create new Category'
                   }}
                 </DialogTitle>
                 <button
@@ -117,18 +117,18 @@
 </template>
 
 <script setup>
-import { computed, onUpdated, ref } from "vue";
+import { computed, onUpdated, ref } from 'vue';
 import {
   Dialog,
   DialogPanel,
   DialogTitle,
   TransitionChild,
   TransitionRoot,
-} from "@headlessui/vue";
-import { ExclamationIcon } from "@heroicons/vue/outline";
-import CustomInput from "../../components/core/CustomInput.vue";
-import store from "../../store/index.js";
-import Spinner from "../../components/core/Spinner.vue";
+} from '@headlessui/vue';
+import { ExclamationIcon } from '@heroicons/vue/outline';
+import CustomInput from '../../components/core/CustomInput.vue';
+import store from '../../store/index.js';
+import Spinner from '../../components/core/Spinner.vue';
 
 const loading = ref(false);
 const errors = ref({});
@@ -148,15 +148,15 @@ const category = ref({
   parent_id: props.category.parent_id,
 });
 
-const emit = defineEmits(["update:modelValue", "close"]);
+const emit = defineEmits(['update:modelValue', 'close']);
 
 const show = computed({
   get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
+  set: (value) => emit('update:modelValue', value),
 });
 const parentCategories = computed(() => {
   return [
-    { key: "", text: "Select Parent Category" },
+    { key: '', text: 'Select Parent Category' },
     ...store.state.categories.data
       .filter((c) => {
         if (category.value.id) {
@@ -184,7 +184,7 @@ onUpdated(() => {
 
 function closeModal() {
   show.value = false;
-  emit("close");
+  emit('close');
   errors.value = {};
 }
 
@@ -193,12 +193,12 @@ function onSubmit() {
   category.value.active = !!category.value.active;
   if (category.value.id) {
     store
-      .dispatch("updateCategory", category.value)
+      .dispatch('updateCategory', category.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 200) {
-          store.commit("showToast", "Category was successfully updated");
-          store.dispatch("getCategories");
+          store.commit('showToast', 'Category was successfully updated');
+          store.dispatch('getCategories');
           closeModal();
         }
       })
@@ -208,12 +208,12 @@ function onSubmit() {
       });
   } else {
     store
-      .dispatch("createCategory", category.value)
+      .dispatch('createCategory', category.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 201) {
-          store.commit("showToast", "Category was successfully created");
-          store.dispatch("getCategories");
+          store.commit('showToast', 'Category was successfully created');
+          store.dispatch('getCategories');
           closeModal();
         }
       })

@@ -27,26 +27,24 @@
     <div>
       <div
         class="absolute left-0 bottom-0 right-0 h-[6px] bg-black/10"
-        :style="{'width': `${percent}%`}"
+        :style="{ width: `${percent}%` }"
       ></div>
     </div>
   </div>
 </template>
 
 <script setup>
-
-import store from "../../store/index.js";
-import {computed, ref, watch} from "vue";
+import store from '../../store/index.js';
+import { computed, ref, watch } from 'vue';
 
 let interval = null;
 let timeout = null;
 
-const percent = ref(0)
+const percent = ref(0);
 
-const toast = computed(() => store.state.toast)
+const toast = computed(() => store.state.toast);
 watch(store.state.toast, (newToast) => {
   if (newToast.show) {
-
     if (interval) {
       clearInterval(interval);
       interval = null;
@@ -71,14 +69,11 @@ watch(store.state.toast, (newToast) => {
       }
     }, 30);
   }
-})
+});
 
 function close() {
-  store.commit('hideToast')
+  store.commit('hideToast');
 }
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

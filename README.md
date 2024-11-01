@@ -8,8 +8,8 @@
    ใช้แค่ apache กับ mysql
    Configure XAMPP
 
--   เปิดใช้งาน extensions .zip >> config php.ini file located in the xampp/php directory.
-    ให้ find หา ;extension=zip เอา ; ออก Save and restart Apache.
+- เปิดใช้งาน extensions .zip >> config php.ini file located in the xampp/php directory.
+  ให้ find หา ;extension=zip เอา ; ออก Save and restart Apache.
 
 2. Install Composer
 
@@ -43,10 +43,10 @@ Need MySQL, PHP8.1, Node.js and composer.
 4. Make sure `VITE_API_BASE_URL` key in `backend/.env` is set to your Laravel API host (Default: http://localhost:8000)
 5. Run `npm run dev`
 6. Open Vue.js Admin Panel in browser and login with
-    ```
-    admin@example.com
-    admin123
-    ```
+   ```
+   admin@example.com
+   admin123
+   ```
 
 ## ถ้ามีปัญหา ในการ save image run คำสั่งนี้
 
@@ -63,3 +63,6 @@ Need MySQL, PHP8.1, Node.js and composer.
 ## https://dashboard.stripe.com
 
 สำหรับ สมัคร demo การชำระเงินออนไลน์
+
+code format styles all project
+`npm run format`

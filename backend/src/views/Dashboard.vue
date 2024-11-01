@@ -126,17 +126,17 @@
 </template>
 
 <script setup>
-import { UserIcon } from "@heroicons/vue/outline";
-import DoughnutChart from "../components/core/Charts/Doughnut.vue";
-import axiosClient from "../axios.js";
-import { computed, onMounted, ref } from "vue";
-import Spinner from "../components/core/Spinner.vue";
-import CustomInput from "../components/core/CustomInput.vue";
-import { useStore } from "vuex";
+import { UserIcon } from '@heroicons/vue/outline';
+import DoughnutChart from '../components/core/Charts/Doughnut.vue';
+import axiosClient from '../axios.js';
+import { computed, onMounted, ref } from 'vue';
+import Spinner from '../components/core/Spinner.vue';
+import CustomInput from '../components/core/CustomInput.vue';
+import { useStore } from 'vuex';
 
 const store = useStore();
 const dateOptions = computed(() => store.state.dateOptions);
-const chosenDate = ref("all");
+const chosenDate = ref('all');
 
 const loading = ref({
   customersCount: true,
@@ -187,9 +187,9 @@ function updateDashboard() {
   axiosClient
     .get(`/dashboard/income-amount`, { params: { d } })
     .then(({ data }) => {
-      totalIncome.value = new Intl.NumberFormat("th-TH", {
-        style: "currency",
-        currency: "THB",
+      totalIncome.value = new Intl.NumberFormat('th-TH', {
+        style: 'currency',
+        currency: 'THB',
         minimumFractionDigits: 0,
       }).format(data);
       loading.value.totalIncome = false;
@@ -202,7 +202,7 @@ function updateDashboard() {
         labels: [],
         datasets: [
           {
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF", "#DD1B16"],
+            backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
             data: [],
           },
         ],

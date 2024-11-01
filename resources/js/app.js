@@ -1,16 +1,15 @@
 import './bootstrap';
 
 import Alpine from 'alpinejs';
-import collapse from '@alpinejs/collapse'
-import {get, post} from "./http.js";
+import collapse from '@alpinejs/collapse';
+import { get, post } from './http.js';
 
-Alpine.plugin(collapse)
+Alpine.plugin(collapse);
 
 window.Alpine = Alpine;
 
-document.addEventListener("alpine:init", async () => {
-
-  Alpine.data("toast", () => ({
+document.addEventListener('alpine:init', async () => {
+  Alpine.data('toast', () => ({
     visible: false,
     delay: 5000,
     percent: 0,
@@ -53,53 +52,51 @@ document.addEventListener("alpine:init", async () => {
     },
   }));
 
-  Alpine.data("productItem", (product) => {
+  Alpine.data('productItem', (product) => {
     return {
       product,
       addToCart(quantity = 1) {
-        post(this.product.addToCartUrl, {quantity})
-          .then(result => {
-            this.$dispatch('cart-change', {count: result.count})
-            this.$dispatch("notify", {
-              message: "The item was added into the cart",
+        post(this.product.addToCartUrl, { quantity })
+          .then((result) => {
+            this.$dispatch('cart-change', { count: result.count });
+            this.$dispatch('notify', {
+              message: 'The item was added into the cart',
             });
           })
-          .catch(response => {
+          .catch((response) => {
             console.log(response);
             this.$dispatch('notify', {
               message: response.message || 'Server Error. Please try again.',
-              type: 'error'
-            })
-          })
+              type: 'error',
+            });
+          });
       },
       removeItemFromCart() {
-        post(this.product.removeUrl)
-          .then(result => {
-            this.$dispatch("notify", {
-              message: "The item was removed from cart",
-            });
-            this.$dispatch('cart-change', {count: result.count})
-            this.cartItems = this.cartItems.filter(p => p.id !== product.id)
-          })
+        post(this.product.removeUrl).then((result) => {
+          this.$dispatch('notify', {
+            message: 'The item was removed from cart',
+          });
+          this.$dispatch('cart-change', { count: result.count });
+          this.cartItems = this.cartItems.filter((p) => p.id !== product.id);
+        });
       },
       changeQuantity() {
-        post(this.product.updateQuantityUrl, {quantity: product.quantity})
-          .then(result => {
-            this.$dispatch('cart-change', {count: result.count})
-            this.$dispatch("notify", {
-              message: "The item quantity was updated",
+        post(this.product.updateQuantityUrl, { quantity: product.quantity })
+          .then((result) => {
+            this.$dispatch('cart-change', { count: result.count });
+            this.$dispatch('notify', {
+              message: 'The item quantity was updated',
             });
           })
-          .catch(response => {
+          .catch((response) => {
             this.$dispatch('notify', {
               message: response.message || 'Server Error. Please try again.',
-              type: 'error'
-            })
-          })
+              type: 'error',
+            });
+          });
       },
     };
   });
 });
-
 
 Alpine.start();

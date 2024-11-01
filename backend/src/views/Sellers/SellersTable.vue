@@ -219,28 +219,28 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
-import Spinner from "../../components/core/Spinner.vue";
-import { SELLERS_PER_PAGE } from "../../constants";
-import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { computed, onMounted, ref } from 'vue';
+import store from '../../store';
+import Spinner from '../../components/core/Spinner.vue';
+import { SELLERS_PER_PAGE } from '../../constants';
+import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import {
   DotsVerticalIcon,
   PencilIcon,
   TrashIcon,
-} from "@heroicons/vue/outline";
+} from '@heroicons/vue/outline';
 
 const perPage = ref(SELLERS_PER_PAGE);
-const search = ref("");
+const search = ref('');
 const sellers = computed(() => store.state.sellers);
-const sortField = ref("updated_at");
-const sortDirection = ref("desc");
+const sortField = ref('updated_at');
+const sortDirection = ref('desc');
 
 const seller = ref({});
 const showSellerModal = ref(false);
 
-const emit = defineEmits(["clickEdit"]);
+const emit = defineEmits(['clickEdit']);
 
 onMounted(() => {
   getSellers();
@@ -256,7 +256,7 @@ function getForPage(ev, link) {
 }
 
 function getSellers(url = null) {
-  store.dispatch("getSellers", {
+  store.dispatch('getSellers', {
     url,
     search: search.value,
     per_page: perPage.value,
@@ -267,14 +267,14 @@ function getSellers(url = null) {
 
 function sortSellers(field) {
   if (field === sortField.value) {
-    if (sortDirection.value === "desc") {
-      sortDirection.value = "asc";
+    if (sortDirection.value === 'desc') {
+      sortDirection.value = 'asc';
     } else {
-      sortDirection.value = "desc";
+      sortDirection.value = 'desc';
     }
   } else {
     sortField.value = field;
-    sortDirection.value = "asc";
+    sortDirection.value = 'asc';
   }
 
   getSellers();
@@ -288,9 +288,9 @@ function deleteSeller(seller) {
   if (!confirm(`Are you sure you want to delete the seller?`)) {
     return;
   }
-  store.dispatch("deleteSeller", seller).then((res) => {
-    store.commit("showToast", "Seller has been successfully deleted");
-    store.dispatch("getSellers");
+  store.dispatch('deleteSeller', seller).then((res) => {
+    store.commit('showToast', 'Seller has been successfully deleted');
+    store.dispatch('getSellers');
   });
 }
 </script>

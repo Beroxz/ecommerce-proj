@@ -114,5 +114,109 @@
                 </div>
             </div>
         </div>
+
+        <!-- Review Section -->
+        <div class="container mx-auto mt-16">
+            <h2 class="text-gray-700 text-xl font-bold mb-4">Customer Reviews</h2>
+            <div class="space-y-6">
+                <!-- Existing Reviews -->
+                <template x-for="review in reviews" :key="review.id">
+                    <div class="p-4 border border-gray-200 rounded shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="text-yellow-500 flex items-center mr-2">
+                                <!-- Star Ratings -->
+                                <template x-for="star in 5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        :class="{
+                                            'text-yellow-500': review.rating >= star,
+                                            'text-gray-300': review.rating <
+                                                star
+                                        }">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                                    </svg>
+                                </template>
+                            </div>
+                            <span class="text-gray-700 font-semibold" x-text="review.user_name"></span>
+                            <span class="text-gray-500 text-sm ml-auto" x-text="review.created_at"></span>
+                        </div>
+                        <p class="text-gray-600" x-text="review.comment"></p>
+                    </div>
+                </template>
+
+                <!-- Add a Review Form -->
+                <div class="mt-6 p-4 border border-gray-200 rounded shadow-sm">
+                    <h3 class="text-gray-700 text-lg font-semibold mb-3">Write a Review</h3>
+                    <div class="flex items-center mb-3">
+                        <label class="block text-gray-700 font-bold mr-4">Your Rating:</label>
+                        <div class="flex">
+                            <template x-for="star in 5">
+                                <svg @click="setRating(star)" xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2"
+                                    :class="{ 'text-yellow-500': rating >= star, 'text-gray-300': rating < star }">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.207 6.79a1 1 0 00.95.69h7.127c.969 0 1.371 1.24.588 1.81l-5.783 4.21a1 1 0 00-.364 1.118l2.207 6.79c.3.921-.755 1.688-1.54 1.118l-5.783-4.21a1 1 0 00-1.176 0l-5.783 4.21c-.784.57-1.838-.197-1.54-1.118l2.207-6.79a1 1 0 00-.364-1.118L2.082 11.416c-.784-.57-.381-1.81.588-1.81h7.127a1 1 0 00.95-.69l2.207-6.79z" />
+                                </svg>
+                            </template>
+                        </div>
+                    </div>
+                    <textarea x-ref="commentEl" class="w-full border rounded p-2 focus:outline-none focus:border-purple-500"
+                        rows="4" placeholder="Write your review here..."></textarea>
+                    <button @click="submitReview($refs.commentEl.value)" class="btn-primary py-2 mt-4 w-full">
+                        Submit Review
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </x-app-layout>
+
+<script>
+    function productItem(data) {
+        return {
+            ...data,
+            reviews: [{
+                    id: 1,
+                    user_name: 'John Doe',
+                    rating: 5,
+                    comment: 'Great product!',
+                    created_at: '2024-10-28'
+                },
+                {
+                    id: 2,
+                    user_name: 'Jane Smith',
+                    rating: 4,
+                    comment: 'Good quality, but a bit pricey.',
+                    created_at: '2024-10-25'
+                }
+            ],
+            rating: 0,
+            setRating(star) {
+                this.rating = star;
+            },
+            submitReview(comment) {
+                if (comment.trim() === '') {
+                    alert('Please write a review before submitting.');
+                    return;
+                }
+
+                // ตัวอย่างการเพิ่มข้อมูลรีวิวใหม่ลงในรายการ reviews
+                this.reviews.push({
+                    id: this.reviews.length + 1, // สร้าง ID ใหม่สำหรับรีวิว
+                    user_name: 'Anonymous', // หรือใช้ข้อมูลผู้ใช้ที่เหมาะสม
+                    rating: this.rating, // ใช้คะแนนที่ผู้ใช้ให้
+                    comment: comment,
+                    created_at: new Date().toISOString().split('T')[0] // วันที่ปัจจุบันในรูปแบบ YYYY-MM-DD
+                });
+
+                // รีเซ็ตค่า rating และ comment
+                this.rating = 0;
+                this.$refs.commentEl.value = '';
+                alert('Thank you for your review!');
+            }
+
+        };
+    }
+</script>

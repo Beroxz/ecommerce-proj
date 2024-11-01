@@ -5,9 +5,9 @@ export function setUser(state, user) {
 export function setToken(state, token) {
   state.user.token = token;
   if (token) {
-    sessionStorage.setItem("TOKEN", token);
+    sessionStorage.setItem('TOKEN', token);
   } else {
-    sessionStorage.removeItem("TOKEN");
+    sessionStorage.removeItem('TOKEN');
   }
 }
 
@@ -98,7 +98,7 @@ export function showToast(state, message) {
 
 export function hideToast(state) {
   state.toast.show = false;
-  state.toast.message = "";
+  state.toast.message = '';
 }
 
 export function setCountries(state, countries) {

@@ -14,17 +14,17 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
-import UserModal from "./UserModal.vue";
-import UsersTable from "./UsersTable.vue";
+import { computed, onMounted, ref } from 'vue';
+import store from '../../store';
+import UserModal from './UserModal.vue';
+import UsersTable from './UsersTable.vue';
 
 const DEFAULT_USER = {
-  id: "",
-  title: "",
-  description: "",
-  image: "",
-  price: "",
+  id: '',
+  title: '',
+  description: '',
+  image: '',
+  price: '',
 };
 
 const users = computed(() => store.state.users);

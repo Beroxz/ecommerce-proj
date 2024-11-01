@@ -119,27 +119,27 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import GuestLayout from "../components/GuestLayout.vue";
-import store from "../store";
-import router from "../router";
+import { ref } from 'vue';
+import GuestLayout from '../components/GuestLayout.vue';
+import store from '../store';
+import router from '../router';
 
 let loading = ref(false);
-let errorMsg = ref("");
+let errorMsg = ref('');
 
 const user = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
   remember: false,
 };
 
 function login() {
   loading.value = true;
   store
-    .dispatch("login", user)
+    .dispatch('login', user)
     .then(() => {
       loading.value = false;
-      router.push({ name: "app.dashboard" });
+      router.push({ name: 'app.dashboard' });
     })
     .catch(({ response }) => {
       loading.value = false;

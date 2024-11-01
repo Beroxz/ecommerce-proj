@@ -20,12 +20,12 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import Sidebar from "./Sidebar.vue";
-import Navbar from "./Navbar.vue";
-import store from "../store";
-import Spinner from "./core/Spinner.vue";
-import Toast from "./core/Toast.vue";
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import Sidebar from './Sidebar.vue';
+import Navbar from './Navbar.vue';
+import store from '../store';
+import Spinner from './core/Spinner.vue';
+import Toast from './core/Toast.vue';
 
 const { title } = defineProps({
   title: String,
@@ -42,14 +42,14 @@ function updateSidebarState() {
 }
 
 onMounted(() => {
-  store.dispatch("getCurrentUser");
-  store.dispatch("getCountries");
+  store.dispatch('getCurrentUser');
+  store.dispatch('getCountries');
   updateSidebarState();
-  window.addEventListener("resize", updateSidebarState);
+  window.addEventListener('resize', updateSidebarState);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", updateSidebarState);
+  window.removeEventListener('resize', updateSidebarState);
 });
 </script>
 

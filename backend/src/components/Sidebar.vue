@@ -5,10 +5,10 @@
     <h2 class="text-lg font-semibold mb-4 text-center">
       {{
         currentUser.role === 1
-          ? "Admin"
+          ? 'Admin'
           : currentUser.role === 2
-          ? "Seller"
-          : ""
+            ? 'Seller'
+            : ''
       }}
     </h2>
 
@@ -136,10 +136,10 @@ import {
   CubeIcon,
   CollectionIcon,
   ShoppingCartIcon,
-} from "@heroicons/vue/outline";
+} from '@heroicons/vue/outline';
 
-import store from "../store";
-import { computed } from "vue";
+import store from '../store';
+import { computed } from 'vue';
 
 const currentUser = computed(() => store.state.user.data);
 </script>

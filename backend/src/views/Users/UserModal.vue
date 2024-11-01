@@ -42,7 +42,7 @@
                   {{
                     user.id
                       ? `Update user: "${props.user.name}"`
-                      : "Create new User"
+                      : 'Create new User'
                   }}
                 </DialogTitle>
                 <button
@@ -128,18 +128,18 @@
 </template>
 
 <script setup>
-import { computed, onUpdated, ref } from "vue";
+import { computed, onUpdated, ref } from 'vue';
 import {
   Dialog,
   DialogPanel,
   DialogTitle,
   TransitionChild,
   TransitionRoot,
-} from "@headlessui/vue";
-import { ExclamationIcon } from "@heroicons/vue/outline";
-import CustomInput from "../../components/core/CustomInput.vue";
-import store from "../../store/index.js";
-import Spinner from "../../components/core/Spinner.vue";
+} from '@headlessui/vue';
+import { ExclamationIcon } from '@heroicons/vue/outline';
+import CustomInput from '../../components/core/CustomInput.vue';
+import store from '../../store/index.js';
+import Spinner from '../../components/core/Spinner.vue';
 
 const errors = ref(null);
 
@@ -159,18 +159,18 @@ const user = ref({
 });
 
 const roleOptions = [
-  { key: 1, text: "Admin" },
-  { key: 2, text: "Seller" },
-  { key: 3, text: "User" },
+  { key: 1, text: 'Admin' },
+  { key: 2, text: 'Seller' },
+  { key: 3, text: 'User' },
 ];
 
 const loading = ref(false);
 
-const emit = defineEmits(["update:modelValue", "close"]);
+const emit = defineEmits(['update:modelValue', 'close']);
 
 const show = computed({
   get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
+  set: (value) => emit('update:modelValue', value),
 });
 
 onUpdated(() => {
@@ -184,18 +184,18 @@ onUpdated(() => {
 
 function closeModal() {
   show.value = false;
-  emit("close");
+  emit('close');
   errors.value = null;
 }
 function onSubmit() {
   loading.value = true;
   if (user.value.id) {
     store
-      .dispatch("updateUser", user.value)
+      .dispatch('updateUser', user.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 200) {
-          store.dispatch("getUsers");
+          store.dispatch('getUsers');
           closeModal();
         }
       })
@@ -204,17 +204,17 @@ function onSubmit() {
         loading.value = false;
         if (err.response && err.response.status === 422) {
           errors.value =
-            Object.values(err.response?.data?.errors).flat().join(" , ") ||
-            "An unexpected error occurred.";
+            Object.values(err.response?.data?.errors).flat().join(' , ') ||
+            'An unexpected error occurred.';
         }
       });
   } else {
     store
-      .dispatch("createUser", user.value)
+      .dispatch('createUser', user.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 201) {
-          store.dispatch("getUsers");
+          store.dispatch('getUsers');
           closeModal();
         }
       })
@@ -222,8 +222,8 @@ function onSubmit() {
         loading.value = false;
         if (err.response && err.response.status === 422) {
           errors.value =
-            Object.values(err.response?.data?.errors).flat().join(" , ") ||
-            "An unexpected error occurred.";
+            Object.values(err.response?.data?.errors).flat().join(' , ') ||
+            'An unexpected error occurred.';
         }
       });
   }

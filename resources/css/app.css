@@ -18,20 +18,36 @@ body {
   font-weight: 600;
 }
 
-.font-semibold.sm { font-size: 12px; }
-.font-semibold.md { font-size: 16px; }
-.font-semibold.lg { font-size: 20px; }
-.font-semibold.xl { font-size: 24px; }
+.font-semibold.sm {
+  font-size: 12px;
+}
+.font-semibold.md {
+  font-size: 16px;
+}
+.font-semibold.lg {
+  font-size: 20px;
+}
+.font-semibold.xl {
+  font-size: 24px;
+}
 
 .font-bold {
   font-family: 'Asangha', sans-serif;
   font-weight: 700;
 }
 
-.font-bold.sm { font-size: 12px; }
-.font-bold.md { font-size: 16px; }
-.font-bold.lg { font-size: 20px; }
-.font-bold.xl { font-size: 24px; }
+.font-bold.sm {
+  font-size: 12px;
+}
+.font-bold.md {
+  font-size: 16px;
+}
+.font-bold.lg {
+  font-size: 20px;
+}
+.font-bold.xl {
+  font-size: 24px;
+}
 
 @layer base {
   .py-navbar-item {
@@ -73,12 +89,23 @@ body {
       0 2px 4px -2px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
       var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    transition-property: color, background-color, border-color, fill, stroke,
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      fill,
+      stroke,
       -webkit-text-decoration-color;
     transition-property: color, background-color, border-color,
       text-decoration-color, fill, stroke;
-    transition-property: color, background-color, border-color,
-      text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      -webkit-text-decoration-color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 0.15s;
   }
@@ -93,7 +120,7 @@ body {
 
   .text-base-custom {
     --tw-text-opacity: 1;
-    color: #659E38;
+    color: #659e38;
   }
 }
 
@@ -191,7 +218,6 @@ footer {
   color: #659e38;
 }
 
-
 /* ################################################################ */
 
 .tabs {
@@ -206,7 +232,9 @@ footer {
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
-  transition: background 0.3s, border-color 0.3s;
+  transition:
+    background 0.3s,
+    border-color 0.3s;
 }
 
 .tab-button.active {

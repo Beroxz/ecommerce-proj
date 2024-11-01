@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import store from "../../store";
-import ProductsTable from "./ProductsTable.vue";
+import { computed } from 'vue';
+import store from '../../store';
+import ProductsTable from './ProductsTable.vue';
 
 const products = computed(() => store.state.products);
 </script>

@@ -3,7 +3,7 @@
   <div class="flex items-center justify-between mb-3">
     <h1 v-if="!loading" class="text-3xl font-semibold">
       {{
-        product.id ? `Update product: "${product.title}"` : "Create new Product"
+        product.id ? `Update product: "${product.title}"` : 'Create new Product'
       }}
     </h1>
   </div>
@@ -102,17 +102,17 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import CustomInput from "../../components/core/CustomInput.vue";
-import store from "../../store/index.js";
-import Spinner from "../../components/core/Spinner.vue";
-import { useRoute, useRouter } from "vue-router";
-import ImagePreview from "../../components/ImagePreview.vue";
+import { onMounted, ref } from 'vue';
+import CustomInput from '../../components/core/CustomInput.vue';
+import store from '../../store/index.js';
+import Spinner from '../../components/core/Spinner.vue';
+import { useRoute, useRouter } from 'vue-router';
+import ImagePreview from '../../components/ImagePreview.vue';
 // import the component
-import Treeselect from "vue3-treeselect";
+import Treeselect from 'vue3-treeselect';
 // import the styles
-import "vue3-treeselect/dist/vue3-treeselect.css";
-import axiosClient from "../../axios.js";
+import 'vue3-treeselect/dist/vue3-treeselect.css';
+import axiosClient from '../../axios.js';
 
 const route = useRoute();
 const router = useRouter();
@@ -123,7 +123,7 @@ const product = ref({
   images: [],
   deleted_images: [],
   image_positions: {},
-  description: "",
+  description: '',
   price: null,
   quantity: null,
   published: false,
@@ -136,18 +136,18 @@ const errors = ref({});
 const loading = ref(false);
 const options = ref([]);
 
-const emit = defineEmits(["update:modelValue", "close"]);
+const emit = defineEmits(['update:modelValue', 'close']);
 
 onMounted(() => {
   if (route.params.id) {
     loading.value = true;
-    store.dispatch("getProduct", route.params.id).then((response) => {
+    store.dispatch('getProduct', route.params.id).then((response) => {
       loading.value = false;
       product.value = response.data;
     });
   }
 
-  axiosClient.get("/categories/tree").then((result) => {
+  axiosClient.get('/categories/tree').then((result) => {
     options.value = result.data;
   });
 });
@@ -155,18 +155,19 @@ onMounted(() => {
 function onSubmit($event, close = false) {
   loading.value = true;
   errors.value = {};
-  product.value.quantity =  product.value.quantity == null ? 0 : product.value.quantity;
+  product.value.quantity =
+    product.value.quantity == null ? 0 : product.value.quantity;
   if (product.value.id) {
     store
-      .dispatch("updateProduct", product.value)
+      .dispatch('updateProduct', product.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 200) {
           product.value = response.data;
-          store.commit("showToast", "Product was successfully updated");
-          store.dispatch("getProducts");
+          store.commit('showToast', 'Product was successfully updated');
+          store.dispatch('getProducts');
           if (close) {
-            router.push({ name: "app.products" });
+            router.push({ name: 'app.products' });
           }
         }
       })
@@ -176,19 +177,19 @@ function onSubmit($event, close = false) {
       });
   } else {
     store
-      .dispatch("createProduct", product.value)
+      .dispatch('createProduct', product.value)
       .then((response) => {
         loading.value = false;
         if (response.status === 201) {
           product.value = response.data;
-          store.commit("showToast", "Product was successfully created");
-          store.dispatch("getProducts");
+          store.commit('showToast', 'Product was successfully created');
+          store.dispatch('getProducts');
           if (close) {
-            router.push({ name: "app.products" });
+            router.push({ name: 'app.products' });
           } else {
             product.value = response.data;
             router.push({
-              name: "app.products.edit",
+              name: 'app.products.edit',
               params: { id: response.data.id },
             });
           }

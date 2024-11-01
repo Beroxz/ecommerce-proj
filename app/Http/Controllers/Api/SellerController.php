@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enums\AddressType;
-use App\Enums\CustomerStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomerRequest;
-use App\Http\Resources\CountryResource;
-use App\Http\Resources\CustomerListResource;
-use App\Http\Resources\CustomerResource;
-use App\Models\Country;
-use App\Models\Customer;
-use App\Models\CustomerAddress;
-use http\Env\Request;
+use App\Http\Requests\SellerRequest;
+use App\Enums\SellerStatus;
+use App\Http\Resources\SellerListResource;
+use App\Http\Resources\SellerResource;
+use App\Models\Seller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -30,94 +25,67 @@ class SellerController extends Controller
         $sortField = request('sort_field', 'updated_at');
         $sortDirection = request('sort_direction', 'desc');
 
-        $query = Customer::query()
-            ->with('user')
-            ->orderBy("customers.$sortField", $sortDirection);
+        $query = Seller::query()->orderBy("sellers.$sortField", $sortDirection);
+
         if ($search) {
-            $query
-                ->where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', "%{$search}%")
-                ->join('users', 'customers.user_id', '=', 'users.id')
-                ->orWhere('users.email', 'like', "%{$search}%")
-                ->orWhere('customers.phone', 'like', "%{$search}%");
+            $query->where(DB::raw("CONCAT(hostSeller_name, ' ', hostSeller_last_name)"), 'like', "%{$search}%")
+                ->orWhere('store_name', 'like', "%{$search}%")
+                ->orWhere('store_phone', 'like', "%{$search}%");
         }
 
         $paginator = $query->paginate($perPage);
 
-        return CustomerListResource::collection($paginator);
+        return SellerListResource::collection($paginator);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Customer $customer
+     * @param \App\Models\Seller $seller
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Seller $seller)
     {
-        return new CustomerResource($customer);
+        return new SellerResource($seller);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Customer     $customer
+     * @param \App\Models\Seller       $seller
      * @return \Illuminate\Http\Response
      */
-    public function update(CustomerRequest $request, Customer $customer)
+    public function update(SellerRequest $request, Seller $seller)
     {
-        $customerData = $request->validated();
-        $customerData['updated_by'] = $request->user()->id;
-        $customerData['status'] = $customerData['status'] ? CustomerStatus::Active->value : CustomerStatus::Disabled->value;
-        $shippingData = $customerData['shippingAddress'];
-        $billingData = $customerData['billingAddress'];
+        $sellerData = $request->validated();
+        $sellerData['updated_by'] = $request->user()->id;
+        $sellerData['status'] = $sellerData['status'] ? SellerStatus::Active->value : SellerStatus::Disabled->value;
 
         DB::beginTransaction();
         try {
-            $customer->update($customerData);
-
-            if ($customer->shippingAddress) {
-                $customer->shippingAddress->update($shippingData);
-            } else {
-                $shippingData['customer_id'] = $customer->user_id;
-                $shippingData['type'] = AddressType::Shipping->value;
-                CustomerAddress::create($shippingData);
-            }
-
-            if ($customer->billingAddress) {
-                $customer->billingAddress->update($billingData);
-            } else {
-                $billingData['customer_id'] = $customer->user_id;
-                $billingData['type'] = AddressType::Billing->value;
-                CustomerAddress::create($billingData);
-            }
+            $seller->update($sellerData);
         } catch (\Exception $e) {
             DB::rollBack();
-
-            Log::critical(__METHOD__ . ' method does not work. '. $e->getMessage());
+            Log::critical(__METHOD__ . ' method does not work. ' . $e->getMessage());
             throw $e;
         }
 
         DB::commit();
 
-        return new CustomerResource($customer);
+        return new SellerResource($seller);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Customer $customer
+     * @param \App\Models\Seller $seller
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Seller $seller)
     {
-        $customer->delete();
+        $seller->delete();
 
         return response()->noContent();
-    }
-
-    public function countries()
-    {
-        return CountryResource::collection(Country::query()->orderBy('name', 'asc')->get());
     }
 }

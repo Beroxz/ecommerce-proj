@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\Api\SellerController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
@@ -16,6 +17,7 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::apiResource('products', ProductController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('customers', CustomerController::class);
+    Route::apiResource('sellers', SellerController::class);
     Route::apiResource('categories', CategoryController::class)->except('show');
     Route::get('/categories/tree', [CategoryController::class, 'getAsTree']);
     Route::get('/countries', [CustomerController::class, 'countries']);

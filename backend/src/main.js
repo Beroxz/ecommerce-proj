@@ -1,21 +1,16 @@
-import {createApp} from 'vue'
-import CKEditor from '@ckeditor/ckeditor5-vue'
-import store from './store'
-import router from './router'
+import { createApp } from 'vue';
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import store from './store';
+import router from './router';
 import './index.css';
-import currencyTHB from './filters/currency.js'
+import currencyTHB from './filters/currency.js';
 
-import App from './App.vue'
+import App from './App.vue';
 
 const app = createApp(App);
 
-app
-  .use(store)
-  .use(router)
-  .use(CKEditor)
-  .mount('#app')
-;
+app.use(store).use(router).use(CKEditor).mount('#app');
 
 app.config.globalProperties.$filters = {
-  currencyTHB
-}
+  currencyTHB,
+};

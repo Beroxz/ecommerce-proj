@@ -64,8 +64,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                 'title' => $product->title,
                 'price' => $product->price,
                 'addToCartUrl' => route('cart.add', $product),
-            ]) }})"
-                class="border border-1 border-gray-200 rounded-md hover:border-green-600 transition-colors bg-white">
+            ]) }})" class="border border-1 border-gray-200 rounded-md transition-colors bg-white">
                 <a href="{{ route('product.view', $product->slug) }}"
                     class="aspect-w-3 aspect-h-2 block overflow-hidden">
                     <img :src="product.image" alt=""
@@ -80,7 +79,9 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                     <h5 class="font-bold">฿{{ number_format($product->price, 2) }}</h5>
                 </div>
                 <div class="flex justify-end py-3 px-4">
-                    <button class="btn-primary flex items-center gap-2" @click="addToCart()">
+                    <button
+                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-green-600 rounded shadow flex items-center space-x-2"
+                        @click="addToCart()">
                         <i class="fas fa-cart-plus"></i>
                         Add to Cart
                     </button>

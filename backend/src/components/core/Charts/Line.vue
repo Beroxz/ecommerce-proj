@@ -1,48 +1,60 @@
 <script>
-import {defineComponent, h} from 'vue'
-import {Line} from 'vue-chartjs'
-import {Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale} from 'chart.js'
+import { defineComponent, h } from 'vue';
+import { Line } from 'vue-chartjs';
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+} from 'chart.js';
 
-ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale)
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+);
 
 export default defineComponent({
   name: 'LineChart',
-  components: {Line},
+  components: { Line },
   props: {
     chartId: {
       type: String,
-      default: 'line-chart'
+      default: 'line-chart',
     },
     width: {
       type: Number,
-      default: 400
+      default: 400,
     },
     height: {
       type: Number,
-      default: 400
+      default: 400,
     },
     cssClasses: {
       default: '',
-      type: String
+      type: String,
     },
     styles: {
       type: Object,
-      default: () => {
-      }
+      default: () => {},
     },
     plugins: {
       type: Object,
-      default: () => {
-      }
+      default: () => {},
     },
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
-
-    const chartOptions = {responsive: true}
+    const chartOptions = { responsive: true };
 
     return () =>
       h(Line, {
@@ -54,7 +66,7 @@ export default defineComponent({
         cssClasses: props.cssClasses,
         styles: props.styles,
         plugins: props.plugins,
-      })
-  }
-})
+      });
+  },
+});
 </script>

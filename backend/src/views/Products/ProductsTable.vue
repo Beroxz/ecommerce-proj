@@ -226,23 +226,23 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
-import Spinner from "../../components/core/Spinner.vue";
-import { PRODUCTS_PER_PAGE } from "../../constants";
-import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { computed, onMounted, ref } from 'vue';
+import store from '../../store';
+import Spinner from '../../components/core/Spinner.vue';
+import { PRODUCTS_PER_PAGE } from '../../constants';
+import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import {
   DotsVerticalIcon,
   PencilIcon,
   TrashIcon,
-} from "@heroicons/vue/outline";
+} from '@heroicons/vue/outline';
 
 const perPage = ref(PRODUCTS_PER_PAGE);
-const search = ref("");
+const search = ref('');
 const products = computed(() => store.state.products);
-const sortField = ref("updated_at");
-const sortDirection = ref("desc");
+const sortField = ref('updated_at');
+const sortDirection = ref('desc');
 
 const product = ref({});
 
@@ -260,7 +260,7 @@ function getForPage(ev, link) {
 }
 
 function getProducts(url = null) {
-  store.dispatch("getProducts", {
+  store.dispatch('getProducts', {
     url,
     search: search.value,
     per_page: perPage.value,
@@ -271,14 +271,14 @@ function getProducts(url = null) {
 
 function sortProducts(field) {
   if (field === sortField.value) {
-    if (sortDirection.value === "desc") {
-      sortDirection.value = "asc";
+    if (sortDirection.value === 'desc') {
+      sortDirection.value = 'asc';
     } else {
-      sortDirection.value = "desc";
+      sortDirection.value = 'desc';
     }
   } else {
     sortField.value = field;
-    sortDirection.value = "asc";
+    sortDirection.value = 'asc';
   }
 
   getProducts();
@@ -288,9 +288,9 @@ function deleteProduct(product) {
   if (!confirm(`Are you sure you want to delete the product?`)) {
     return;
   }
-  store.dispatch("deleteProduct", product.id).then((res) => {
-    store.commit("showToast", "Product was successfully deleted");
-    store.dispatch("getProducts");
+  store.dispatch('deleteProduct', product.id).then((res) => {
+    store.commit('showToast', 'Product was successfully deleted');
+    store.dispatch('getProducts');
   });
 }
 </script>

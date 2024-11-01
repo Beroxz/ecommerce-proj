@@ -70,20 +70,20 @@
 </template>
 
 <script setup>
-import { MenuIcon, LogoutIcon, UserIcon } from "@heroicons/vue/outline";
-import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-import { ChevronDownIcon } from "@heroicons/vue/solid";
-import store from "../store";
-import router from "../router";
-import { computed } from "vue";
+import { MenuIcon, LogoutIcon, UserIcon } from '@heroicons/vue/outline';
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
+import { ChevronDownIcon } from '@heroicons/vue/solid';
+import store from '../store';
+import router from '../router';
+import { computed } from 'vue';
 
-const emit = defineEmits(["toggle-sidebar"]);
+const emit = defineEmits(['toggle-sidebar']);
 
 const currentUser = computed(() => store.state.user.data);
 
 function logout() {
-  store.dispatch("logout").then(() => {
-    router.push({ name: "login" });
+  store.dispatch('logout').then(() => {
+    router.push({ name: 'login' });
   });
 }
 </script>
