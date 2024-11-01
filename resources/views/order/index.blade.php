@@ -9,32 +9,33 @@
             <table class="table-auto w-full text-left border-collapse">
                 <thead class="bg-gray-200">
                     <tr>
-                        <th class="text-gray-600 py-3 px-4">Order #</th>
-                        <th class="text-gray-600 py-3 px-4">Date</th>
-                        <th class="text-gray-600 py-3 px-4">Status</th>
-                        <th class="text-gray-600 py-3 px-4">SubTotal</th>
-                        <th class="text-gray-600 py-3 px-4">Items</th>
-                        <th class="text-gray-600 py-3 px-4">Actions</th>
+                        <th class="text-center text-gray-600 py-3 px-4">Order #</th>
+                        <th class="text-center text-gray-600 py-3 px-4">Date</th>
+                        <th class="text-center text-gray-600 py-3 px-4">Status</th>
+                        <th class="text-center text-gray-600 py-3 px-4">SubTotal</th>
+                        <th class="text-center text-gray-600 py-3 px-4">Items</th>
+                        <th class="text-center text-gray-600 py-3 px-4">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
                         <tr class="border-b hover:bg-gray-100 transition duration-200">
-                            <td class="py-2 px-4">
+                            <td class="py-2 px-4 text-center">
                                 <a href="{{ route('order.view', $order) }}"
                                     class="text-indigo-600 hover:text-indigo-500 font-semibold">
                                     #{{ $order->id }}
                                 </a>
                             </td>
-                            <td class="py-2 px-4 whitespace-nowrap">{{ $order->created_at->format('d/m/Y H:m:s') }}</td>
-                            <td class="py-2 px-4">
+                            <td class="py-2 px-4 text-center whitespace-nowrap">
+                                {{ $order->created_at->format('d/m/Y H:m:s') }}</td>
+                            <td class="py-2 px-4 text-center">
                                 <span
                                     class="text-white py-1 px-2 rounded {{ $order->isPaid() ? 'bg-emerald-500' : 'bg-gray-400' }}">
                                     {{ $order->status }}
                                 </span>
                             </td>
-                            <td class="py-2 px-4">฿{{ number_format($order->total_price, 2) }}</td>
-                            <td class="py-2 px-4 whitespace-nowrap">{{ $order->items_count }} item(s)</td>
+                            <td class="py-2 px-4 text-center">฿{{ number_format($order->total_price, 2) }}</td>
+                            <td class="py-2 px-4 text-center whitespace-nowrap">{{ $order->items_count }} item(s)</td>
                             <td class="py-2 px-4 flex justify-center">
                                 @if (!$order->isPaid())
                                     <form action="{{ route('cart.checkout-order', $order) }}" method="POST">

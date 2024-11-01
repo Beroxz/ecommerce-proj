@@ -1,12 +1,17 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-ca70469a.css",
+    "file": "assets/app-BHIqanSn.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/fonts/Poppins/Poppins-BlackItalic.ttf": {
+    "file": "assets/Poppins-BlackItalic-cm4Pcmzs.ttf",
+    "src": "resources/fonts/Poppins/Poppins-BlackItalic.ttf"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-e41bd908.js",
-    "isEntry": true,
-    "src": "resources/js/app.js"
+    "file": "assets/app-jyg5iFB7.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
   }
 }

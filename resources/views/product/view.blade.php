@@ -5,6 +5,8 @@
         <div class="mt-2">
             <a href="{{ route('home') }}" class="text-gray-600 hover:text-indigo-600">Home</a>
             <span class="text-gray-600"> / </span>
+            <a href="{{ route('shop') }}" class="text-gray-700 hover:text-indigo-500">Shop</a>
+            <span class="text-gray-600"> / </span>
             <span class="text-gray-600 font-medium">{{ $product->title }}</span>
         </div>
     </div>

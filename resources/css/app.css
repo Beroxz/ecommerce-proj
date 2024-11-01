@@ -3,19 +3,16 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Asangha';
-  src: url('/fonts/Asangha/Asangha-Thin.otf') format('opentype');
+  font-family: 'Open Sans';
+  src: url('/resources/fonts/Open_Sans/static/OpenSans-Regular.ttf')
+    format('opentype');
+  /* src: url('/resources/fonts/Poppins/Poppins-Light.ttf') format('opentype'); */
   font-weight: 100;
   font-style: normal;
 }
 
 body {
-  font-family: 'Asangha', sans-serif;
-}
-
-.font-semibold {
-  font-family: 'Asangha', sans-serif;
-  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .font-semibold.sm {
@@ -29,11 +26,6 @@ body {
 }
 .font-semibold.xl {
   font-size: 24px;
-}
-
-.font-bold {
-  font-family: 'Asangha', sans-serif;
-  font-weight: 700;
 }
 
 .font-bold.sm {
