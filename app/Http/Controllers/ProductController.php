@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Seller;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -38,11 +39,19 @@ class ProductController extends Controller
     public function view(Product $product)
     {
         $seller = Seller::find($product->seller_id);
+
+        $reviews = Review::where('product_id', $product->id)->get()->map(function ($review) {
+            $review->review_date = $review->created_at->format('d/m/Y');
+            return $review;
+        });
+
         return view('product.view', [
             'product' => $product,
-            'seller' => $seller
+            'seller' => $seller,
+            'reviews' => $reviews
         ]);
     }
+
 
 
     private function renderProducts(Builder $query)

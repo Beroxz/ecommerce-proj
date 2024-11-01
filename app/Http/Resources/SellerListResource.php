@@ -28,9 +28,7 @@ class SellerListResource extends JsonResource
             'store_address' => $this->store_address,
             'store_rating' => $this->store_rating,
             'status' => $this->status,
-            'store_image_url' => $this->store_image
-                ? URL::to(Storage::url($this->store_image))
-                : null,
+            'store_image_url' => $this->store_image,
             'store_image_mime' => $this->store_image_mime,
             'store_image_size' => $this->store_image_size,
             'created_by' => $this->creator ? $this->creator->name : null,

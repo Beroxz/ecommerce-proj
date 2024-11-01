@@ -8,6 +8,9 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Api\SellerController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\SubDistrictController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
@@ -19,6 +22,10 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('sellers', SellerController::class);
     Route::apiResource('categories', CategoryController::class)->except('show');
+    Route::apiResource('districts', DistrictController::class);
+    Route::apiResource('provinces', ProvinceController::class);
+    Route::apiResource('sub-districts', SubDistrictController::class);
+
     Route::get('/categories/tree', [CategoryController::class, 'getAsTree']);
     Route::get('/countries', [CustomerController::class, 'countries']);
     Route::get('orders', [OrderController::class, 'index']);
@@ -32,6 +39,7 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::get('/dashboard/orders-count', [DashboardController::class, 'paidOrders']);
     Route::get('/dashboard/income-amount', [DashboardController::class, 'totalIncome']);
     Route::get('/dashboard/orders-by-country', [DashboardController::class, 'ordersByCountry']);
+    Route::get('/dashboard/orders-by-province', [DashboardController::class, 'ordersByState']);
     Route::get('/dashboard/latest-customers', [DashboardController::class, 'latestCustomers']);
     Route::get('/dashboard/latest-orders', [DashboardController::class, 'latestOrders']);
 

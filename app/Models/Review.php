@@ -20,15 +20,13 @@ class Review extends Model
         'review_date',  // วันที่รีวิว
     ];
 
-    // ความสัมพันธ์กับผลิตภัณฑ์
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    // ความสัมพันธ์กับลูกค้า
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id', 'user_id');
     }
 }

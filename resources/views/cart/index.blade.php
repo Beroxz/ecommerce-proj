@@ -1,15 +1,15 @@
 <x-app-layout>
-    <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
-        {{-- <h1 class="text-gray-700 text-3xl font-bold mb-6">Your Order</h1> --}}
+    <div class="container lg:w-2/3 xl:w-2/3 mx-auto p-4">
         <!-- Header Section -->
-        <div class="container mx-auto mt-4 mb-6">
-            <h1 class="text-gray-700 text-2xl font-bold">Shopping Cart</h1>
-            <div class="mt-2">
+        <div class="mb-6">
+            <h1 class="text-gray-700 text-3xl font-bold">Shopping Cart</h1>
+            <nav class="mt-2">
                 <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
                 <span class="text-gray-700">/</span>
                 <span class="text-gray-700">Shopping Cart</span>
-            </div>
+            </nav>
         </div>
+
         <div x-data="{
             cartItems: {{ json_encode(
                 $products->map(
@@ -27,49 +27,44 @@
                 ),
             ) }},
             get cartTotal() {
-                return this.cartItems.reduce((accum, next) => accum + next.price * next.quantity, 0).toFixed(2)
+                return this.cartItems.reduce((accum, next) => accum + next.price * next.quantity, 0).toFixed(2);
             },
-        }" class="bg-white p-4 rounded-lg shadow">
+        }" class="bg-white p-6 rounded-lg shadow-md">
+
             <!-- Product Items -->
             <template x-if="cartItems.length">
                 <div>
-                    <!-- Product Item -->
                     <template x-for="product of cartItems" :key="product.id">
-                        <div x-data="productItem(product)">
-                            <div class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
+                        <div x-data="productItem(product)" class="border-b py-4">
+                            <div class="flex flex-col sm:flex-row items-center gap-4">
                                 <a :href="product.href"
                                     class="w-36 h-32 flex items-center justify-center overflow-hidden">
-                                    <img :src="product.image" class="object-cover" alt="" />
+                                    <img :src="product.image" class="object-cover h-full" alt="" />
                                 </a>
                                 <div class="flex flex-col justify-between flex-1">
-                                    <div class="flex justify-between mb-3">
-                                        <h3 x-text="product.title"></h3>
-                                        <span class="text-lg font-semibold">
-                                            <span x-text="formatPrice(product.price)"></span>
-                                        </span>
+                                    <div class="flex justify-between mb-2">
+                                        <h3 x-text="product.title" class="text-lg font-semibold"></h3>
+                                        <span class="text-lg font-semibold" x-text="formatPrice(product.price)"></span>
                                     </div>
                                     <div class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             Qty:
                                             <input type="number" min="1" x-model="product.quantity"
                                                 @change="changeQuantity()"
-                                                class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16" />
+                                                class="ml-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-purple-600 w-16" />
                                         </div>
                                         <a href="#" @click.prevent="removeItemFromCart()"
                                             class="text-indigo-700 hover:text-indigo-600">Remove</a>
                                     </div>
                                 </div>
                             </div>
-                            <!--/ Product Item -->
-                            <hr class="my-5" />
                         </div>
                     </template>
-                    <!-- Product Item -->
 
                     <div class="border-t border-gray-300 pt-4">
-                        <div class="flex justify-between">
+                        <div class="flex justify-between mb-2">
                             <span class="font-semibold">Subtotal</span>
-                            <span id="cartTotal" class="text-xl" x-text="formatPrice(cartTotal)"></span>
+                            <span class="text-xl" x-text="formatPrice(cartTotal)"></span>
                         </div>
                         <p class="text-gray-500 mb-6">
                             Shipping and taxes calculated at checkout.
@@ -77,38 +72,35 @@
 
                         <form action="{{ route('cart.checkout') }}" method="post">
                             @csrf
-
                             <!-- Payment Method Selection -->
-                            <div class="mb-4">
+
+                            <div class="flex justify-between mb-4">
                                 <span class="font-semibold">Payment Method</span>
-                                <div class="flex items-center">
-                                    <label class="mr-4">
-                                        <input type="radio" name="payment_method" value="cash_on_delivery"
-                                            class="mr-2" checked>
-                                        Cash on Delivery
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="payment_method" value="credit_card" class="mr-2">
+                            </div>
+                            <div class="mb-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <button type="submit" class="btn-primary w-full py-3 text-lg">
                                         Credit Card
-                                    </label>
+                                    </button>
+                                    <button
+                                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow">
+                                        Cash on Delivery
+                                    </button>
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn-primary w-full py-3 text-lg">
-                                Proceed to Payment
-                            </button>
                         </form>
+                        <a href="{{ route('home') }}" class="inline-block mt-4 text-indigo-600 hover:underline">
+                            Continue Shopping
+                        </a>
                     </div>
 
                 </div>
-                <!--/ Product Items -->
             </template>
             <template x-if="!cartItems.length">
                 <div class="text-center py-8 text-gray-500">
                     You don't have any items in cart
                 </div>
             </template>
-
         </div>
     </div>
 </x-app-layout>

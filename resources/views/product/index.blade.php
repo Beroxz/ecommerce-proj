@@ -1,7 +1,6 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $products */
 $categoryList = \App\Models\Category::getActiveAsTree();
-
 ?>
 
 <x-app-layout>
@@ -54,7 +53,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
         There are no products published
     </div>
     <?php else: ?>
-    <div class="grid gap-4 grig-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-3">
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-3">
         @foreach ($products as $product)
             <!-- Product Item -->
             <div x-data="productItem({{ json_encode([
@@ -64,7 +63,8 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                 'title' => $product->title,
                 'price' => $product->price,
                 'addToCartUrl' => route('cart.add', $product),
-            ]) }})" class="border border-1 border-gray-200 rounded-md transition-colors bg-white">
+            ]) }})"
+                class="border border-1 border-gray-200 rounded-md transition-colors bg-white relative">
                 <a href="{{ route('product.view', $product->slug) }}"
                     class="aspect-w-3 aspect-h-2 block overflow-hidden">
                     <img :src="product.image" alt=""
@@ -78,9 +78,15 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                     </h3>
                     <h5 class="font-bold">฿{{ number_format($product->price, 2) }}</h5>
                 </div>
+                @if ($product->is_promotion)
+                    <span
+                        class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold py-1 px-3 rounded rotate-12">
+                        Sale
+                    </span>
+                @endif
                 <div class="flex justify-end py-3 px-4">
                     <button
-                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-green-600 rounded shadow flex items-center space-x-2"
+                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow flex items-center space-x-2"
                         @click="addToCart()">
                         <i class="fas fa-cart-plus"></i>
                         Add to Cart

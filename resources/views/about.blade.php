@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="bg-white py-12">
         <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold text-gray-700 mb-6">Well-coordinated Teamwork Speaks About Us</h1>
+            <h1 class="text-4xl font-bold text-gray-700 mb-6 text-center">Well-coordinated Teamwork Speaks About Us</h1>
             <div style="width: 100%; max-width: 1000px; margin: auto; text-align: center; margin-bottom: 50px;">
                 <img src="https://shofi-grocery.vercel.app/images/about/about-big-1.jpg" alt="About Us"
                     style="width: 100%; height: auto; border-radius: 8px;">

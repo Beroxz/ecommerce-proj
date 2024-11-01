@@ -4,10 +4,10 @@
         <div class="container mx-auto flex flex-col-reverse lg:flex-row items-center">
             <div class="hero-content lg:w-1/2 text-center lg:text-left">
                 <h1 class="text-4xl font-bold mb-4">
-                    <span class="highlight-black">Bring </span>
+                    <span class="text-gray-800">Bring </span>
                     <span class="text-green-primary">Nature </span>
-                    <span class="highlight-black">to </span>
-                    <span class="highlight-black">Your </span>
+                    <span class="text-gray-800">to </span>
+                    <span class="text-gray-800">Your </span>
                     <span class="text-green-primary">Home </span>
                 </h1>
                 <p class="text-2xl mb-6">
@@ -75,7 +75,14 @@
                         'title' => $product->title,
                         'price' => $product->price,
                         'addToCartUrl' => route('cart.add', $product),
-                    ]) }})" class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
+                    ]) }})"
+                        class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg relative">
+                        @if ($product->is_promotion)
+                            <span
+                                class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
+                                Sale
+                            </span>
+                        @endif
                         <a href="{{ route('product.view', $product->slug) }}">
                             <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
                                 alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
@@ -97,7 +104,6 @@
                 @endforeach
             </div>
 
-
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden" id="new-products">
                 <!-- New Products -->
                 @foreach ($newProducts as $product)
@@ -108,7 +114,14 @@
                         'title' => $product->title,
                         'price' => $product->price,
                         'addToCartUrl' => route('cart.add', $product),
-                    ]) }})" class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
+                    ]) }})"
+                        class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg relative">
+                        @if ($product->is_promotion)
+                            <span
+                                class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
+                                Sale
+                            </span>
+                        @endif
                         <a href="{{ route('product.view', $product->slug) }}">
                             <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
                                 alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
@@ -140,7 +153,14 @@
                         'title' => $product->title,
                         'price' => $product->price,
                         'addToCartUrl' => route('cart.add', $product),
-                    ]) }})" class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg">
+                    ]) }})"
+                        class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg relative">
+                        @if ($product->is_promotion)
+                            <span
+                                class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
+                                Sale
+                            </span>
+                        @endif
                         <a href="{{ route('product.view', $product->slug) }}">
                             <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
                                 alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
@@ -161,6 +181,7 @@
                     </div>
                 @endforeach
             </div>
+
             <!-- Pagination Links -->
             <div class="mt-8">
                 {{ $allProducts->links() }}

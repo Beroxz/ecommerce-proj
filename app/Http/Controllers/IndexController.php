@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
+use App\Models\Tool;
 use Carbon\Carbon;
 
 class IndexController extends Controller
@@ -16,7 +15,7 @@ class IndexController extends Controller
         $newProducts = $this->getNewProduct();
         $bestSellProducts = $this->getBestSellProducts();
 
-        $tools = \App\Models\Tool::where('published', '=', 1)->get();
+        $tools = Tool::where('published', 1)->get();
 
         return view('index', [
             'allProducts' => $allProducts,
@@ -62,7 +61,7 @@ class IndexController extends Controller
     //bestSeller
     public function getBestSellProducts()
     {
-        return Product::select('products.id', 'products.slug', 'products.title', 'products.description', 'products.price')
+        return Product::select('products.id', 'products.slug', 'products.is_promotion', 'products.title', 'products.description', 'products.price')
             ->join('order_items AS oi', 'oi.product_id', 'products.id')
             ->join('orders AS o', 'o.id', 'oi.order_id')
             ->where('o.status', '=', 'Paid')

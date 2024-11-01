@@ -211,6 +211,7 @@ export function updateCustomer({ commit }, customer) {
 export function deleteCustomer({ commit }, customer) {
   return axiosClient.delete(`/customers/${customer.id}`);
 }
+
 export function deleteUser({ commit }, user) {
   return axiosClient.delete(`/users/${user.id}`);
 }
@@ -276,4 +277,16 @@ export function getSellers(
 
 export function getSeller({ commit }, id) {
   return axiosClient.get(`/sellers/${id}`);
+}
+
+export function createSeller({ commit }, seller) {
+  return axiosClient.post('/sellers', seller);
+}
+
+export function updateSeller({ commit }, seller) {
+  return axiosClient.put(`/sellers/${seller.id}`, seller);
+}
+
+export function deleteSeller({ commit }, seller) {
+  return axiosClient.delete(`/sellers/${seller.id}`);
 }

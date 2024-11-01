@@ -24,7 +24,7 @@
             <div class="flex items-center">
                 <input id="loginRememberMe" type="checkbox"
                     class="mr-3 rounded border-gray-300 text-green-600 focus:ring-green-500" />
-                <label for="loginRememberMe">Remember Me</label>
+                <label class="text-sm" for="loginRememberMe">Remember Me</label>
             </div>
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-sm text-indigo-700 hover:text-indigo-600">

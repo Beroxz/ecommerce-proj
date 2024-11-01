@@ -89,23 +89,12 @@ body {
       0 2px 4px -2px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
       var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    transition-property:
-      color,
-      background-color,
-      border-color,
-      fill,
-      stroke,
+    transition-property: color, background-color, border-color, fill, stroke,
       -webkit-text-decoration-color;
     transition-property: color, background-color, border-color,
       text-decoration-color, fill, stroke;
-    transition-property:
-      color,
-      background-color,
-      border-color,
-      text-decoration-color,
-      fill,
-      stroke,
-      -webkit-text-decoration-color;
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke, -webkit-text-decoration-color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 0.15s;
   }
@@ -218,6 +207,11 @@ footer {
   color: #659e38;
 }
 
+.border-emerald-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(8 101 55 / 85%);
+}
+
 /* ################################################################ */
 
 .tabs {
@@ -232,9 +226,7 @@ footer {
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
-  transition:
-    background 0.3s,
-    border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .tab-button.active {

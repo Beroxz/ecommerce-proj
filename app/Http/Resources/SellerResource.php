@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Enums\SellerStatus;
 
 class SellerResource extends JsonResource
 {
@@ -25,7 +26,7 @@ class SellerResource extends JsonResource
             'store_description' => $this->store_description,
             'store_address' => $this->store_address,
             'store_rating' => $this->store_rating,
-            'status' => $this->status,
+            'status' => $this->status === SellerStatus::Active->value,
             'store_image' => $this->store_image,
             'store_image_mime' => $this->store_image_mime,
             'store_image_size' => $this->store_image_size,

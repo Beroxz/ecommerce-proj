@@ -33,14 +33,14 @@ class CustomerRequest extends FormRequest
             'status' => ['required', 'boolean'],
 
             'shippingAddress.address1' => ['required'],
-            'shippingAddress.address2' => ['required'],
+            'shippingAddress.address2' => [],
             'shippingAddress.city' => ['required'],
             'shippingAddress.state' => ['required'],
             'shippingAddress.zipcode' => ['required'],
             'shippingAddress.country_code' => ['required', 'exists:countries,code'],
 
             'billingAddress.address1' => ['required'],
-            'billingAddress.address2' => ['required'],
+            'billingAddress.address2' => [],
             'billingAddress.city' => ['required'],
             'billingAddress.state' => ['required'],
             'billingAddress.zipcode' => ['required'],
