@@ -43,21 +43,25 @@ const routes = [
         path: 'products',
         name: 'app.products',
         component: Products,
+        meta: { requiresAuth: true, roles: [2] },
       },
       {
         path: 'categories',
         name: 'app.categories',
         component: Categories,
+        meta: { requiresAuth: true, roles: [1] },
       },
       {
         path: 'products/create',
         name: 'app.products.create',
         component: ProductForm,
+        meta: { requiresAuth: true, roles: [2] },
       },
       {
         path: 'products/:id',
         name: 'app.products.edit',
         component: ProductForm,
+        meta: { requiresAuth: true, roles: [2] },
         props: {
           id: (value) => /^\d+$/.test(value),
         },
@@ -66,38 +70,43 @@ const routes = [
         path: 'users',
         name: 'app.users',
         component: Users,
+        meta: { requiresAuth: true, roles: [1] },
       },
       {
         path: 'customers',
         name: 'app.customers',
         component: Customers,
+        meta: { requiresAuth: true, roles: [1] },
       },
       {
         path: 'customers/:id',
         name: 'app.customers.view',
         component: CustomerView,
+        meta: { requiresAuth: true, roles: [1] },
       },
       {
         path: 'sellers',
         name: 'app.sellers',
         component: Sellers,
-        // meta: { requiresAuth: true, roles: [1] },
+        meta: { requiresAuth: true, roles: [1] },
       },
       {
         path: 'sellers/:id',
         name: 'app.sellers.view',
         component: SellerView,
-        // meta: { requiresAuth: true, roles: [1] },
+        meta: { requiresAuth: true, roles: [1] },
       },
       {
         path: 'orders',
         name: 'app.orders',
         component: Orders,
+        meta: { requiresAuth: true, roles: [2] },
       },
       {
         path: 'orders/:id',
         name: 'app.orders.view',
         component: OrderView,
+        meta: { requiresAuth: true, roles: [2] },
       },
       {
         path: '/report',
@@ -146,6 +155,11 @@ const routes = [
     },
   },
   {
+    path: '/notfound',
+    name: 'err',
+    component: NotFound,
+  },
+  {
     path: '/:pathMatch(.*)',
     name: 'notfound',
     component: NotFound,
@@ -158,10 +172,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const userRole = store.state.user.role;
   if (to.meta.requiresAuth && !store.state.user.token) {
     next({ name: 'login' });
   } else if (to.meta.requiresGuest && store.state.user.token) {
     next({ name: 'app.dashboard' });
+  } else if (to.meta.roles && to.meta.roles !== userRole) {
+    console.error('Access denied to this route');
+    next({ name: 'err' });
   } else {
     next();
   }
