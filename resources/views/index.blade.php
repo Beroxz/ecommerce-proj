@@ -80,7 +80,7 @@
                         @if ($product->is_promotion)
                             <span
                                 class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
-                                Sale
+                                Hot
                             </span>
                         @endif
                         <a href="{{ route('product.view', $product->slug) }}">
@@ -119,7 +119,7 @@
                         @if ($product->is_promotion)
                             <span
                                 class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
-                                Sale
+                                Hot
                             </span>
                         @endif
                         <a href="{{ route('product.view', $product->slug) }}">
@@ -158,7 +158,7 @@
                         @if ($product->is_promotion)
                             <span
                                 class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
-                                Sale
+                                Hot
                             </span>
                         @endif
                         <a href="{{ route('product.view', $product->slug) }}">

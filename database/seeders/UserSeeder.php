@@ -26,8 +26,17 @@ class UserSeeder extends Seeder
 
         // Seed Seller 1
         User::create([
-            'name' => 'Seller One',
+            'name' => 'Flower Paradise',
             'email' => 'seller1@example.com',
+            'password' => bcrypt('seller123'),
+            'email_verified_at' => now(),
+            'role' => 2,
+        ]);
+
+        // Seed Seller 2
+        User::create([
+            'name' => 'Tropical Garden',
+            'email' => 'seller2@example.com',
             'password' => bcrypt('seller123'),
             'email_verified_at' => now(),
             'role' => 2,

@@ -47,6 +47,7 @@ class IndexController extends Controller
     public function getAllProduct()
     {
         return Product::where('published', '=', 1)
+            ->orderBy('is_promotion', 'desc')
             ->paginate(8);
     }
 
@@ -55,6 +56,7 @@ class IndexController extends Controller
     {
         return Product::where('created_at', '>=', Carbon::now()->subDays(3))
             ->where('published', '=', 1)
+            ->orderBy('is_promotion', 'desc')
             ->paginate(8);
     }
 
