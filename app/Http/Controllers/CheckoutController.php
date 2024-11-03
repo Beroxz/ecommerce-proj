@@ -39,7 +39,6 @@ class CheckoutController extends Controller
 
         DB::beginTransaction();
 
-        // Check stock availability and prepare order data
         foreach ($products as $product) {
             $quantity = $cartItems[$product->id]['quantity'];
             if ($product->quantity !== null && $product->quantity < $quantity) {
@@ -52,12 +51,10 @@ class CheckoutController extends Controller
             }
         }
 
-        // Group products by seller and prepare order data for all sellers
         foreach ($products as $product) {
             $quantity = $cartItems[$product->id]['quantity'];
             $sellerId = $product->seller_id;
 
-            // Initialize the order data for this seller if it doesn't exist
             if (!isset($ordersData[$sellerId])) {
                 $ordersData[$sellerId] = [
                     'items' => [],
@@ -67,7 +64,6 @@ class CheckoutController extends Controller
                 ];
             }
 
-            // Update totals and order items for this seller
             $ordersData[$sellerId]['items'][] = [
                 'product_id' => $product->id,
                 'quantity' => $quantity,
@@ -75,7 +71,6 @@ class CheckoutController extends Controller
             ];
             $ordersData[$sellerId]['total_price'] += $product->price * $quantity;
 
-            // Prepare Stripe line items
             $ordersData[$sellerId]['line_items'][] = [
                 'price_data' => [
                     'currency' => 'thb',
@@ -88,7 +83,6 @@ class CheckoutController extends Controller
                 'quantity' => $quantity,
             ];
 
-            // Update product quantity
             if ($product->quantity !== null) {
                 $product->quantity -= $quantity;
                 $product->save();
@@ -96,9 +90,7 @@ class CheckoutController extends Controller
         }
 
         try {
-            // Create orders for each seller
             foreach ($ordersData as $orderData) {
-                // Create Order
                 $order = Order::create([
                     'total_price' => $orderData['total_price'],
                     'status' => OrderStatus::Unpaid,
@@ -107,14 +99,12 @@ class CheckoutController extends Controller
                     'seller_id' => $orderData['seller_id'],
                 ]);
 
-                // Create Order Items
                 foreach ($orderData['items'] as $orderItem) {
                     $orderItem['order_id'] = $order->id;
                     OrderItem::create($orderItem);
                 }
             }
 
-            // Create a single Stripe session for all orders
             $allLineItems = [];
             foreach ($ordersData as $orderData) {
                 $allLineItems = array_merge($allLineItems, $orderData['line_items']);
@@ -128,7 +118,6 @@ class CheckoutController extends Controller
                 'cancel_url' => route('checkout.failure', [], true),
             ]);
 
-            // Create Payment for each order
             foreach ($ordersData as $orderData) {
                 $order = Order::where('seller_id', $orderData['seller_id'])->latest()->first();
                 $paymentData = [
@@ -184,12 +173,10 @@ class CheckoutController extends Controller
             }
         }
 
-        // Group products by seller
         foreach ($products as $product) {
             $quantity = $cartItems[$product->id]['quantity'];
             $totalPrice += $product->price * $quantity;
 
-            // Group by seller_id
             $sellerId = $product->seller_id;
             if (!isset($ordersData[$sellerId])) {
                 $ordersData[$sellerId] = [
@@ -206,7 +193,6 @@ class CheckoutController extends Controller
             ];
             $ordersData[$sellerId]['total_price'] += $product->price * $quantity;
 
-            // Update product quantity
             if ($product->quantity !== null) {
                 $product->quantity -= $quantity;
                 $product->save();
@@ -214,9 +200,7 @@ class CheckoutController extends Controller
         }
 
         try {
-            // Create orders for each seller
             foreach ($ordersData as $orderData) {
-                // Create Order
                 $order = Order::create([
                     'total_price' => $orderData['total_price'],
                     'status' => OrderStatus::Delivered,
@@ -225,13 +209,11 @@ class CheckoutController extends Controller
                     'seller_id' => $orderData['seller_id'],
                 ]);
 
-                // Create Order Items
                 foreach ($orderData['items'] as $orderItem) {
                     $orderItem['order_id'] = $order->id;
                     OrderItem::create($orderItem);
                 }
 
-                // Create Payment for this order
                 $paymentData = [
                     'order_id' => $order->id,
                     'amount' => $orderData['total_price'],
@@ -335,7 +317,7 @@ class CheckoutController extends Controller
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
         if ($order->items->isEmpty()) {
-            return redirect()->route('checkout.failure')->with('error', 'ไม่มีรายการในออเดอร์.');
+            return redirect()->route('checkout.failure')->with('error', 'No item in Order.');
         }
 
         $lineItems = [];

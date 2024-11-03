@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Asangha';
+  font-family: 'Poppins';
+  /* src: url('/resources/fonts/Asangha/Asangha-Thin.otf') format('opentype'); */
   /* src: url('/resources/fonts/Open_Sans/static/OpenSans-Regular.ttf')
     format('opentype'); */
   src: url('/resources/fonts/Poppins/Poppins-Light.ttf') format('opentype');
-  /* src: url('/resources/fonts/Asangha/Asangha-Thin.otf') format('opentype'); */
   font-weight: 100;
   font-style: normal;
 }
 
 body {
-  font-family: 'Asangha', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .font-semibold.sm {

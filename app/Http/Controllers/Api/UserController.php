@@ -10,13 +10,7 @@ use App\Models\Api\User;
 use App\Models\Customer;
 use App\Models\Seller;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {

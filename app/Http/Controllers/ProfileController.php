@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $customer = $user->customer;
         $shippingAddress = $customer->shippingAddress ?: new CustomerAddress(['type' => AddressType::Shipping]);
         $billingAddress = $customer->billingAddress ?: new CustomerAddress(['type' => AddressType::Billing]);
-//        dd($customer, $shippingAddress->attributesToArray(), $billingAddress, $billingAddress->customer);
+
         $countries = Country::query()->orderBy('name')->get();
 
         return view('profile.view', compact('customer', 'user', 'shippingAddress', 'billingAddress', 'countries'));
@@ -61,7 +61,7 @@ class ProfileController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Log::critical(__METHOD__ . ' method does not work. '. $e->getMessage());
+            Log::critical(__METHOD__ . ' method does not work. ' . $e->getMessage());
             throw $e;
         }
 

@@ -11,9 +11,6 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $sortField = request('sort_field', 'updated_at');
@@ -32,9 +29,6 @@ class CategoryController extends Controller
         return Category::getActiveAsTree(CategoryTreeResource::class);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCategoryRequest $request)
     {
         $data = $request->validated();
@@ -45,9 +39,6 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $data = $request->validated();
@@ -57,9 +48,6 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Category $category)
     {
         $category->delete();

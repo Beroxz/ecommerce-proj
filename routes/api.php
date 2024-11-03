@@ -22,9 +22,6 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('sellers', SellerController::class);
     Route::apiResource('categories', CategoryController::class)->except('show');
-    Route::apiResource('districts', DistrictController::class);
-    Route::apiResource('provinces', ProvinceController::class);
-    Route::apiResource('sub-districts', SubDistrictController::class);
 
     Route::get('/categories/tree', [CategoryController::class, 'getAsTree']);
     Route::get('/countries', [CustomerController::class, 'countries']);

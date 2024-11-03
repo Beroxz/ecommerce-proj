@@ -112,23 +112,6 @@
                     </ul>
                 </li>
             @else
-                {{-- <li>
-                    <a href="{{ route('login') }}"
-                        class="flex items-center py-2 px-3 transition-colors hover:bg-slate-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                        </svg>
-                        Login
-                    </a>
-                </li>
-                <li class="px-3 py-3">
-                    <a href="{{ route('register') }}"
-                        class="block text-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors w-full">
-                        Register now
-                    </a>
-                </li> --}}
                 <li class="px-3 py-3">
                     <a href="{{ route('login') }}"
                         class="block text-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors w-full">
@@ -233,35 +216,12 @@
                     </ul>
                 </li>
             @else
-                {{-- <li class="mr-4">
-                    <a href="{{ route('login') }}"
-                        class="flex items-center py-navbar-item px-navbar-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                        </svg>
-                        Login
-                    </a>
-                </li>
-                <li class="mr-4">
-                    <a href="{{ route('register') }}"
-                        class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5">
-                        Register now
-                    </a>
-                </li> --}}
                 <li class="mr-4">
                     <a href="{{ route('login') }}"
                         class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
                         Login
                     </a>
                 </li>
-                {{-- <li class="mr-4">
-                    <a href="{{ route('login') }}"
-                        class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5">
-                        Login
-                    </a>
-                </li> --}}
             @endif
         </ul>
     </nav>

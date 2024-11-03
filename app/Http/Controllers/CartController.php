@@ -7,7 +7,6 @@ use App\Models\CartItem;
 use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
