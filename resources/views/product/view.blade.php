@@ -109,6 +109,24 @@
                             x-text="expanded ? 'Read Less' : 'Read More'"></a>
                     </p>
                 </div>
+
+                <!-- Star Rating Section -->
+                <div class="mt-6" x-data="{ hoveredStar: null }">
+                    <h2 class="text-lg font-semibold text-gray-800">Rate this Product</h2>
+                    <div class="flex items-center">
+                        <template x-for="star in [1, 2, 3, 4, 5]" :key="star">
+                            <svg @mouseover="hoveredStar = star" @mouseleave="hoveredStar = null"
+                                @click="window.location.href='{{ route('reviews.create') }}?product_id={{ $product->id }}&rating=' + star"
+                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+                                :class="hoveredStar >= star ? 'text-yellow-500' : 'text-gray-400'" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11.049 2.927C11.469 1.838 12.531 1.838 12.951 2.927l1.156 3.632a1 1 0 00.95.686h3.807c1.022 0 1.446 1.309.623 1.947l-3.062 2.217a1 1 0 00-.364 1.118l1.156 3.632c.422 1.089-.914 1.99-1.846 1.118l-3.062-2.217a1 1 0 00-1.176 0l-3.062 2.217c-.932.872-2.268-.029-1.846-1.118l1.156-3.632a1 1 0 00-.364-1.118l-3.062-2.217c-.823-.638-.399-1.947.623-1.947h3.807a1 1 0 00.95-.686l1.156-3.632z" />
+                            </svg>
+                        </template>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -120,17 +138,22 @@
                     @if ($reviews->isEmpty())
                         No reviews available
                     @else
-                        @foreach ($reviews as $review)
+                        @php
+                            $visibleReviewsCount = 3; // จำนวนรีวิวที่จะแสดงเริ่มต้น
+                        @endphp
+
+                        @foreach ($reviews->take($visibleReviewsCount) as $review)
                             <div class="p-4 border border-gray-300 rounded-lg shadow-sm"
                                 style="background-color: rgba(255, 255, 255, 0.363);">
                                 <div class="flex items-center mb-2">
-                                    <span class="text-gray-600 font-semibold">{{ $review->customer->first_name }}</span>
+                                    <span
+                                        class="text-gray-600 font-semibold">{{ $review->customer->first_name }}</span>
                                     <span class="text-gray-500 text-sm ml-2">{{ $review->review_date }}</span>
                                     <div class="text-yellow-500 flex items-center ml-3">
                                         <!-- Star Ratings -->
                                         @for ($i = 1; $i <= 5; $i++)
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor"
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                 class="{{ $review->rating >= $i ? 'text-yellow-500' : 'text-gray-300' }} h-4 w-4">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.385a.563.563 0 0 0-.182-.557L3.01 10.062c-.38-.325-.178-.948.321-.988l5.518-.442a.563.563 0 0 0 .475-.345l2.125-5.111z" />
@@ -141,10 +164,64 @@
                                 <p class="text-gray-700">{{ $review->comment }}</p>
                             </div>
                         @endforeach
+
+                        <div id="extraReviews" class="hidden">
+                            @foreach ($reviews->slice($visibleReviewsCount) as $review)
+                                <div class="p-4 border border-gray-300 rounded-lg shadow-sm"
+                                    style="background-color: rgba(255, 255, 255, 0.363);">
+                                    <div class="flex items-center mb-2">
+                                        <span
+                                            class="text-gray-600 font-semibold">{{ $review->customer->first_name }}</span>
+                                        <span class="text-gray-500 text-sm ml-2">{{ $review->review_date }}</span>
+                                        <div class="text-yellow-500 flex items-center ml-3">
+                                            <!-- Star Ratings -->
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="{{ $review->rating >= $i ? 'text-yellow-500' : 'text-gray-300' }} h-4 w-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.385a.563.563 0 0 0-.182-.557L3.01 10.062c-.38-.325-.178-.948.321-.988l5.518-.442a.563.563 0 0 0 .475-.345l2.125-5.111z" />
+                                                </svg>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700">{{ $review->comment }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button id="toggleReviewsBtn" class="text-blue-500 mt-2">
+                            {{ $reviews->count() > $visibleReviewsCount ? 'Show more reviews' : '' }}
+                        </button>
+
+                        <button id="showLessBtn" class="hidden text-blue-500 mt-2">
+                            Show less reviews
+                        </button>
                     @endif
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 </x-app-layout>
+
+<script>
+    const toggleReviewsBtn = document.getElementById('toggleReviewsBtn');
+    const extraReviews = document.getElementById('extraReviews');
+    const showLessBtn = document.getElementById('showLessBtn');
+
+    if (toggleReviewsBtn) {
+        toggleReviewsBtn.addEventListener('click', () => {
+            extraReviews.classList.remove('hidden');
+            toggleReviewsBtn.classList.add('hidden');
+            showLessBtn.classList.remove('hidden');
+        });
+    }
+
+    if (showLessBtn) {
+        showLessBtn.addEventListener('click', () => {
+            extraReviews.classList.add('hidden');
+            toggleReviewsBtn.classList.remove('hidden');
+            showLessBtn.classList.add('hidden');
+        });
+    }
+</script>

@@ -30,14 +30,14 @@
                                 {{ $order->created_at->format('d/m/Y H:m:s') }}</td>
                             <td class="py-2 px-4 text-center">
                                 <span
-                                    class="text-white py-1 px-2 rounded {{ $order->isPaid() ? 'bg-emerald-500' : 'bg-gray-400' }}">
+                                    class="text-white py-1 px-2 rounded {{ $order->isPaid() ? 'bg-emerald-500' : ($order->isDelivered() ? 'bg-yellow-500' : 'bg-gray-400') }}">
                                     {{ $order->status }}
                                 </span>
                             </td>
                             <td class="py-2 px-4 text-center">฿{{ number_format($order->total_price, 2) }}</td>
                             <td class="py-2 px-4 text-center whitespace-nowrap">{{ $order->items_count }} item(s)</td>
                             <td class="py-2 px-4 flex justify-center">
-                                @if (!$order->isPaid())
+                                @if (!$order->isPaid() && !$order->isDelivered())
                                     <form action="{{ route('cart.checkout-order', $order) }}" method="POST">
                                         @csrf
                                         <button

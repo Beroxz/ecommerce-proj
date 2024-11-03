@@ -14,6 +14,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -24,9 +25,11 @@ class ProductController extends Controller
         $search = request('search', '');
         $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');
+        $userId = Auth::id();
 
         $query = Product::query()
             ->where('title', 'like', "%{$search}%")
+            ->where('seller_id', $userId)
             ->orderBy($sortField, $sortDirection)
             ->paginate($perPage);
 

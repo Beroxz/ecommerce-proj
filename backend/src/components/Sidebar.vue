@@ -1,14 +1,14 @@
 <template>
   <div
-    class="min-w-[160px] w-[160px] transition-all bg-indigo-700 text-white py-4 px-2"
+    class="min-w-[160px] w-[160px] transition-all bg-indigo-500 text-white py-4 px-2"
   >
     <h2 class="text-lg font-semibold mb-4 text-center">
       {{
         currentUser.role === 1
           ? 'Admin'
           : currentUser.role === 2
-            ? 'Seller'
-            : ''
+          ? 'Seller'
+          : ''
       }}
     </h2>
 

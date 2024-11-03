@@ -28,6 +28,11 @@ class Seller extends Model
         'updated_by',           // ID ของผู้ปรับปรุง
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');

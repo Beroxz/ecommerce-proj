@@ -14,16 +14,26 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status', 'total_price', 'seller_id' , 'created_by', 'updated_by'];
+    protected $fillable = ['status', 'total_price', 'seller_id', 'created_by', 'updated_by'];
 
     public function isPaid()
     {
         return $this->status === OrderStatus::Paid->value;
     }
 
+    public function isDelivered()
+    {
+        return $this->status === OrderStatus::Delivered->value;
+    }
+
     public function payment(): HasOne
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(User::class, 'seller_id');
     }
 
     public function user()

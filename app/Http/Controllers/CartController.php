@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cookie;
@@ -15,11 +16,31 @@ class CartController extends Controller
     {
         [$products, $cartItems] = Cart::getProductsAndCartItems();
         $total = 0;
+        $sellers = [];
         foreach ($products as $product) {
             $total += $product->price * $cartItems[$product->id]['quantity'];
+            if (!isset($sellers[$product->seller_id])) {
+                $seller = Seller::find($product->seller_id);
+                if ($seller) {
+                    $sellers[$product->seller_id] = $seller->store_name;
+                }
+            }
         }
 
-        return view('cart.index', compact('cartItems', 'products', 'total'));
+        return view('cart.index', compact('cartItems', 'products', 'total', 'sellers'));
+    }
+
+    public function viewDelivery()
+    {
+        [$products, $orderItems] = Cart::getProductsAndCartItems();
+
+        // Calculate the total order amount
+        $totalAmount = 0;
+        foreach ($products as $product) {
+            $totalAmount += $product->price * $orderItems[$product->id]['quantity'];
+        }
+
+        return view('cart.delivery', compact('orderItems', 'products', 'totalAmount'));
     }
 
     public function add(Request $request, Product $product)
@@ -53,7 +74,7 @@ class CartController extends Controller
 
         if ($product->quantity !== null && $product->quantity < $totalQuantity) {
             return response([
-                'message' => match ( $product->quantity ) {
+                'message' => match ($product->quantity) {
                     0 => 'The product is out of stock',
                     1 => 'There is only one item left',
                     default => 'There are only ' . $product->quantity . ' items left'
@@ -132,12 +153,12 @@ class CartController extends Controller
 
     public function updateQuantity(Request $request, Product $product)
     {
-        $quantity = (int)$request->post('quantity');
+        $quantity = (int) $request->post('quantity');
         $user = $request->user();
 
         if ($product->quantity !== null && $product->quantity < $quantity) {
             return response([
-                'message' => match ( $product->quantity ) {
+                'message' => match ($product->quantity) {
                     0 => 'The product is out of stock',
                     1 => 'There is only one item left',
                     default => 'There are only ' . $product->quantity . ' items left'

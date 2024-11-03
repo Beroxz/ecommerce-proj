@@ -77,16 +77,47 @@ class CustomerController extends Controller
             $customer->update($customerData);
 
             if ($customer->shippingAddress) {
+                $stateId = $shippingData['state'];
+                $country = Country::query()->where('state', $stateId)->get(['country_key', 'text']);
+
+                if ($country->isNotEmpty()) {
+                    $shippingData['state'] = $country[0][1];
+                } else {
+                    $shippingData['state'] = null;
+                }
+                CustomerAddress::create($shippingData);
                 $customer->shippingAddress->update($shippingData);
             } else {
+                $stateId = $shippingData['state'];
+                $country = Country::query()->where('state', $stateId)->get(['country_key', 'text']);
+
+                if ($country->isNotEmpty()) {
+                    $shippingData['state'] = $country[0][1];
+                } else {
+                    $shippingData['state'] = null;
+                }
                 $shippingData['customer_id'] = $customer->user_id;
                 $shippingData['type'] = AddressType::Shipping->value;
                 CustomerAddress::create($shippingData);
             }
 
             if ($customer->billingAddress) {
+                $stateId = $billingData['state'];
+                $country = Country::query()->where('key', $stateId)->get(['key', 'text']);
+                if ($country->isNotEmpty()) {
+                    $billingData['state'] = $country[0][1];
+                } else {
+                    $billingData['state'] = null;
+                }
                 $customer->billingAddress->update($billingData);
             } else {
+                $stateId = $billingData['state'];
+                $country = Country::query()->where('key', $stateId)->get(['key', 'text']);
+                if ($country->isNotEmpty()) {
+                    $billingData['state'] = $country[0][1];
+                } else {
+                    $billingData['state'] = null;
+                }
                 $billingData['customer_id'] = $customer->user_id;
                 $billingData['type'] = AddressType::Billing->value;
                 CustomerAddress::create($billingData);
@@ -94,7 +125,7 @@ class CustomerController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Log::critical(__METHOD__ . ' method does not work. '. $e->getMessage());
+            Log::critical(__METHOD__ . ' method does not work. ' . $e->getMessage());
             throw $e;
         }
 

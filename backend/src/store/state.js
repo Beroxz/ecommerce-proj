@@ -1,6 +1,7 @@
 export default {
   user: {
-    token: sessionStorage.getItem('TOKEN'),
+    token: sessionStorage.getItem('token'),
+    role: sessionStorage.getItem('role'),
     data: {},
   },
   products: {

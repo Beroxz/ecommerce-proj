@@ -40,13 +40,13 @@
           label="Store Address"
           :errors="errors.store_address"
         />
-        <CustomInput
+        <!-- <CustomInput
           class="mb-2"
           v-model="seller.store_rating"
           label="Store Rating"
           type="number"
           :errors="errors.store_rating"
-        />
+        /> -->
         <CustomInput
           type="checkbox"
           class="mb-2"

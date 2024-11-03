@@ -38,11 +38,6 @@
             ID
           </TableHeaderCell>
           <TableHeaderCell
-            field="store_image"
-            @click="sortSellers('store_image')"
-            >Profile Store</TableHeaderCell
-          >
-          <TableHeaderCell
             field="hostSeller_name"
             :sort-field="sortField"
             :sort-direction="sortDirection"
@@ -74,14 +69,14 @@
           >
             Store Phone
           </TableHeaderCell>
-          <TableHeaderCell
+          <!-- <TableHeaderCell
             field="store_rating"
             :sort-field="sortField"
             :sort-direction="sortDirection"
             @click="sortCustomers('store_rating')"
           >
             Store Rating
-          </TableHeaderCell>
+          </TableHeaderCell> -->
           <TableHeaderCell
             field="status"
             :sort-field="sortField"
@@ -114,12 +109,11 @@
       <tbody v-else>
         <tr v-for="(seller, index) of sellers.data" :key="seller.id">
           <td class="border-b p-2">{{ seller.id }}</td>
-          <td>{{ seller.store_image }}</td>
           <td class="border-b p-2">{{ seller.hostSeller_name }}</td>
           <td class="border-b p-2">{{ seller.hostSeller_last_name }}</td>
           <td class="border-b p-2">{{ seller.store_name }}</td>
           <td class="border-b p-2">{{ seller.store_phone }}</td>
-          <td class="border-b p-2">{{ seller.store_rating }}</td>
+          <!-- <td class="border-b p-2">{{ seller.store_rating }}</td> -->
           <td class="border-b p-2">{{ seller.status }}</td>
           <td class="border-b p-2">{{ seller.created_at }}</td>
           <td class="border-b p-2">

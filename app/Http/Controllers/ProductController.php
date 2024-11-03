@@ -40,10 +40,13 @@ class ProductController extends Controller
     {
         $seller = Seller::find($product->seller_id);
 
-        $reviews = Review::where('product_id', $product->id)->get()->map(function ($review) {
-            $review->review_date = $review->created_at->format('d/m/Y');
-            return $review;
-        });
+        $reviews = Review::where('product_id', $product->id)
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($review) {
+                $review->review_date = $review->created_at->format('d/m/Y');
+                return $review;
+            });
 
         return view('product.view', [
             'product' => $product,

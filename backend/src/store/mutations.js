@@ -1,13 +1,18 @@
 export function setUser(state, user) {
   state.user.data = user;
+  if (user) {
+    sessionStorage.setItem('role', user.role);
+  } else {
+    sessionStorage.removeItem('role');
+  }
 }
 
 export function setToken(state, token) {
   state.user.token = token;
   if (token) {
-    sessionStorage.setItem('TOKEN', token);
+    sessionStorage.setItem('token', token);
   } else {
-    sessionStorage.removeItem('TOKEN');
+    sessionStorage.removeItem('token');
   }
 }
 

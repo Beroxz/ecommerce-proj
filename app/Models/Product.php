@@ -36,6 +36,11 @@ class Product extends Model
         return 'slug';
     }
 
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImage::class)->orderBy('position');
