@@ -42,11 +42,24 @@ Need MySQL, PHP8.1, Node.js and composer.
 3. Copy `backend/.env.example` into `backend/.env`
 4. Make sure `VITE_API_BASE_URL` key in `backend/.env` is set to your Laravel API host (Default: http://localhost:8000)
 5. Run `npm run dev`
-6. Open Vue.js Admin Panel in browser and login with
-   ```
-   admin@example.com
-   admin123
-   ```
+
+Web http://localhost:8000
+App Backend http://localhost:3000 -> API End Point http://localhost:8000
+
+Run Project
+`php artisan serve` -> Run PHP Server - Web
+`npm run web` -> Run Nodejs Vite Mix
+`npm run dev` -> Setting ใน package.json = `cd backend && npm run dev`
+
+Default User
+
+```
+admin@example.com
+admin123
+```
+
+seller1@example.com
+seller123
 
 ## ถ้ามีปัญหา ในการ save image run คำสั่งนี้
 
