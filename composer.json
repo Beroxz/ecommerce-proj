@@ -15,7 +15,7 @@
     "laravel/sanctum": "^v4.0.0",
     "laravel/tinker": "^v2.9.0",
     "spatie/laravel-sluggable": "^3.6.0",
-    "stripe/stripe-php": "^16.1"
+    "stripe/stripe-php": "^16.2"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^v3.12.2",

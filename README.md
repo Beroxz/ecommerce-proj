@@ -54,11 +54,11 @@ Run Project
 Default User
 
 ```
-admin@example.com
+admin@gmail.com
 admin123
 ```
 
-seller1@example.com
+seller1@gmail.com
 seller123
 
 ## ถ้ามีปัญหา ในการ save image run คำสั่งนี้
@@ -75,7 +75,8 @@ seller123
 
 ## https://dashboard.stripe.com
 
-สำหรับ สมัคร demo การชำระเงินออนไลน์
+สำหรับ สมัคร demo การชำระเงินออนไลน์  
+login เข้าหน้า dashboard >> Developers -> API keys -> Secret key copy and set to .env
 
 code format styles all project
 `npm run format`

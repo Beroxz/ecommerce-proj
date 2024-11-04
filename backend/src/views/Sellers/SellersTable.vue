@@ -14,14 +14,14 @@
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
-        <span class="ml-3">Found {{ sellers.total }} customers</span>
+        <span class="ml-3">Found {{ sellers.total }} sellers</span>
       </div>
       <div>
         <input
           v-model="search"
           @change="getSellers(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Type to Search customers"
+          placeholder="Type to Search sellers"
         />
       </div>
     </div>
@@ -33,31 +33,15 @@
             field="id"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('id')"
+            @click="sortSellers('id')"
           >
             ID
-          </TableHeaderCell>
-          <TableHeaderCell
-            field="hostSeller_name"
-            :sort-field="sortField"
-            :sort-direction="sortDirection"
-            @click="sortCustomers('hostSeller_name')"
-          >
-            First Name
-          </TableHeaderCell>
-          <TableHeaderCell
-            field="hostSeller_last_name"
-            :sort-field="sortField"
-            :sort-direction="sortDirection"
-            @click="sortCustomers('hostSeller_last_name')"
-          >
-            Last Name
           </TableHeaderCell>
           <TableHeaderCell
             field="store_name"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('store_name')"
+            @click="sortSellers('store_name')"
           >
             Store Name
           </TableHeaderCell>
@@ -65,7 +49,7 @@
             field="store_phone"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('store_phone')"
+            @click="sortSellers('store_phone')"
           >
             Store Phone
           </TableHeaderCell>
@@ -73,7 +57,7 @@
             field="store_rating"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('store_rating')"
+            @click="sortSellers('store_rating')"
           >
             Store Rating
           </TableHeaderCell> -->
@@ -81,7 +65,7 @@
             field="status"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('status')"
+            @click="sortSellers('status')"
           >
             Status
           </TableHeaderCell>
@@ -89,7 +73,7 @@
             field="created_at"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCustomers('created_at')"
+            @click="sortSellers('created_at')"
           >
             Register Date
           </TableHeaderCell>
@@ -109,8 +93,6 @@
       <tbody v-else>
         <tr v-for="(seller, index) of sellers.data" :key="seller.id">
           <td class="border-b p-2">{{ seller.id }}</td>
-          <td class="border-b p-2">{{ seller.hostSeller_name }}</td>
-          <td class="border-b p-2">{{ seller.hostSeller_last_name }}</td>
           <td class="border-b p-2">{{ seller.store_name }}</td>
           <td class="border-b p-2">{{ seller.store_phone }}</td>
           <!-- <td class="border-b p-2">{{ seller.store_rating }}</td> -->
@@ -165,7 +147,7 @@
                           active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                           'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                         ]"
-                        @click="deleteCustomer(seller)"
+                        @click="deleteSeller(seller)"
                       >
                         <TrashIcon
                           :active="active"

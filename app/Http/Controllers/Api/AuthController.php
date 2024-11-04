@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use App\Enums\SellerStatus;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -40,8 +42,15 @@ class AuthController extends Controller
             ], 403);
         }
 
+        $seller = $user->seller;
+        if (($user->role == 2 || $user->role === '2') && $seller->status !== SellerStatus::Active->value) {
+            throw ValidationException::withMessages([
+                'email' => 'Your account has been disabled',
+            ]);
+        }
+
         $token = $user->createToken('main')->plainTextToken;
-        
+
         if ($user->role == 1) {
             return response([
                 'user' => new UserResource($user),

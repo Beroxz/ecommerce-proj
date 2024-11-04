@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Api\User;
 use App\Models\Customer;
 use App\Models\Seller;
+use App\Enums\CustomerStatus;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
@@ -55,19 +56,18 @@ class UserController extends Controller
 
         $user = User::create($data);
 
-        if ($data['role'] === 2) {
+        if ($data['role'] === 2 || $data['role'] === '2') {
             $seller = new Seller();
-            $names = explode(" ", $user->name);
             $seller->user_id = $user->id;
-            $seller->hostSeller_name = $names[0];
-            $seller->hostSeller_last_name = $names[1] ?? '';
+            $seller->store_name = $user->name;
             $seller->save();
         }
 
-        if ($data['role'] === 3) {
+        if ($data['role'] === 3 || $data['role'] === '3') {
             $customer = new Customer();
             $names = explode(" ", $user->name);
             $customer->user_id = $user->id;
+            $customer->status = CustomerStatus::Disabled;
             $customer->first_name = $names[0];
             $customer->last_name = $names[1] ?? '';
             $customer->save();
@@ -75,8 +75,6 @@ class UserController extends Controller
 
         return new UserResource($user);
     }
-
-
 
     /**
      * Update the specified resource in storage.

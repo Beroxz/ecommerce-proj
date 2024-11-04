@@ -3,19 +3,6 @@
     <form @submit.prevent="onSubmit">
       <div class="bg-white px-4 pt-5 pb-4">
         <h1 class="text-2xl font-semibold pb-2">{{ title }}</h1>
-
-        <CustomInput
-          class="mb-2"
-          v-model="seller.hostSeller_name"
-          label="Seller First Name"
-          :errors="errors.hostSeller_name"
-        />
-        <CustomInput
-          class="mb-2"
-          v-model="seller.hostSeller_last_name"
-          label="Seller Last Name"
-          :errors="errors.hostSeller_last_name"
-        />
         <CustomInput
           class="mb-2"
           v-model="seller.store_name"

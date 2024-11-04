@@ -207,10 +207,9 @@ const billingCountry = computed(() =>
 );
 const billingStateOptions = computed(() => {
   if (!billingCountry.value || !billingCountry.value.states) return [];
-
-  return Object.entries(billingCountry.value.states).map((c) => ({
-    key: c[0],
-    text: c[1],
+  return Object.entries(billingCountry.value.states).map(([key, text]) => ({
+    key: (parseInt(key, 10) + 1).toString().padStart(2, '0'),
+    text,
   }));
 });
 const shippingCountry = computed(() =>
@@ -220,10 +219,9 @@ const shippingCountry = computed(() =>
 );
 const shippingStateOptions = computed(() => {
   if (!shippingCountry.value || !shippingCountry.value.states) return [];
-
-  return Object.entries(shippingCountry.value.states).map((c) => ({
-    key: c[0],
-    text: c[1],
+  return Object.entries(shippingCountry.value.states).map(([key, text]) => ({
+    key: (parseInt(key, 10) + 1).toString().padStart(2, '0'),
+    text,
   }));
 });
 

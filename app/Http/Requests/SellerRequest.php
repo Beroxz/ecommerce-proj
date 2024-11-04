@@ -24,8 +24,6 @@ class SellerRequest extends FormRequest
     public function rules()
     {
         return [
-            'hostSeller_name' => 'required|string|max:255',
-            'hostSeller_last_name' => 'required|string|max:255',
             'store_name' => 'required|string|max:255',
             'store_phone' => 'nullable|string|max:20',
             'store_description' => 'nullable|string',

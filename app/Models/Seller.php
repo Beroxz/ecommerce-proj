@@ -13,8 +13,6 @@ class Seller extends Model
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'hostSeller_name',
-        'hostSeller_last_name',
         'store_name',           // ชื่อร้าน
         'store_phone',          // เบอร์โทรศัพท์ร้าน
         'store_description',    // รายละเอียดร้าน

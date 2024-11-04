@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         // Seed Admin
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
             'email_verified_at' => now(),
             'role' => 1,
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         // Seed Seller 1
         User::create([
             'name' => 'Flower Paradise',
-            'email' => 'seller1@example.com',
+            'email' => 'seller1@gmail.com',
             'password' => bcrypt('seller123'),
             'email_verified_at' => now(),
             'role' => 2,
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         // Seed Seller 2
         User::create([
             'name' => 'Tropical Garden',
-            'email' => 'seller2@example.com',
+            'email' => 'seller2@gmail.com',
             'password' => bcrypt('seller123'),
             'email_verified_at' => now(),
             'role' => 2,

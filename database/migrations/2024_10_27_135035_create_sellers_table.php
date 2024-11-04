@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\User;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id('user_id');
-            $table->string('hostSeller_name', 255);
-            $table->string('hostSeller_last_name', 255);
             $table->string('store_name', 255);
             $table->string('store_phone')->nullable();
             $table->text('store_description')->nullable();

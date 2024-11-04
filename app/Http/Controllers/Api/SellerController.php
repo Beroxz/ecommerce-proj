@@ -28,8 +28,7 @@ class SellerController extends Controller
         $query = Seller::query()->orderBy("sellers.$sortField", $sortDirection);
 
         if ($search) {
-            $query->where(DB::raw("CONCAT(hostSeller_name, ' ', hostSeller_last_name)"), 'like', "%{$search}%")
-                ->orWhere('store_name', 'like', "%{$search}%")
+            $query->where('store_name', 'like', "%{$search}%")
                 ->orWhere('store_phone', 'like', "%{$search}%");
         }
 
