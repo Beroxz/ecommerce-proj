@@ -61,6 +61,17 @@ admin123
 seller1@gmail.com
 seller123
 
+seller2@gmail.com
+seller123
+
+```
+test.cus@gmail.com
+1303161as
+
+test.cus@gmail.com
+usertest123
+
+
 ## ถ้ามีปัญหา ในการ save image run คำสั่งนี้
 
 `php artisan storage:link`
@@ -75,8 +86,22 @@ seller123
 
 ## https://dashboard.stripe.com
 
-สำหรับ สมัคร demo การชำระเงินออนไลน์  
+สำหรับ สมัคร demo การชำระเงินออนไลน์
 login เข้าหน้า dashboard >> Developers -> API keys -> Secret key copy and set to .env
 
 code format styles all project
 `npm run format`
+```
+
+## .env for Setting Gmail
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your_email@gmail.com -> Mail ตัวเอง
+MAIL_PASSWORD=your_app_specific_password -> ไป Gen ที่ Gmail App Password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="your_email@gmail.com" -> Mail ที่จะแสดงเป็นผู้ส่ง
+MAIL_FROM_NAME="${APP_NAME}" -> ชื่อที่แสดงในการส่ง Mail Default ("Perdis Website")
+
+หรือดู `https://www.youtube.com/watch?v=kTcmbZqNiGw`
