@@ -127,7 +127,42 @@ class DashboardController extends Controller
         return $query->get();
     }
 
+//     public function ordersByState()
+// {
+//     $fromDate = $this->getFromDate();
 
+//     // ดึงข้อมูล provinces จากตาราง countries
+//     $country = DB::table('countries')->where('code', 'tha')->first();
+//     $thailandProvinces = json_decode($country->states, true);
+
+//     $query = Order::query()
+//         ->select([
+//             DB::raw('LOWER(a.state) as state_key'),
+//             DB::raw('count(orders.id) as count'),
+//             'users.name as user_name'
+//         ])
+//         ->join('users', 'orders.created_by', '=', 'users.id')
+//         ->join('customer_addresses AS a', 'users.id', '=', 'a.customer_id')
+//         ->where('status', OrderStatus::Paid->value)
+//         ->where('a.type', AddressType::Billing->value)
+//         ->groupBy('state_key', 'user_name')
+//         ->orderBy('count', 'DESC');
+
+//     if ($fromDate) {
+//         $query->where('orders.created_at', '>', $fromDate);
+//     }
+
+//     // ดึงข้อมูลจาก query
+//     $results = $query->get();
+
+//     // แปลง key ของจังหวัดเป็นชื่อ
+//     $results->transform(function ($item) use ($thailandProvinces) {
+//         $item->state_name = $thailandProvinces[$item->state_key] ?? 'Unknown'; // เทียบ key และแปลงเป็นชื่อ
+//         return $item;
+//     });
+
+//     return $results;
+// }
 
 
     public function latestCustomers()
