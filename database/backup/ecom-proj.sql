@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2024 at 06:15 PM
+-- Generation Time: Nov 05, 2024 at 02:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -1325,7 +1325,8 @@ CREATE TABLE `personal_access_tokens` (
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
 (1, 'App\\Models\\User', 2, 'main', 'dfb179bfabc9855a6f903b7585f4194765dcbe02ed44a73e33d87a3bb99953fa', '[\"*\"]', '2024-11-03 12:22:14', NULL, '2024-11-03 10:25:39', '2024-11-03 12:22:14'),
 (2, 'App\\Models\\User', 1, 'main', '141aa0c2b6a5404ba67a3daa2d9c2ac1934ae2ca5b9d6db6ec2917c45b8aca9f', '[\"*\"]', '2024-11-03 10:47:58', NULL, '2024-11-03 10:36:42', '2024-11-03 10:47:58'),
-(10, 'App\\Models\\User', 1, 'main', '55484527b027dbb6e048fee052380fbc0dd96aeb2cae5ae466d7385f12da6101', '[\"*\"]', '2024-11-04 09:37:49', NULL, '2024-11-04 08:39:51', '2024-11-04 09:37:49');
+(10, 'App\\Models\\User', 1, 'main', '55484527b027dbb6e048fee052380fbc0dd96aeb2cae5ae466d7385f12da6101', '[\"*\"]', '2024-11-04 09:37:49', NULL, '2024-11-04 08:39:51', '2024-11-04 09:37:49'),
+(12, 'App\\Models\\User', 2, 'main', 'b9992526dd1297d5fce7f24a3cf1899cdeaae6b27f6aee654f0bc58f4a9ab70f', '[\"*\"]', '2024-11-05 05:37:42', NULL, '2024-11-05 05:37:34', '2024-11-05 05:37:42');
 
 -- --------------------------------------------------------
 
@@ -9358,7 +9359,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `products`
