@@ -32,8 +32,9 @@ Need MySQL, PHP8.1, Node.js and composer.
 3. Navigate to the project's root directory using terminal
 4. Run `composer install`
 5. Set the encryption key by executing `php artisan key:generate --ansi`
-6. Run migrations `php artisan migrate --seed`
+6. Run migrations `php artisan migrate --seed` กรณีสร้าง db ใหม่ ข้ามได้เลย
 7. Start local server by executing `php artisan serve`
+8. Run `npm install`
 
 ### Install Vue.js Admin Panel
 
