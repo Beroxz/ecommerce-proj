@@ -19,10 +19,10 @@
                         <a href="{{ route('shop') }}" class="text-white hover:text-slate-600">Shop</a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">About Us</a>
+                        <a href="{{ route('about') }}" class="text-white hover:text-slate-600">About Us</a>
                     </li>
                     <li>
-                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">Contact</a>
+                        <a href="{{ route('about') }}" class="text-white hover:text-slate-600">Contact</a>
                     </li>
                 </ul>
             </div>
