@@ -105,3 +105,5 @@ MAIL_FROM_ADDRESS="your_email@gmail.com" -> Mail ที่จะแสดงเ�
 MAIL_FROM_NAME="${APP_NAME}" -> ชื่อที่แสดงในการส่ง Mail Default ("Perdis Website")
 
 หรือดู `https://www.youtube.com/watch?v=kTcmbZqNiGw`
+
+share `https://drive.google.com/drive/folders/1fy-lT7PnVDeHMD5p99I-s38WaLLRZOVl?usp=sharing`
