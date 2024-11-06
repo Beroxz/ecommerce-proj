@@ -189,7 +189,65 @@
         </div>
     </section>
 
-    <section class="features py-12 bg-white rounded-xl">
+    <!-- Plant Care Tips Section -->
+    <section class="plant-care-tips py-12 bg-white rounded-xl">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Tips</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                @foreach ($tools as $tip)
+                    <div class="tip-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
+                        <img src="{{ $tip->image ?: asset('assets/img/noimage.png') }}" alt="{{ $tip->title }}"
+                            class="w-full h-48 object-cover mb-4 rounded">
+                        <h3 class="text-xl font-semibold mb-4">{{ $tip->title }}</h3>
+                        <p class="text-gray-600">{{ $tip->description }}</p>
+                        {{-- <a href="{{ route('tips.show', $tip->slug) }}" class="text-green-600 mt-4 inline-block">Learn More</a> --}}
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- Plant Care Videos Section -->
+    <section class="plant-care-videos py-12 bg-white rounded-xl">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Videos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Video 1 -->
+                <div class="video-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
+                    <div class="video-wrapper mb-4">
+                        <iframe class="w-full h-48 rounded" src="https://www.youtube.com/embed/J1LW1Nz0pd4"
+                            frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">How to Care for Indoor Plants</h3>
+                    <p class="text-gray-600">Learn the best tips to keep your indoor plants thriving.</p>
+                </div>
+                <!-- Video 2 -->
+                <div class="video-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
+                    <div class="video-wrapper mb-4">
+                        <iframe class="w-full h-48 rounded" src="https://www.youtube.com/embed/-Dmvx20Y4YQ"
+                            frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Watering Guide for Succulents</h3>
+                    <p class="text-gray-600">Find out the proper way to water your succulents.</p>
+                </div>
+                <!-- Video 3 -->
+                <div class="video-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
+                    <div class="video-wrapper mb-4">
+                        <iframe class="w-full h-48 rounded" src="https://www.youtube.com/embed/GoHvdDlbjvw"
+                            frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Plant Pruning Techniques</h3>
+                    <p class="text-gray-600">Master the art of pruning your plants for optimal growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Features Section -->
+    <section class="features py-12 bg-white rounded-xl mt-10">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl text-gray-700 font-bold mb-8">Our Features</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
@@ -232,27 +290,7 @@
             </div>
         </div>
     </section>
-
-
-    <!-- Plant Care Tips Section -->
-    <section class="plant-care-tips py-12 bg-white rounded-xl mt-10">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Tips</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach ($tools as $tip)
-                    <div class="tip-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
-                        <img src="{{ $tip->image ?: asset('assets/img/noimage.png') }}" alt="{{ $tip->title }}"
-                            class="w-full h-48 object-cover mb-4 rounded">
-                        <h3 class="text-xl font-semibold mb-4">{{ $tip->title }}</h3>
-                        <p class="text-gray-600">{{ $tip->description }}</p>
-                        {{-- <a href="{{ route('tips.show', $tip->slug) }}" class="text-green-600 mt-4 inline-block">Learn More</a> --}}
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
 </x-app-layout>
-
 
 <script>
     function showTab(tabName) {
