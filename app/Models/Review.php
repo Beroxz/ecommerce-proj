@@ -29,4 +29,9 @@ class Review extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'user_id');
     }
+
+    public static function getAverageRating($productId)
+    {
+        return self::where('product_id', $productId)->avg('rating');
+    }
 }

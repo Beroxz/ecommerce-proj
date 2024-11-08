@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tool;
+use App\Models\Review;
 use Carbon\Carbon;
 
 class IndexController extends Controller
@@ -14,8 +15,11 @@ class IndexController extends Controller
         $allProducts = $this->getAllProduct();
         $newProducts = $this->getNewProduct();
         $bestSellProducts = $this->getBestSellProducts();
-
         $tools = Tool::where('published', 1)->get();
+
+        foreach ($allProducts as $product) {
+            $product->average_rating = Review::getAverageRating($product->id);
+        }
 
         return view('index', [
             'allProducts' => $allProducts,
