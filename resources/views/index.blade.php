@@ -27,9 +27,15 @@
     <section class="categories py-12 bg-white rounded-xl">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl text-gray-700 font-bold mb-8">Categories</h2>
-            <div class="relative">
+            <div class="flex items-center justify-center gap-4 relative">
+                <button
+                    class="w-12 h-12 text-3xl bg-gray-200 rounded-full flex items-center justify-center border border-gray-300 hover:bg-gray-300 transition-colors duration-200"
+                    id="scroll-left">
+                    <span>&#8249;</span>
+                </button>
+
                 <div id="category-container"
-                    class="overflow-x-auto whitespace-nowrap scroll-smooth no-scrollbar mx-8 overflow-hidden">
+                    class="overflow-x-auto whitespace-nowrap scroll-smooth no-scrollbar overflow-hidden flex-1">
                     <div class="flex gap-4">
                         @foreach ($categories as $category)
                             <a href="{{ route('byCategory', $category->slug) }}"
@@ -40,13 +46,10 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
-            <div class="flex justify-center mt-6 gap-12">
-                <button class="text-4xl text-gray" id="scroll-left">
-                    <span>&#8249;</span>
-                </button>
 
-                <button class="text-4xl text-gray" id="scroll-right">
+                <button
+                    class="w-12 h-12 text-3xl bg-gray-200 rounded-full flex items-center justify-center border border-gray-300 hover:bg-gray-300 transition-colors duration-200"
+                    id="scroll-right">
                     <span>&#8250;</span>
                 </button>
             </div>
@@ -89,8 +92,117 @@
                         </a>
 
                         <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
-                        <p class="text-green-700 font-bold">฿{{ number_format($product->price, 2) }}</p>
-                        <div style="display: flex; justify-content: flex-end; margin: 5px 0;">
+                        <p class="text-green-700 font-bold mt-2">฿{{ number_format($product->price, 2) }}</p>
+
+                        <div class="flex justify-between items-center mb-2 mt-4">
+                            <!-- Star Rating -->
+                            <div class="flex gap-1">
+                                @php
+                                    $averageRating = $product->average_rating ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
+                                @endphp
+
+                                @for ($i = 0; $i < $fullStars; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766l-7.416 4.693L6 15.195.001 9.347l8.332-1.331L12 .587z" />
+                                    </svg>
+                                @endfor
+
+                                @if ($halfStar)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" transform="scale(-1, 1)">
+                                        <path
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766v-18.18z" />
+                                    </svg>
+                                @endif
+
+                                @for ($i = $fullStars + $halfStar; $i < 5; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766l-7.416 4.693L6 15.195.001 9.347l8.332-1.331L12 .587z" />
+                                    </svg>
+                                @endfor
+                            </div>
+
+                            <!-- Add to Cart Button -->
+                            <button class="bg-transparent border-none cursor-pointer p-2 hover:text-green-700"
+                                @click="addToCart()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden" id="best-seller-products">
+                <!-- Best Selling Products -->
+                @foreach ($bestSellProducts as $product)
+                    <div x-data="productItem({{ json_encode([
+                        'id' => $product->id,
+                        'slug' => $product->slug,
+                        'image' => $product->image ?: '/assets/img/noimage.png',
+                        'title' => $product->title,
+                        'price' => $product->price,
+                        'addToCartUrl' => route('cart.add', $product),
+                    ]) }})"
+                        class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg relative">
+                        @if ($product->is_promotion)
+                            <span
+                                class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
+                                Hot
+                            </span>
+                        @endif
+                        <a href="{{ route('product.view', $product->slug) }}">
+                            <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
+                                alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
+                        </a>
+
+                        <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
+                        <p class="text-green-700 font-bold mt-2">฿{{ number_format($product->price, 2) }}</p>
+                        <div class="flex justify-between items-center mb-2 mt-4">
+                            <!-- Star Rating -->
+                            <div class="flex gap-1">
+                                @php
+                                    $averageRating = $product->average_rating ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
+                                @endphp
+
+                                @for ($i = 0; $i < $fullStars; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766l-7.416 4.693L6 15.195.001 9.347l8.332-1.331L12 .587z" />
+                                    </svg>
+                                @endfor
+
+                                @if ($halfStar)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" transform="scale(-1, 1)">
+                                        <path
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766v-18.18z" />
+                                    </svg>
+                                @endif
+
+                                @for ($i = $fullStars + $halfStar; $i < 5; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766l-7.416 4.693L6 15.195.001 9.347l8.332-1.331L12 .587z" />
+                                    </svg>
+                                @endfor
+                            </div>
+
+                            <!-- Add to Cart Button -->
                             <button class="bg-transparent border-none cursor-pointer p-2 hover:text-green-700"
                                 @click="addToCart()">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-2" fill="none"
@@ -128,47 +240,42 @@
                         </a>
 
                         <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
-                        <p class="text-green-700 font-bold">฿{{ number_format($product->price, 2) }}</p>
-                        <div style="display: flex; justify-content: flex-end; margin: 5px 0;">
-                            <button class="bg-transparent border-none cursor-pointer p-2 hover:text-green-700"
-                                @click="addToCart()">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-2" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                        <p class="text-green-700 font-bold mt-2">฿{{ number_format($product->price, 2) }}</p>
+                        <div class="flex justify-between items-center mb-2 mt-4">
+                            <!-- Star Rating -->
+                            <div class="flex gap-1">
+                                @php
+                                    $averageRating = $product->average_rating ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
+                                @endphp
 
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden" id="best-seller-products">
-                <!-- Best Selling Products -->
-                @foreach ($bestSellProducts as $product)
-                    <div x-data="productItem({{ json_encode([
-                        'id' => $product->id,
-                        'slug' => $product->slug,
-                        'image' => $product->image ?: '/assets/img/noimage.png',
-                        'title' => $product->title,
-                        'price' => $product->price,
-                        'addToCartUrl' => route('cart.add', $product),
-                    ]) }})"
-                        class="product-item bg-white p-4 rounded-lg shadow hover:shadow-lg relative">
-                        @if ($product->is_promotion)
-                            <span
-                                class="absolute top-2 right-2 bg-red-600 text-white text-lg font-bold py-1 px-3 rounded rotate-12">
-                                Hot
-                            </span>
-                        @endif
-                        <a href="{{ route('product.view', $product->slug) }}">
-                            <img src="{{ $product->image ?: asset('assets/img/noimage.png') }}"
-                                alt="{{ $product->title }}" class="w-full h-48 object-cover mb-4 rounded">
-                        </a>
+                                @for ($i = 0; $i < $fullStars; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766l-7.416 4.693L6 15.195.001 9.347l8.332-1.331L12 .587z" />
+                                    </svg>
+                                @endfor
 
-                        <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
-                        <p class="text-green-700 font-bold">฿{{ number_format($product->price, 2) }}</p>
-                        <div style="display: flex; justify-content: flex-end; margin: 5px 0;">
+                                @if ($halfStar)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" transform="scale(-1, 1)">
+                                        <path
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766v-18.18z" />
+                                    </svg>
+                                @endif
+
+                                @for ($i = $fullStars + $halfStar; $i < 5; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                        class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 .587l3.668 7.429L24 9.347l-6 5.848 1.416 8.264L12 18.766l-7.416 4.693L6 15.195.001 9.347l8.332-1.331L12 .587z" />
+                                    </svg>
+                                @endfor
+                            </div>
+
+                            <!-- Add to Cart Button -->
                             <button class="bg-transparent border-none cursor-pointer p-2 hover:text-green-700"
                                 @click="addToCart()">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-2" fill="none"
