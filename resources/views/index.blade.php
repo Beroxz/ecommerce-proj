@@ -10,7 +10,7 @@
                     <span class="text-gray-800">Your </span>
                     <span class="text-green-primary">Home </span>
                 </h1>
-                <p class="text-2xl mb-6">
+                <p class="text-2xl mb-12">
                     Discover our curated collection of plants, perfect for any space.
                     Brighten your day and purify your air with the beauty of nature.
                 </p>
@@ -93,7 +93,6 @@
 
                         <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
                         <p class="text-green-700 font-bold mt-2">฿{{ number_format($product->price, 2) }}</p>
-
                         <div class="flex justify-between items-center mb-2 mt-4">
                             <!-- Star Rating -->
                             <div class="flex gap-1">
