@@ -19,6 +19,8 @@ import OrdersReport from '../views/Reports/OrdersReport.vue';
 import CustomersReport from '../views/Reports/CustomersReport.vue';
 import ProductForm from '../views/Products/ProductForm.vue';
 import Categories from '../views/Categories/Categories.vue';
+import ProfileSeller from '../views/Profile/ProfileSeller.vue';
+import ProfileAdmin from '../views/Profile/ProfileAdmin.vue';
 
 const routes = [
   {
@@ -95,6 +97,12 @@ const routes = [
         name: 'app.sellers.view',
         component: SellerView,
         meta: { requiresAuth: true, roles: '1' },
+      },
+      {
+        path: 'sellers/profile',
+        name: 'app.sellers.profile',
+        component: ProfileSeller,
+        meta: { requiresAuth: true, roles: '2' },
       },
       {
         path: 'orders',

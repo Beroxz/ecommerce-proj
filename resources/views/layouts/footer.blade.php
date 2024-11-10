@@ -74,7 +74,7 @@
         </div>
 
         <!-- Add a separator -->
-        <div class="mt-8 my-4 border-b border-gray-500"></div>
+        {{-- <div class="mt-8 my-4 border-b border-gray-500"></div> --}}
 
         <div class="mt-4 flex justify-center items-center text-center">
             <!-- Copyright Notice Section -->

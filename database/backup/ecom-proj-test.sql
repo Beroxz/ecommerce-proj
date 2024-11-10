@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2024 at 02:55 PM
+-- Generation Time: Nov 10, 2024 at 02:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -93,14 +93,14 @@ INSERT INTO `countries` (`code`, `name`, `states`) VALUES
 ('chn', 'China', NULL),
 ('fr', 'France', NULL),
 ('geo', 'Georgia', NULL),
-('ger', 'Germany', '{\"BW\":\"Baden-W\\u00fcrttemberg\",\"BY\":\"Bavaria\",\"BE\":\"Berlin\",\"BR\":\"Brandenburg\",\"HB\":\"Bremen\",\"HH\":\"Hamburg\",\"HE\":\"Hesse\",\"MV\":\"Mecklenburg-Vorpommern\",\"NI\":\"Lower Saxony\",\"NW\":\"North Rhine-Westphalia\",\"RP\":\"Rhineland-Palatinate\",\"SL\":\"Saarland\",\"SN\":\"Saxony\",\"ST\":\"Saxony-Anhalt\",\"SH\":\"Schleswig-Holstein\",\"TH\":\"Thuringia\"}'),
+('ger', 'Germany', '{\"01\":\"Baden-Württemberg\",\"02\":\"Bavaria\",\"03\":\"Berlin\",\"04\":\"Brandenburg\",\"05\":\"Bremen\",\"06\":\"Hamburg\",\"07\":\"Hesse\",\"08\":\"Mecklenburg-Vorpommern\",\"09\":\"Lower Saxony\",\"10\":\"North Rhine-Westphalia\",\"11\":\"Rhineland-Palatinate\",\"12\":\"Saarland\",\"13\":\"Saxony\",\"14\":\"Saxony-Anhalt\",\"15\":\"Schleswig-Holstein\",\"16\":\"Thuringia\"}\n'),
 ('ind', 'India', NULL),
 ('it', 'Italy', NULL),
 ('jpn', 'Japan', NULL),
 ('kor', 'South Korea', NULL),
 ('lao', 'Laos', NULL),
 ('tha', 'Thailand', '{\"01\":\"Bangkok\",\"02\":\"Chiang Mai\",\"03\":\"Nakhon Ratchasima\",\"04\":\"Chonburi\",\"05\":\"Phuket\",\"06\":\"Nakhon Si Thammarat\",\"07\":\"Khon Kaen\",\"08\":\"Songkhla\",\"09\":\"Rayong\",\"10\":\"Surat Thani\",\"11\":\"Samut Prakan\",\"12\":\"Samut Sakhon\",\"13\":\"Saraburi\",\"14\":\"Nonthaburi\",\"15\":\"Nakhon Pathom\",\"16\":\"Ayutthaya\",\"17\":\"Lopburi\",\"18\":\"Sukhothai\",\"19\":\"Prachinburi\",\"20\":\"Chachoengsao\",\"21\":\"Nakhon Nayok\",\"22\":\"Singburi\",\"23\":\"Lopburi\",\"24\":\"Phetchaburi\",\"25\":\"Prachuap Khiri Khan\",\"26\":\"Rayong\",\"27\":\"Chumphon\",\"28\":\"Ranong\",\"29\":\"Surat Thani\",\"30\":\"Phang Nga\",\"31\":\"Krabi\",\"32\":\"Phuket\",\"33\":\"Satun\",\"34\":\"Songkhla\",\"35\":\"Yala\",\"36\":\"Pattani\",\"37\":\"Narathiwat\",\"38\":\"Buri Ram\",\"39\":\"Surin\",\"40\":\"Si Sa Ket\",\"41\":\"Ubon Ratchathani\",\"42\":\"Amnat Charoen\",\"43\":\"Yasothon\",\"44\":\"Mukdahan\",\"45\":\"Nakhon Phanom\",\"46\":\"Khon Kaen\",\"47\":\"Loei\",\"48\":\"Nong Bua Lam Phu\",\"49\":\"Udon Thani\",\"50\":\"Sakon Nakhon\",\"51\":\"Nakhon Sawan\",\"52\":\"Phichit\",\"53\":\"Phetchabun\",\"54\":\"Uthai Thani\",\"55\":\"Ratchaburi\",\"56\":\"Kanchanaburi\",\"57\":\"Suphan Buri\",\"58\":\"Nakhon Sawan\",\"59\":\"Sing Buri\",\"60\":\"Ang Thong\",\"61\":\"Lopburi\",\"62\":\"Phra Nakhon Si Ayutthaya\",\"63\":\"Sukhothai\",\"64\":\"Kamphaeng Phet\",\"65\":\"Tak\",\"66\":\"Phang Nga\",\"67\":\"Krabi\",\"68\":\"Surat Thani\",\"69\":\"Chumphon\",\"70\":\"Nakhon Si Thammarat\",\"71\":\"Phatthalung\",\"72\":\"Songkhla\",\"73\":\"Satun\",\"74\":\"Trang\",\"75\":\"Phuket\",\"76\":\"Ranong\",\"77\":\"Chonburi\"}'),
-('usa', 'United States of America', '{\"AL\":\"Alabama\",\"AK\":\"Alaska\",\"AZ\":\"Arizona\",\"AR\":\"Arkansas\",\"CA\":\"California\",\"CO\":\"Colorado\",\"CT\":\"Connecticut\",\"DE\":\"Delaware\",\"FL\":\"Florida\",\"GA\":\"Georgia\",\"HI\":\"Hawaii\",\"ID\":\"Idaho\",\"IL\":\"Illinois\",\"IN\":\"Indiana\",\"IA\":\"Iowa\",\"KS\":\"Kansas\",\"KY\":\"Kentucky\",\"LA\":\"Louisiana\",\"ME\":\"Maine\",\"MD\":\"Maryland\",\"MA\":\"Massachusetts\",\"MI\":\"Michigan\",\"MN\":\"Minnesota\",\"MS\":\"Mississippi\",\"MO\":\"Missouri\",\"MT\":\"Montana\",\"NE\":\"Nebraska\",\"NV\":\"Nevada\",\"NH\":\"New Hampshire\",\"NJ\":\"New Jersey\",\"NM\":\"New Mexico\",\"NY\":\"New York\",\"NC\":\"North Carolina\",\"ND\":\"North Dakota\",\"OH\":\"Ohio\",\"OK\":\"Oklahoma\",\"OR\":\"Oregon\",\"PA\":\"Pennsylvania\",\"RI\":\"Rhode Island\",\"SC\":\"South Carolina\",\"SD\":\"South Dakota\",\"TN\":\"Tennessee\",\"TX\":\"Texas\",\"UT\":\"Utah\",\"VT\":\"Vermont\",\"VA\":\"Virginia\",\"WA\":\"Washington\",\"WV\":\"West Virginia\",\"WI\":\"Wisconsin\",\"WY\":\"Wyoming\"}'),
+('usa', 'United States of America', '{\"01\":\"Alabama\",\"02\":\"Alaska\",\"03\":\"Arizona\",\"04\":\"Arkansas\",\"05\":\"California\",\"06\":\"Colorado\",\"07\":\"Connecticut\",\"08\":\"Delaware\",\"09\":\"Florida\",\"10\":\"Georgia\",\"11\":\"Hawaii\",\"12\":\"Idaho\",\"13\":\"Illinois\",\"14\":\"Indiana\",\"15\":\"Iowa\",\"16\":\"Kansas\",\"17\":\"Kentucky\",\"18\":\"Louisiana\",\"19\":\"Maine\",\"20\":\"Maryland\",\"21\":\"Massachusetts\",\"22\":\"Michigan\",\"23\":\"Minnesota\",\"24\":\"Mississippi\",\"25\":\"Missouri\",\"26\":\"Montana\",\"27\":\"Nebraska\",\"28\":\"Nevada\",\"29\":\"New Hampshire\",\"30\":\"New Jersey\",\"31\":\"New Mexico\",\"32\":\"New York\",\"33\":\"North Carolina\",\"34\":\"North Dakota\",\"35\":\"Ohio\",\"36\":\"Oklahoma\",\"37\":\"Oregon\",\"38\":\"Pennsylvania\",\"39\":\"Rhode Island\",\"40\":\"South Carolina\",\"41\":\"South Dakota\",\"42\":\"Tennessee\",\"43\":\"Texas\",\"44\":\"Utah\",\"45\":\"Vermont\",\"46\":\"Virginia\",\"47\":\"Washington\",\"48\":\"West Virginia\",\"49\":\"Wisconsin\",\"50\":\"Wyoming\"}\n'),
 ('vnm', 'Vietnam', NULL);
 
 -- --------------------------------------------------------
@@ -1326,7 +1326,11 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (1, 'App\\Models\\User', 2, 'main', 'dfb179bfabc9855a6f903b7585f4194765dcbe02ed44a73e33d87a3bb99953fa', '[\"*\"]', '2024-11-03 12:22:14', NULL, '2024-11-03 10:25:39', '2024-11-03 12:22:14'),
 (2, 'App\\Models\\User', 1, 'main', '141aa0c2b6a5404ba67a3daa2d9c2ac1934ae2ca5b9d6db6ec2917c45b8aca9f', '[\"*\"]', '2024-11-03 10:47:58', NULL, '2024-11-03 10:36:42', '2024-11-03 10:47:58'),
 (10, 'App\\Models\\User', 1, 'main', '55484527b027dbb6e048fee052380fbc0dd96aeb2cae5ae466d7385f12da6101', '[\"*\"]', '2024-11-04 09:37:49', NULL, '2024-11-04 08:39:51', '2024-11-04 09:37:49'),
-(12, 'App\\Models\\User', 2, 'main', 'b9992526dd1297d5fce7f24a3cf1899cdeaae6b27f6aee654f0bc58f4a9ab70f', '[\"*\"]', '2024-11-05 05:37:42', NULL, '2024-11-05 05:37:34', '2024-11-05 05:37:42');
+(12, 'App\\Models\\User', 2, 'main', 'b9992526dd1297d5fce7f24a3cf1899cdeaae6b27f6aee654f0bc58f4a9ab70f', '[\"*\"]', '2024-11-05 05:37:42', NULL, '2024-11-05 05:37:34', '2024-11-05 05:37:42'),
+(18, 'App\\Models\\User', 2, 'main', '69d98cd7e0d45f159d3184bf5f34cf8d0be1e01e879dc6b19e18d90b9952f47a', '[\"*\"]', '2024-11-09 12:35:56', NULL, '2024-11-09 12:28:03', '2024-11-09 12:35:56'),
+(19, 'App\\Models\\User', 2, 'main', '1baab67d16f0f55274818377153e2b030e32d5446ed47aa7b443869335fbbfa7', '[\"*\"]', '2024-11-09 12:36:46', NULL, '2024-11-09 12:36:34', '2024-11-09 12:36:46'),
+(20, 'App\\Models\\User', 2, 'main', '759c16c36fbd5b5a1ca11dd3e4a83fc516a341f67944ec2921380363cf11c4d2', '[\"*\"]', '2024-11-09 12:40:05', NULL, '2024-11-09 12:39:56', '2024-11-09 12:40:05'),
+(26, 'App\\Models\\User', 2, 'main', '2dadce250db3215c036484512433fedb4e323f26dcfd739af26e35a49810979d', '[\"*\"]', '2024-11-10 06:00:05', NULL, '2024-11-10 05:56:52', '2024-11-10 06:00:05');
 
 -- --------------------------------------------------------
 
@@ -1382,7 +1386,9 @@ INSERT INTO `products` (`id`, `title`, `slug`, `description`, `price`, `seller_i
 (23, 'testtt', 'testtt-1', '<p>dfsdfsd</p>', 324324.00, 2, 1, 4234, 2, 2, '2024-11-03 11:57:03', NULL, '2024-11-03 11:51:59', '2024-11-03 11:57:03', 1),
 (24, '4353', '4353', '<p>dfdfsfsd</p>', 3234.00, 2, 1, 34, 2, 2, '2024-11-03 11:56:57', NULL, '2024-11-03 11:55:42', '2024-11-03 11:56:57', 1),
 (25, '34', '34', '<p>sdf</p>', 32.00, 2, 1, 234, 2, 2, '2024-11-03 11:56:52', NULL, '2024-11-03 11:56:03', '2024-11-03 11:56:52', 1),
-(26, 'dfg', 'dfg', '<p>dfgdf</p>', 546.00, 2, 1, 456, 2, 2, '2024-11-03 11:56:47', NULL, '2024-11-03 11:56:29', '2024-11-03 11:56:47', 1);
+(26, 'dfg', 'dfg', '<p>dfgdf</p>', 546.00, 2, 1, 456, 2, 2, '2024-11-03 11:56:47', NULL, '2024-11-03 11:56:29', '2024-11-03 11:56:47', 1),
+(27, 'trsttt', 'trsttt', '<p>ccvxcv</p>', 345.00, 2, 1, 345, 2, 2, '2024-11-05 08:05:19', NULL, '2024-11-05 08:03:55', '2024-11-05 08:05:19', 1),
+(28, 'fvc', 'fvc', '<p>xcv</p>', 234.00, 2, 0, 333, 2, 2, '2024-11-05 08:06:42', NULL, '2024-11-05 08:06:23', '2024-11-05 08:06:42', 0);
 
 -- --------------------------------------------------------
 
@@ -1466,9 +1472,9 @@ INSERT INTO `product_images` (`id`, `product_id`, `path`, `url`, `mime`, `size`,
 (2, 1, 'images/4Sd0oPwcly1znMeL/TneOLDvnpcGCz9An.jpg', 'http://localhost:8000/storage/images/4Sd0oPwcly1znMeL/TneOLDvnpcGCz9An.jpg', 'image/jpeg', 37045, 2, '2024-11-03 10:34:02', '2024-11-03 10:43:27'),
 (3, 1, 'images/n0vtTcDxlXDijMdi/OP3dLiBfS3cwi5CD.jpg', 'http://localhost:8000/storage/images/n0vtTcDxlXDijMdi/OP3dLiBfS3cwi5CD.jpg', 'image/jpeg', 35547, 3, '2024-11-03 10:34:02', '2024-11-03 10:43:27'),
 (4, 1, 'images/CHxANAAOq9IBdAZh/CAKhZ1fDwCbJUB7V.jpg', 'http://localhost:8000/storage/images/CHxANAAOq9IBdAZh/CAKhZ1fDwCbJUB7V.jpg', 'image/jpeg', 47892, 4, '2024-11-03 10:34:02', '2024-11-03 10:43:27'),
-(5, 2, 'images/WV7NLByuHaXRLb6f/zK4R4pOz6l3Cezmg.jpg', 'http://localhost:8000/storage/images/WV7NLByuHaXRLb6f/zK4R4pOz6l3Cezmg.jpg', 'image/jpeg', 90531, 2, '2024-11-03 10:36:01', '2024-11-03 10:43:51'),
+(5, 2, 'images/WV7NLByuHaXRLb6f/zK4R4pOz6l3Cezmg.jpg', 'http://localhost:8000/storage/images/WV7NLByuHaXRLb6f/zK4R4pOz6l3Cezmg.jpg', 'image/jpeg', 90531, 1, '2024-11-03 10:36:01', '2024-11-05 08:06:23'),
 (6, 2, 'images/2x7wHK9MF54byTdt/NNj72rfMMiGV1Pos.jpg', 'http://localhost:8000/storage/images/2x7wHK9MF54byTdt/NNj72rfMMiGV1Pos.jpg', 'image/jpeg', 148021, 3, '2024-11-03 10:36:01', '2024-11-03 10:43:51'),
-(7, 2, 'images/Jgn8B2aqhMFH0YYx/zH4EYm6avvDq9E59.jpg', 'http://localhost:8000/storage/images/Jgn8B2aqhMFH0YYx/zH4EYm6avvDq9E59.jpg', 'image/jpeg', 113768, 1, '2024-11-03 10:36:01', '2024-11-03 10:43:51'),
+(7, 2, 'images/Jgn8B2aqhMFH0YYx/zH4EYm6avvDq9E59.jpg', 'http://localhost:8000/storage/images/Jgn8B2aqhMFH0YYx/zH4EYm6avvDq9E59.jpg', 'image/jpeg', 113768, 1, '2024-11-03 10:36:01', '2024-11-05 08:06:35'),
 (8, 3, 'images/czLUwLTXiGZr9BIZ/TERNIVSgESbIjXK6.jpg', 'http://localhost:8000/storage/images/czLUwLTXiGZr9BIZ/TERNIVSgESbIjXK6.jpg', 'image/jpeg', 63551, 1, '2024-11-03 10:42:44', '2024-11-03 10:42:44'),
 (9, 4, 'images/Fq8hYsnJeDKb0aTK/85voudkNXoX0fvAB.jpg', 'http://localhost:8000/storage/images/Fq8hYsnJeDKb0aTK/85voudkNXoX0fvAB.jpg', 'image/jpeg', 71012, 1, '2024-11-03 10:46:45', '2024-11-03 10:46:45'),
 (10, 4, 'images/pBAeMtfCMwcA98vy/9LplwVoJTP09MaMW.jpg', 'http://localhost:8000/storage/images/pBAeMtfCMwcA98vy/9LplwVoJTP09MaMW.jpg', 'image/jpeg', 63508, 2, '2024-11-03 10:46:46', '2024-11-03 10:46:46'),
@@ -1526,7 +1532,8 @@ INSERT INTO `product_images` (`id`, `product_id`, `path`, `url`, `mime`, `size`,
 (62, 20, 'images/z7MNMSgJ2ikRExyb/H5kPF7IQeCJiCZ0d.jpg', 'http://localhost:8000/storage/images/z7MNMSgJ2ikRExyb/H5kPF7IQeCJiCZ0d.jpg', 'image/jpeg', 35547, 4, '2024-11-03 11:45:31', '2024-11-03 11:46:41'),
 (63, 22, 'images/3xgBXIWaZyNOBbgY/A4V5n1VzgnSAfKxy.png', 'http://localhost:8000/storage/images/3xgBXIWaZyNOBbgY/A4V5n1VzgnSAfKxy.png', 'image/png', 188361, 1, '2024-11-03 11:49:24', '2024-11-03 11:49:24'),
 (64, 25, 'images/HG51QnMKKaMMuXBP/gpuyW8eOIkvRoco9.png', 'http://localhost:8000/storage/images/HG51QnMKKaMMuXBP/gpuyW8eOIkvRoco9.png', 'image/png', 227438, 1, '2024-11-03 11:56:03', '2024-11-03 11:56:03'),
-(65, 26, 'images/5a4fSTGZy1xT6TaB/kpiH4szAxJC1fkEB.png', 'http://localhost:8000/storage/images/5a4fSTGZy1xT6TaB/kpiH4szAxJC1fkEB.png', 'image/png', 82126, 1, '2024-11-03 11:56:29', '2024-11-03 11:56:29');
+(65, 26, 'images/5a4fSTGZy1xT6TaB/kpiH4szAxJC1fkEB.png', 'http://localhost:8000/storage/images/5a4fSTGZy1xT6TaB/kpiH4szAxJC1fkEB.png', 'image/png', 82126, 1, '2024-11-03 11:56:29', '2024-11-03 11:56:29'),
+(69, 28, 'images/kNIZ9wHGUw58CjSW/ONHZclh4UFD2qP4T.png', 'http://localhost:8000/storage/images/kNIZ9wHGUw58CjSW/ONHZclh4UFD2qP4T.png', 'image/png', 368394, 1, '2024-11-05 08:06:35', '2024-11-05 08:06:35');
 
 -- --------------------------------------------------------
 
@@ -1651,7 +1658,8 @@ INSERT INTO `reviews` (`review_id`, `product_id`, `customer_id`, `rating`, `comm
 (3, 16, 11, 3, 'สูงกว่าที่เห็นไปหน่อย แต่วางหน้าบ้านก็ดี', '2024-11-04 16:47:37', '2024-11-04 09:47:37', '2024-11-04 09:47:37'),
 (4, 17, 11, 5, 'ต้นนี้ เป็นที่นิยมมอยู่ 😍', '2024-11-04 16:49:00', '2024-11-04 09:49:00', '2024-11-04 09:49:00'),
 (5, 15, 6, 5, 'วางที่ห้องโถง สวยเลยยย <3', '2024-11-04 16:50:38', '2024-11-04 09:50:38', '2024-11-04 09:50:38'),
-(6, 18, 6, 4, 'ไม้มงคล ซื้อติดบ้าน👍🏻', '2024-11-04 16:51:32', '2024-11-04 09:51:32', '2024-11-04 09:51:32');
+(6, 18, 6, 4, 'ไม้มงคล ซื้อติดบ้าน👍🏻', '2024-11-04 16:51:32', '2024-11-04 09:51:32', '2024-11-04 09:51:32'),
+(7, 18, 6, 3, 'ส่งช้าไปหน่อยยยย', '2024-11-08 14:31:28', '2024-11-08 07:31:28', '2024-11-08 07:31:28');
 
 -- --------------------------------------------------------
 
@@ -9359,25 +9367,25 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -9389,7 +9397,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `review_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sellers`
