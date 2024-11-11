@@ -48,7 +48,7 @@
                 <div>
                     <template x-for="[sellerId, products] of Object.entries(groupedCartItems)" :key="sellerId">
                         <div class="border-b py-4">
-                            <h2 class="text-xl font-semibold mb-4">Seller ID: <span x-text="sellerId"></span></h2>
+                            <h2 class="text-xl font-semibold mb-4"><span x-text="products[0].seller"></span></h2>
                             <template x-for="product of products" :key="product.id">
                                 <div x-data="productItem(product)" class="border-b py-4">
                                     <div class="flex flex-col sm:flex-row items-center gap-4">
@@ -62,7 +62,7 @@
                                                 <span class="text-lg font-semibold"
                                                     x-text="formatPrice(product.price)"></span>
                                             </div>
-                                            <div class="text-sm text-gray-500" x-text="product.seller"></div>
+                                            {{-- <div class="text-sm text-gray-500" x-text="product.seller"></div> --}}
                                             <div class="flex justify-between items-center">
                                                 <div class="flex items-center">
                                                     Qty:
