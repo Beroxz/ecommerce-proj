@@ -142,7 +142,7 @@
               </template>
               <template v-else> Creat an account </template>
             </button>
-            <p class="text-sm mt-6 text-gray-800">
+            <p class="text-sm mt-6 text-center text-gray-800">
               Already have an account?
               <a
                 href="/login"
