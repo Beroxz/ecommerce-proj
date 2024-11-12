@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppLayout from '../components/AppLayout.vue';
 import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
 import Dashboard from '../views/Dashboard.vue';
 import Products from '../views/Products/Products.vue';
 import Users from '../views/Users/Users.vue';
@@ -142,6 +143,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+    meta: {
+      requiresGuest: true,
+    },
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
     meta: {
       requiresGuest: true,
     },

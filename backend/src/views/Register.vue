@@ -3,59 +3,53 @@
     <div class="grid md:grid-cols-2 items-center gap-8 h-full">
       <div class="max-md:order-1 p-4 bg-gray-50 h-full">
         <img
-          src="/signin.svg"
+          src="/signup.svg"
           class="lg:max-w-[90%] w-full h-full object-contain block mx-auto"
-          alt="login-image"
+          alt="register-image"
         />
       </div>
 
       <div class="flex items-center p-6 h-full w-full">
-        <form
-          class="md:max-w-md w-full mx-auto"
-          method="POST"
-          @submit.prevent="login"
-        >
+        <form class="max-w-lg w-full mx-auto">
           <div class="mb-12">
-            <h3 class="text-4xl font-extrabold text-indigo-600">Sign in</h3>
+            <h3 class="text-4xl font-extrabold text-indigo-600">
+              Create an account
+            </h3>
           </div>
-
-          <div
-            v-if="errorMsg"
-            class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
-          >
-            {{ errorMsg }}
-            <span
-              @click="errorMsg = ''"
-              class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </span>
-          </div>
-          <input type="hidden" name="remember" value="true" />
 
           <div>
+            <label class="text-gray-800 text-xs block mb-2">Full Name</label>
             <div class="relative flex items-center">
               <input
-                id="email-address"
+                name="name"
+                type="text"
+                required
+                class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
+                placeholder="Enter name"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#bbb"
+                stroke="#bbb"
+                class="w-[18px] h-[18px] absolute right-2"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                <path
+                  d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                  data-original="#000000"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="text-gray-800 text-xs block mb-2">Email</label>
+            <div class="relative flex items-center">
+              <input
                 name="email"
-                type="email"
-                autocomplete="email"
-                required=""
-                v-model="user.email"
-                class="w-full text-sm border-b border-gray-300 focus:border-indigo-600 px-2 py-3 outline-none"
+                type="text"
+                required
+                class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
                 placeholder="Enter email"
               />
               <svg
@@ -89,17 +83,14 @@
               </svg>
             </div>
           </div>
-
-          <div class="mt-8">
+          <div class="mt-6">
+            <label class="text-gray-800 text-xs block mb-2">Password</label>
             <div class="relative flex items-center">
               <input
-                id="password"
                 name="password"
                 type="password"
-                autocomplete="current-password"
-                required=""
-                v-model="user.password"
-                class="w-full text-sm border-b border-gray-300 focus:border-indigo-600 px-2 py-3 outline-none"
+                required
+                class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
                 placeholder="Enter password"
               />
               <svg
@@ -116,30 +107,6 @@
               </svg>
             </div>
           </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
-            <div class="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                v-model="user.remember"
-                class="h-4 w-4 shrink-0 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label for="remember-me" class="text-gray-800 ml-3 block text-sm">
-                Remember me
-              </label>
-            </div>
-            <div class="text-sm">
-              <router-link
-                :to="{ name: 'requestPassword' }"
-                class="text-indigo-500 font-semibold text-sm hover:underline"
-              >
-                Forgot your password?
-              </router-link>
-            </div>
-          </div>
-
           <div class="mt-12">
             <button
               type="submit"
@@ -173,14 +140,14 @@
                 </svg>
                 Loading...
               </template>
-              <template v-else> Sign in </template>
+              <template v-else> Creat an account </template>
             </button>
-            <p class="text-gray-800 text-sm text-center mt-6">
-              Don't have an account
+            <p class="text-sm mt-6 text-gray-800">
+              Already have an account?
               <a
-                href="/register"
-                class="text-indigo-600 font-semibold hover:underline ml-1 whitespace-nowrap"
-                >Register here</a
+                href="/login"
+                class="text-indigo-600 font-semibold hover:underline ml-1"
+                >Login here</a
               >
             </p>
           </div>
