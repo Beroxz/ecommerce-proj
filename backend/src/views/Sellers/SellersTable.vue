@@ -46,6 +46,14 @@
             Store Name
           </TableHeaderCell>
           <TableHeaderCell
+            field="seller_name"
+            :sort-field="sortField"
+            :sort-direction="sortDirection"
+            @click="sortSellers('seller_name')"
+          >
+            Name
+          </TableHeaderCell>
+          <TableHeaderCell
             field="store_phone"
             :sort-field="sortField"
             :sort-direction="sortDirection"
@@ -94,6 +102,7 @@
         <tr v-for="(seller, index) of sellers.data" :key="seller.id">
           <td class="border-b p-2">{{ seller.id }}</td>
           <td class="border-b p-2">{{ seller.store_name }}</td>
+          <td class="border-b p-2">{{ seller.seller_name }}</td>
           <td class="border-b p-2">{{ seller.store_phone }}</td>
           <!-- <td class="border-b p-2">{{ seller.store_rating }}</td> -->
           <td class="border-b p-2">{{ seller.status }}</td>

@@ -15,6 +15,10 @@ export function login({ commit }, data) {
   });
 }
 
+export function register({ commit }, newUser) {
+  return axiosClient.post('/register', newUser);
+}
+
 export function logout({ commit }) {
   return axiosClient.post('/logout').then((response) => {
     commit('setToken', null);

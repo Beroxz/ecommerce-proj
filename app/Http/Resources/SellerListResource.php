@@ -20,6 +20,7 @@ class SellerListResource extends JsonResource
     {
         return [
             'id' => $this->user_id,
+            'seller_name' => $this->seller_name,
             'store_name' => $this->store_name,
             'store_phone' => $this->store_phone,
             'store_description' => $this->store_description,

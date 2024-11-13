@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 02:07 PM
+-- Generation Time: Nov 13, 2024 at 05:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -1174,7 +1174,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (32, '2024_10_27_234625_create_thailand_districts_table', 1),
 (33, '2024_10_27_234656_create_thailand_sub_districts_table', 1),
 (34, '2024_10_28_133758_add_fk_seller_to_products_table', 1),
-(35, '2024_10_28_161350_add_store_id_to_orders_table', 1);
+(35, '2024_10_28_161350_add_store_id_to_orders_table', 1),
+(36, '2024_11_13_141052_insert_column_seller_name_to_table_seller', 2);
 
 -- --------------------------------------------------------
 
@@ -1201,7 +1202,16 @@ INSERT INTO `orders` (`id`, `total_price`, `status`, `seller_id`, `created_at`, 
 (1, 9200.00, 'Paid', 2, '2024-11-04 07:15:27', '2024-11-04 07:28:37', 6, 6),
 (7, 7200.00, 'Paid', 2, '2024-11-04 07:22:12', '2024-11-04 07:22:28', 6, 6),
 (8, 7500.00, 'Paid', 2, '2024-11-04 08:38:56', '2024-11-04 08:39:09', 11, 11),
-(9, 1400.00, 'Paid', 12, '2024-11-04 08:38:56', '2024-11-04 08:39:18', 11, 11);
+(9, 1400.00, 'Paid', 12, '2024-11-04 08:38:56', '2024-11-04 08:39:18', 11, 11),
+(10, 1400.00, 'Delivered', 12, '2024-11-11 08:03:47', '2024-11-11 08:03:47', 6, 6),
+(11, 1400.00, 'Completed', 2, '2024-11-11 08:03:47', '2024-11-11 08:05:15', 6, 6),
+(12, 1400.00, 'Paid', 12, '2024-11-11 08:20:35', '2024-11-11 08:21:21', 6, 6),
+(13, 1500.00, 'Paid', 2, '2024-11-11 08:20:35', '2024-11-11 08:21:34', 6, 6),
+(14, 1400.00, 'Delivered', 12, '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6),
+(15, 4400.00, 'Delivered', 2, '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6),
+(16, 1400.00, 'Paid', 12, '2024-11-12 08:28:09', '2024-11-12 08:28:30', 6, 6),
+(17, 8300.00, 'Delivered', 12, '2024-11-12 08:29:47', '2024-11-12 08:29:47', 6, 6),
+(18, 6300.00, 'Paid', 2, '2024-11-12 08:29:47', '2024-11-13 09:28:54', 6, 6);
 
 -- --------------------------------------------------------
 
@@ -1256,7 +1266,21 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 (24, 8, 16, 1, 2900.00, '2024-11-04 08:38:56', '2024-11-04 08:38:56'),
 (25, 8, 18, 1, 1500.00, '2024-11-04 08:38:56', '2024-11-04 08:38:56'),
 (26, 8, 20, 1, 1400.00, '2024-11-04 08:38:56', '2024-11-04 08:38:56'),
-(27, 9, 17, 1, 1400.00, '2024-11-04 08:38:56', '2024-11-04 08:38:56');
+(27, 9, 17, 1, 1400.00, '2024-11-04 08:38:56', '2024-11-04 08:38:56'),
+(28, 10, 17, 1, 1400.00, '2024-11-11 08:03:47', '2024-11-11 08:03:47'),
+(29, 11, 20, 1, 1400.00, '2024-11-11 08:03:47', '2024-11-11 08:03:47'),
+(30, 12, 17, 1, 1400.00, '2024-11-11 08:20:35', '2024-11-11 08:20:35'),
+(31, 13, 18, 1, 1500.00, '2024-11-11 08:20:35', '2024-11-11 08:20:35'),
+(32, 14, 17, 1, 1400.00, '2024-11-11 09:05:45', '2024-11-11 09:05:45'),
+(33, 15, 18, 2, 1500.00, '2024-11-11 09:05:45', '2024-11-11 09:05:45'),
+(34, 15, 20, 1, 1400.00, '2024-11-11 09:05:45', '2024-11-11 09:05:45'),
+(35, 16, 17, 1, 1400.00, '2024-11-12 08:28:09', '2024-11-12 08:28:09'),
+(36, 17, 7, 1, 700.00, '2024-11-12 08:29:47', '2024-11-12 08:29:47'),
+(37, 17, 9, 1, 1600.00, '2024-11-12 08:29:47', '2024-11-12 08:29:47'),
+(38, 17, 11, 1, 6000.00, '2024-11-12 08:29:47', '2024-11-12 08:29:47'),
+(39, 18, 10, 1, 900.00, '2024-11-12 08:29:47', '2024-11-12 08:29:47'),
+(40, 18, 12, 1, 4000.00, '2024-11-12 08:29:47', '2024-11-12 08:29:47'),
+(41, 18, 20, 1, 1400.00, '2024-11-12 08:29:47', '2024-11-12 08:29:47');
 
 -- --------------------------------------------------------
 
@@ -1297,7 +1321,16 @@ INSERT INTO `payments` (`id`, `order_id`, `amount`, `status`, `type`, `created_a
 (1, 1, 9200.00, 'Cash On Delivery', 'cod', '2024-11-04 07:15:27', '2024-11-04 07:15:27', 6, 6, NULL),
 (2, 7, 7200.00, 'Paid', 'cc', '2024-11-04 07:22:13', '2024-11-04 07:22:28', 6, 6, 'cs_test_b1AWMbNuTITNHQlMcgIb0RGqk1OGSzZMiDW5AgStI5drgdY8YFjjcMlIjN'),
 (3, 8, 7500.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:09', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm'),
-(4, 9, 1400.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:18', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm');
+(4, 9, 1400.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:18', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm'),
+(5, 10, 1400.00, 'Cash On Delivery', 'cod', '2024-11-11 08:03:47', '2024-11-11 08:03:47', 6, 6, NULL),
+(6, 11, 1400.00, 'Cash On Delivery', 'cod', '2024-11-11 08:03:47', '2024-11-11 08:03:47', 6, 6, NULL),
+(7, 12, 1400.00, 'Paid', 'cc', '2024-11-11 08:20:44', '2024-11-11 08:21:21', 6, 6, 'cs_test_b1N5rffOjgl2OKixIX57nDsAxR7uadbdfqq2ejeBC9D1TEXgefKwKj7Maj'),
+(8, 13, 1500.00, 'Paid', 'cc', '2024-11-11 08:20:44', '2024-11-11 08:21:34', 6, 6, 'cs_test_b1N5rffOjgl2OKixIX57nDsAxR7uadbdfqq2ejeBC9D1TEXgefKwKj7Maj'),
+(9, 14, 1400.00, 'Cash On Delivery', 'cod', '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6, NULL),
+(10, 15, 4400.00, 'Cash On Delivery', 'cod', '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6, NULL),
+(11, 16, 1400.00, 'Paid', 'cc', '2024-11-12 08:28:17', '2024-11-12 08:28:30', 6, 6, 'cs_test_a1AsFfSF5YEPR3tM7ji1C17GChMr8IaTXUorntqh3dHnsU1E5ol1YotmQs'),
+(12, 17, 8300.00, 'Cash On Delivery', 'cod', '2024-11-12 08:29:47', '2024-11-12 08:29:47', 6, 6, NULL),
+(13, 18, 6300.00, 'Cash On Delivery', 'cod', '2024-11-12 08:29:47', '2024-11-12 08:29:47', 6, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -1330,7 +1363,8 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (18, 'App\\Models\\User', 2, 'main', '69d98cd7e0d45f159d3184bf5f34cf8d0be1e01e879dc6b19e18d90b9952f47a', '[\"*\"]', '2024-11-09 12:35:56', NULL, '2024-11-09 12:28:03', '2024-11-09 12:35:56'),
 (19, 'App\\Models\\User', 2, 'main', '1baab67d16f0f55274818377153e2b030e32d5446ed47aa7b443869335fbbfa7', '[\"*\"]', '2024-11-09 12:36:46', NULL, '2024-11-09 12:36:34', '2024-11-09 12:36:46'),
 (20, 'App\\Models\\User', 2, 'main', '759c16c36fbd5b5a1ca11dd3e4a83fc516a341f67944ec2921380363cf11c4d2', '[\"*\"]', '2024-11-09 12:40:05', NULL, '2024-11-09 12:39:56', '2024-11-09 12:40:05'),
-(26, 'App\\Models\\User', 2, 'main', '2dadce250db3215c036484512433fedb4e323f26dcfd739af26e35a49810979d', '[\"*\"]', '2024-11-10 06:00:05', NULL, '2024-11-10 05:56:52', '2024-11-10 06:00:05');
+(26, 'App\\Models\\User', 2, 'main', '2dadce250db3215c036484512433fedb4e323f26dcfd739af26e35a49810979d', '[\"*\"]', '2024-11-10 06:00:05', NULL, '2024-11-10 05:56:52', '2024-11-10 06:00:05'),
+(35, 'App\\Models\\User', 1, 'main', 'd820f52b493c32840beaa6543e6b970e597913b4021f4cf39cccfb5cca513719', '[\"*\"]', '2024-11-13 09:41:43', NULL, '2024-11-13 09:32:18', '2024-11-13 09:41:43');
 
 -- --------------------------------------------------------
 
@@ -1367,20 +1401,20 @@ INSERT INTO `products` (`id`, `title`, `slug`, `description`, `price`, `seller_i
 (4, 'Natasja', 'natasja', '<p>Natasja Branched Birch Fig - Real Indoor Plant, Ficus Benjamini - Height Approx. 30 cm, Pot Diameter 12 cm</p>', 600.00, 2, 0, 10, 2, 2, NULL, NULL, '2024-11-03 10:46:45', '2024-11-03 10:46:45', 1),
 (5, 'Window leaf', 'window-leaf', '<p>Window leaf, easy-care houseplant, Monstera \"Monkey\", height: approx. 25 cm, pot diameter: 12 cm</p>', 1300.00, 2, 0, 10, 2, 2, NULL, NULL, '2024-11-03 10:51:50', '2024-11-03 10:52:09', 1),
 (6, 'Pachira Aquatica', 'pachira-aquatica', '<p>The plant has a height of 60 to 70 cm upon delivery, measured with the nursery pot. The plant comes in a nursery pot with a diameter of 17 cm., Beautifully braided trunk, Symbolizes luck and prosperity, Grows large webbed leaves divided into 5 glossy leaflets</p><p><br>&nbsp;</p>', 1800.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 10:53:37', '2024-11-03 10:54:25', 1),
-(7, 'Golden Pothos', 'golden-pothos', '<p>Dominik Blumen und Pflanzen, Ivy, Epipremnum aureum, 2 plants, Houseplants, Climbing, Ampel</p>', 700.00, 12, 0, 10, 2, 2, NULL, NULL, '2024-11-03 10:56:15', '2024-11-03 10:58:30', 1),
+(7, 'Golden Pothos', 'golden-pothos', '<p>Dominik Blumen und Pflanzen, Ivy, Epipremnum aureum, 2 plants, Houseplants, Climbing, Ampel</p>', 700.00, 12, 0, 9, 2, 2, NULL, NULL, '2024-11-03 10:56:15', '2024-11-12 08:29:47', 1),
 (8, 'Ocean Spider Plant', 'ocean-spider-plant', '<p>Ocean Spider Plant Smit Bambino Easy Care Chlorophytum Ocean Height Approx. 15 cm Pot Diameter 5.5 cm</p><p>About this item</p><ul><li>Indoor temperature improvement</li><li>Requires plenty of water and a semi-shaded spot</li><li>For home and office use</li><li>Pot diameter 5.5 cm and height 12 cm</li></ul>', 500.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 10:58:14', '2024-11-03 10:58:14', 1),
-(9, 'Dracaena trifasciata', 'dracaena-trifasciata', '<p>Dracaena trifasciata (Mother-in-Law\'s Tongue or Snake Plant)<br>Care Instructions</p><ul><li>Light: Prefers medium to bright light but can also thrive in low-light conditions.</li><li>Water: Water infrequently. Allow the soil to dry out completely between waterings, as Snake Plants are drought-tolerant. Overwatering may cause root rot.</li><li>Soil: Prefers well-draining soil, such as sandy soil or a cactus potting mix.</li><li>Temperature: Grows well in normal room temperatures (15-30°C). It dislikes temperatures below 10°C.</li></ul>', 1600.00, 12, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:02:13', '2024-11-03 11:02:13', 1),
-(10, 'Turmeric', 'turmeric', '<p>Turmeric – Real Indoor Plant, Turmeric, Height Approx. 55 cm, Pot Diameter 14 cm</p>', 900.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:03:25', '2024-11-03 11:03:25', 1),
-(11, 'Calathéa crocata', 'calathea-crocata', '<p>is a species of flowering plant in the family Marantaceae, native to Bahia and Espírito Santo states of eastern Brazil.&nbsp;</p>', 6000.00, 12, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:05:40', '2024-11-03 11:05:40', 1),
-(12, 'Hibiscus', 'hibiscus', '<p>Hibiscus Care</p><p>The care you provide your hibiscus will vary depending on whether it is a hardy or tropical variety and whether it is grown indoors or outdoors. Here are the main care requirements for growing hibiscus:</p><ul><li>In northern locations, plant hibiscus in full sun. In the south, filtered sunlight is preferable.</li><li>The soil should be fertile and loamy. All hibiscus needs consistently moist soil with good drainage. Keep the soil moist and water as needed.</li><li>Select varieties that tolerate the temperatures in your location year-round. Alternatively, grow hibiscus in pots and overwinter it indoors.</li><li>Fertilize the plant regularly during the growing season.</li></ul>', 4000.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:09:03', '2024-11-03 11:09:23', 1),
+(9, 'Dracaena trifasciata', 'dracaena-trifasciata', '<p>Dracaena trifasciata (Mother-in-Law\'s Tongue or Snake Plant)<br>Care Instructions</p><ul><li>Light: Prefers medium to bright light but can also thrive in low-light conditions.</li><li>Water: Water infrequently. Allow the soil to dry out completely between waterings, as Snake Plants are drought-tolerant. Overwatering may cause root rot.</li><li>Soil: Prefers well-draining soil, such as sandy soil or a cactus potting mix.</li><li>Temperature: Grows well in normal room temperatures (15-30°C). It dislikes temperatures below 10°C.</li></ul>', 1600.00, 12, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:02:13', '2024-11-12 08:29:47', 1),
+(10, 'Turmeric', 'turmeric', '<p>Turmeric – Real Indoor Plant, Turmeric, Height Approx. 55 cm, Pot Diameter 14 cm</p>', 900.00, 2, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:03:25', '2024-11-12 08:29:47', 1),
+(11, 'Calathéa crocata', 'calathea-crocata', '<p>is a species of flowering plant in the family Marantaceae, native to Bahia and Espírito Santo states of eastern Brazil.&nbsp;</p>', 6000.00, 12, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:05:40', '2024-11-12 08:29:47', 1),
+(12, 'Hibiscus', 'hibiscus', '<p>Hibiscus Care</p><p>The care you provide your hibiscus will vary depending on whether it is a hardy or tropical variety and whether it is grown indoors or outdoors. Here are the main care requirements for growing hibiscus:</p><ul><li>In northern locations, plant hibiscus in full sun. In the south, filtered sunlight is preferable.</li><li>The soil should be fertile and loamy. All hibiscus needs consistently moist soil with good drainage. Keep the soil moist and water as needed.</li><li>Select varieties that tolerate the temperatures in your location year-round. Alternatively, grow hibiscus in pots and overwinter it indoors.</li><li>Fertilize the plant regularly during the growing season.</li></ul>', 4000.00, 2, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:09:03', '2024-11-12 08:29:47', 1),
 (13, 'Calathea', 'calathea', '<p>Briful Calathea 33cm Tall Artificial Indoor Plant with 8 Coloured Leaves in Plastic Pot - Green/Red</p>', 1400.00, 12, 0, 10, 2, 2, NULL, NULL, '2024-11-03 11:12:07', '2024-11-03 11:12:07', 1),
 (14, 'Boston Fern', 'boston-fern', '<p>Hollyone Artificial Boston Fern in Pot 50cm Indoor Outdoor Indoor Garden Patio Balcony Entryway Office Living Room</p>', 3500.00, 12, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:13:39', '2024-11-03 11:13:39', 1),
 (15, 'Camellia Plant', 'camellia-plant', '<p>Oairse Artificial Camellia Plant 28cm Artificial Plants Potted Small Bonsai Plants for Home Bedroom Office Kitchen</p>', 1700.00, 2, 1, 7, 2, 2, NULL, NULL, '2024-11-03 11:14:55', '2024-11-04 08:38:55', 1),
 (16, 'Majesty Palm', 'majesty-palm', '<p>The majesty palm\'s stems grow in elegant upward arches and host long, thin leaves. It\'s the perfect plant to place next to your throne (a.k.a loveseat) to add a touch of charm and class.</p>', 2900.00, 2, 0, 27, 2, 2, NULL, NULL, '2024-11-03 11:25:25', '2024-11-04 08:38:55', 1),
-(17, 'Golden Pothos Plant', 'golden-pothos-plant', '<p>The Golden Pothos plant might win the award for the most popular houseplant. You’ll see it in indoor buildings, offices, and most greenhouses.</p><p>The scientific name for the Golden Pothos is Epipremnum Aureum. It is also commonly known as Devil’s Ivy and it’s a vining foliage plant. It comes from the Araceae plant family.&nbsp;&nbsp;</p>', 1400.00, 12, 1, 47, 2, 2, NULL, NULL, '2024-11-03 11:36:05', '2024-11-04 08:38:55', 1),
-(18, 'Zanzibar Gem', 'zanzibar-gem', NULL, 1500.00, 2, 1, 27, 2, 2, NULL, NULL, '2024-11-03 11:39:26', '2024-11-04 08:38:55', 1),
+(17, 'Golden Pothos Plant', 'golden-pothos-plant', '<p>The Golden Pothos plant might win the award for the most popular houseplant. You’ll see it in indoor buildings, offices, and most greenhouses.</p><p>The scientific name for the Golden Pothos is Epipremnum Aureum. It is also commonly known as Devil’s Ivy and it’s a vining foliage plant. It comes from the Araceae plant family.&nbsp;&nbsp;</p>', 1400.00, 12, 1, 43, 2, 2, NULL, NULL, '2024-11-03 11:36:05', '2024-11-12 08:28:09', 1),
+(18, 'Zanzibar Gem', 'zanzibar-gem', NULL, 1500.00, 2, 1, 24, 2, 2, NULL, NULL, '2024-11-03 11:39:26', '2024-11-11 09:05:45', 1),
 (19, 'test', 'test', '<p>asdas</p>', 3534.00, 2, 1, 34543, 2, 2, '2024-11-03 11:43:30', NULL, '2024-11-03 11:43:15', '2024-11-03 11:43:30', 1),
-(20, 'Swiss cheese plant', 'swiss-cheese-plant', '<p>Monstera deliciosa, the Swiss cheese plant or split-leaf philodendron is a species of flowering plant native to tropical forests of southern Mexico, south to Panama. It has been introduced to many tropical areas, and has become a mildly invasive species in Hawaii, Seychelles, Ascension Island and the Society Islands</p>', 1400.00, 2, 1, 38, 2, 2, NULL, NULL, '2024-11-03 11:45:31', '2024-11-04 08:38:55', 1),
+(20, 'Swiss cheese plant', 'swiss-cheese-plant', '<p>Monstera deliciosa, the Swiss cheese plant or split-leaf philodendron is a species of flowering plant native to tropical forests of southern Mexico, south to Panama. It has been introduced to many tropical areas, and has become a mildly invasive species in Hawaii, Seychelles, Ascension Island and the Society Islands</p>', 1400.00, 2, 1, 35, 2, 2, NULL, NULL, '2024-11-03 11:45:31', '2024-11-12 08:29:47', 1),
 (21, 'safas', 'safas', '<p>sfdsf</p>', 345.00, 2, 1, 345, 2, 2, '2024-11-03 11:48:58', NULL, '2024-11-03 11:47:56', '2024-11-03 11:48:58', 1),
 (22, 'testtt', 'testtt', '<p>klhkljsdjfpsdlj</p>', 13456.00, 12, 1, 34, 2, 2, '2024-11-03 11:57:08', NULL, '2024-11-03 11:49:24', '2024-11-03 11:57:08', 1),
 (23, 'testtt', 'testtt-1', '<p>dfsdfsd</p>', 324324.00, 2, 1, 4234, 2, 2, '2024-11-03 11:57:03', NULL, '2024-11-03 11:51:59', '2024-11-03 11:57:03', 1),
@@ -1419,9 +1453,6 @@ INSERT INTO `product_categories` (`id`, `product_id`, `category_id`) VALUES
 (18, 18, 2),
 (19, 18, 7),
 (20, 19, 3),
-(21, 20, 1),
-(22, 20, 2),
-(23, 20, 7),
 (28, 23, 6),
 (29, 23, 3),
 (30, 23, 7),
@@ -1443,7 +1474,10 @@ INSERT INTO `product_categories` (`id`, `product_id`, `category_id`) VALUES
 (46, 15, 10),
 (47, 15, 7),
 (48, 15, 1),
-(49, 15, 3);
+(49, 15, 3),
+(55, 20, 1),
+(56, 20, 2),
+(57, 20, 7);
 
 -- --------------------------------------------------------
 
@@ -1526,10 +1560,10 @@ INSERT INTO `product_images` (`id`, `product_id`, `path`, `url`, `mime`, `size`,
 (56, 18, 'images/J92tl31o6XN4ZfrO/LcmRQA1zWgKwtZA5.webp', 'http://localhost:8000/storage/images/J92tl31o6XN4ZfrO/LcmRQA1zWgKwtZA5.webp', 'image/webp', 202270, 1, '2024-11-03 11:39:26', '2024-11-03 11:42:45'),
 (57, 18, 'images/YPksvim30Td3EW6r/l8e0SoPDzF7Z3W5a.jfif', 'http://localhost:8000/storage/images/YPksvim30Td3EW6r/l8e0SoPDzF7Z3W5a.jfif', 'image/jpeg', 8987, 2, '2024-11-03 11:39:26', '2024-11-03 11:42:45'),
 (58, 18, 'images/IfgXoYbOTtrtqI1G/tt99yNMqPCKmEzK4.jfif', 'http://localhost:8000/storage/images/IfgXoYbOTtrtqI1G/tt99yNMqPCKmEzK4.jfif', 'image/jpeg', 7649, 3, '2024-11-03 11:39:26', '2024-11-03 11:42:45'),
-(59, 20, 'images/ZyNReJYyo1QYsjnK/4DWqqiRdWtMoJFsS.png', 'http://localhost:8000/storage/images/ZyNReJYyo1QYsjnK/4DWqqiRdWtMoJFsS.png', 'image/png', 151255, 1, '2024-11-03 11:45:31', '2024-11-03 11:46:41'),
-(60, 20, 'images/E7np0NnZ01KCRpam/PnGccfzl0cklNSY2.jpg', 'http://localhost:8000/storage/images/E7np0NnZ01KCRpam/PnGccfzl0cklNSY2.jpg', 'image/jpeg', 45959, 2, '2024-11-03 11:45:31', '2024-11-03 11:46:41'),
-(61, 20, 'images/Wjcnt7P3ANj100nL/6ZeVHkO9fqPLxsaY.jpg', 'http://localhost:8000/storage/images/Wjcnt7P3ANj100nL/6ZeVHkO9fqPLxsaY.jpg', 'image/jpeg', 47892, 3, '2024-11-03 11:45:31', '2024-11-03 11:46:41'),
-(62, 20, 'images/z7MNMSgJ2ikRExyb/H5kPF7IQeCJiCZ0d.jpg', 'http://localhost:8000/storage/images/z7MNMSgJ2ikRExyb/H5kPF7IQeCJiCZ0d.jpg', 'image/jpeg', 35547, 4, '2024-11-03 11:45:31', '2024-11-03 11:46:41'),
+(59, 20, 'images/ZyNReJYyo1QYsjnK/4DWqqiRdWtMoJFsS.png', 'http://localhost:8000/storage/images/ZyNReJYyo1QYsjnK/4DWqqiRdWtMoJFsS.png', 'image/png', 151255, 1, '2024-11-03 11:45:31', '2024-11-11 08:06:56'),
+(60, 20, 'images/E7np0NnZ01KCRpam/PnGccfzl0cklNSY2.jpg', 'http://localhost:8000/storage/images/E7np0NnZ01KCRpam/PnGccfzl0cklNSY2.jpg', 'image/jpeg', 45959, 2, '2024-11-03 11:45:31', '2024-11-11 08:06:56'),
+(61, 20, 'images/Wjcnt7P3ANj100nL/6ZeVHkO9fqPLxsaY.jpg', 'http://localhost:8000/storage/images/Wjcnt7P3ANj100nL/6ZeVHkO9fqPLxsaY.jpg', 'image/jpeg', 47892, 3, '2024-11-03 11:45:31', '2024-11-11 08:06:56'),
+(62, 20, 'images/z7MNMSgJ2ikRExyb/H5kPF7IQeCJiCZ0d.jpg', 'http://localhost:8000/storage/images/z7MNMSgJ2ikRExyb/H5kPF7IQeCJiCZ0d.jpg', 'image/jpeg', 35547, 4, '2024-11-03 11:45:31', '2024-11-11 08:06:56'),
 (63, 22, 'images/3xgBXIWaZyNOBbgY/A4V5n1VzgnSAfKxy.png', 'http://localhost:8000/storage/images/3xgBXIWaZyNOBbgY/A4V5n1VzgnSAfKxy.png', 'image/png', 188361, 1, '2024-11-03 11:49:24', '2024-11-03 11:49:24'),
 (64, 25, 'images/HG51QnMKKaMMuXBP/gpuyW8eOIkvRoco9.png', 'http://localhost:8000/storage/images/HG51QnMKKaMMuXBP/gpuyW8eOIkvRoco9.png', 'image/png', 227438, 1, '2024-11-03 11:56:03', '2024-11-03 11:56:03'),
 (65, 26, 'images/5a4fSTGZy1xT6TaB/kpiH4szAxJC1fkEB.png', 'http://localhost:8000/storage/images/5a4fSTGZy1xT6TaB/kpiH4szAxJC1fkEB.png', 'image/png', 82126, 1, '2024-11-03 11:56:29', '2024-11-03 11:56:29'),
@@ -1659,7 +1693,8 @@ INSERT INTO `reviews` (`review_id`, `product_id`, `customer_id`, `rating`, `comm
 (4, 17, 11, 5, 'ต้นนี้ เป็นที่นิยมมอยู่ 😍', '2024-11-04 16:49:00', '2024-11-04 09:49:00', '2024-11-04 09:49:00'),
 (5, 15, 6, 5, 'วางที่ห้องโถง สวยเลยยย <3', '2024-11-04 16:50:38', '2024-11-04 09:50:38', '2024-11-04 09:50:38'),
 (6, 18, 6, 4, 'ไม้มงคล ซื้อติดบ้าน👍🏻', '2024-11-04 16:51:32', '2024-11-04 09:51:32', '2024-11-04 09:51:32'),
-(7, 18, 6, 3, 'ส่งช้าไปหน่อยยยย', '2024-11-08 14:31:28', '2024-11-08 07:31:28', '2024-11-08 07:31:28');
+(7, 18, 6, 3, 'ส่งช้าไปหน่อยยยย', '2024-11-08 14:31:28', '2024-11-08 07:31:28', '2024-11-08 07:31:28'),
+(8, 17, 6, 4, 'สินค้าสวย สภาพดี', '2024-11-11 14:56:31', '2024-11-11 07:56:31', '2024-11-11 07:56:31');
 
 -- --------------------------------------------------------
 
@@ -1669,6 +1704,7 @@ INSERT INTO `reviews` (`review_id`, `product_id`, `customer_id`, `rating`, `comm
 
 CREATE TABLE `sellers` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `seller_name` varchar(255) NOT NULL,
   `store_name` varchar(255) DEFAULT NULL,
   `store_phone` varchar(255) DEFAULT NULL,
   `store_description` text DEFAULT NULL,
@@ -1688,9 +1724,11 @@ CREATE TABLE `sellers` (
 -- Dumping data for table `sellers`
 --
 
-INSERT INTO `sellers` (`user_id`, `store_name`, `store_phone`, `store_description`, `store_address`, `store_rating`, `status`, `store_image`, `store_image_mime`, `store_image_size`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(2, 'Flower Paradise', '098-765-4321', 'Find the most stunning flowers here!', '456 Flower Rd, Bloom Town', 5.00, 'Active', 'flower_paradise.jpg', 'image/jpeg', 102400, '2024-11-03 10:17:02', '2024-11-04 07:50:16', 1, 1),
-(12, 'Tropical Garden', '0967893982', 'Your one-stop shop for beautiful green plants.', '123 Green St, Nature City', NULL, 'Active', NULL, NULL, NULL, '2024-11-04 07:49:36', '2024-11-04 08:17:32', NULL, 1);
+INSERT INTO `sellers` (`user_id`, `seller_name`, `store_name`, `store_phone`, `store_description`, `store_address`, `store_rating`, `status`, `store_image`, `store_image_mime`, `store_image_size`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(2, 'Sergio Ramos', 'Flower Paradise', '098-765-4321', 'Find the most stunning flowers here!', '456 Flower Rd, Bloom Town', 5.00, 'Active', 'flower_paradise.jpg', 'image/jpeg', 102400, '2024-11-03 10:17:02', '2024-11-13 09:41:02', 1, 1),
+(12, 'Lionel Messi', 'Tropical Garden', '0967893982', 'Your one-stop shop for beautiful green plants.', '123 Green St, Nature City', NULL, 'Active', NULL, NULL, NULL, '2024-11-04 07:49:36', '2024-11-13 09:40:39', NULL, 1),
+(13, 'Erling Haaland', 'Tree Shop', '09312345678', NULL, NULL, NULL, 'Active', NULL, NULL, NULL, '2024-11-11 08:28:45', '2024-11-13 09:40:25', NULL, 1),
+(14, 'Harry Maguire', 'Plants Ball Shop', '0987653221', NULL, NULL, NULL, 'Active', NULL, NULL, NULL, '2024-11-13 08:00:29', '2024-11-13 08:02:46', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -9125,7 +9163,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (2, 'Flower Paradise', 'seller1@gmail.com', '2024-11-03 10:16:26', '$2y$12$LykWT/fJ0VTejrYMqdUZLeyi/xt7Hym7qzPcCfN/kQjPrTfND9gZC', NULL, '2024-11-03 10:16:26', '2024-11-03 10:16:26', 2),
 (6, 'Bob Johnson', 'test.cus@gmail.com', '2024-11-03 10:24:38', '$2y$12$3sfEDDLxiWD8emITmlyKBuRXPe5ppLA5ItVaQmJHNlFAAUteK9zMW', NULL, '2024-11-03 10:24:17', '2024-11-03 10:24:38', 3),
 (11, 'Smith Horror', 'test.cus2@gmail.com', '2024-11-04 07:44:36', '$2y$12$RFih47Qi3Pe9mCpMJWWU9OwYApNqFap4GmQWVq8cT2fblM2SRW/im', NULL, '2024-11-04 07:44:37', '2024-11-04 07:44:37', 3),
-(12, 'Tropical Garden', 'seller2@gmail.com', '2024-11-04 07:49:36', '$2y$12$6SsRk0JvU2AbgurCQ5gfOe2Kp1mIm5QYTop4qR1RGJMpbR2z8VRey', NULL, '2024-11-04 07:49:36', '2024-11-04 07:49:36', 2);
+(12, 'Tropical Garden', 'seller2@gmail.com', '2024-11-04 07:49:36', '$2y$12$6SsRk0JvU2AbgurCQ5gfOe2Kp1mIm5QYTop4qR1RGJMpbR2z8VRey', NULL, '2024-11-04 07:49:36', '2024-11-04 07:49:36', 2),
+(13, 'Tree Shop', 'seller3@gmail.com', '2024-11-11 08:28:44', '$2y$12$yUjqWMnutnB0ToNId2M/K.ke8p/7UAh.8FgVckNnc.mZY8B7p7SBu', NULL, '2024-11-11 08:28:45', '2024-11-11 08:28:45', 2),
+(14, 'Harry Maguire', 'seller4@gmail.com', '2024-11-13 08:00:28', '$2y$12$VCOvLnT8K2RzyuGkDdOflusZdSC2e.0zPq3Heosqk8QaBedXZ6IWG', NULL, '2024-11-13 08:00:29', '2024-11-13 08:00:29', 2);
 
 --
 -- Indexes for dumped tables
@@ -9301,7 +9341,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -9337,13 +9377,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -9355,19 +9395,19 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -9379,7 +9419,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `product_images`
@@ -9397,13 +9437,13 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `review_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `subdistricts`
@@ -9421,7 +9461,7 @@ ALTER TABLE `tools`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
