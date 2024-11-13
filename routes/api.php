@@ -8,9 +8,6 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Api\SellerController;
-use App\Http\Controllers\DistrictController;
-use App\Http\Controllers\ProvinceController;
-use App\Http\Controllers\SubDistrictController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
@@ -45,32 +42,5 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::get('/report/customers', [ReportController::class, 'customers']);
 });
 
-// // Routes for Seller
-// Route::middleware(['auth:sanctum', 'seller'])->group(function () {
-//     Route::get('/user', [\App\Http\Controllers\Api\AuthController::class, 'getUser']);
-//     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
-
-//     Route::apiResource('products', ProductController::class);
-//     Route::apiResource('categories', CategoryController::class)->except('show');
-//     Route::get('/categories/tree', [CategoryController::class, 'getAsTree']);
-//     Route::get('/countries', [CustomerController::class, 'countries']);
-//     Route::get('orders', [OrderController::class, 'index']);
-//     Route::get('orders/statuses', [OrderController::class, 'getStatuses']);
-//     Route::post('orders/change-status/{order}/{status}', [OrderController::class, 'changeStatus']);
-//     Route::get('orders/{order}', [OrderController::class, 'view']);
-
-//     // Report routes
-//     Route::get('/report/orders', [ReportController::class, 'ordersBySeller']);
-//     Route::get('/report/customers', [ReportController::class, 'customersBySeller']);
-
-//     // Dashboard Routes
-//     Route::get('/dashboard/customers-count', [DashboardController::class, 'activeCustomers']);
-//     Route::get('/dashboard/products-count', [DashboardController::class, 'activeProducts']);
-//     Route::get('/dashboard/orders-count', [DashboardController::class, 'paidOrders']);
-//     Route::get('/dashboard/income-amount', [DashboardController::class, 'totalIncome']);
-//     Route::get('/dashboard/orders-by-country', [DashboardController::class, 'ordersByCountry']);
-//     Route::get('/dashboard/latest-customers', [DashboardController::class, 'latestCustomers']);
-//     Route::get('/dashboard/latest-orders', [DashboardController::class, 'latestOrders']);
-// });
-
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::post('/register', [UserController::class, 'registerSeller']);

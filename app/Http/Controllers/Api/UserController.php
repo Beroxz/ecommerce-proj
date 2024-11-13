@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\RegisterSellerRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Api\User;
 use App\Models\Customer;
 use App\Models\Seller;
 use App\Enums\CustomerStatus;
+use App\Enums\SellerStatus;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
@@ -72,6 +74,28 @@ class UserController extends Controller
             $customer->last_name = $names[1] ?? '';
             $customer->save();
         }
+
+        return new UserResource($user);
+    }
+
+    public function registerSeller(RegisterSellerRequest $request)
+    {
+        $data = $request->validated();
+
+        $data['role'] = 2;
+
+        $data['email_verified_at'] = now();
+        $data['password'] = Hash::make($data['password']);
+
+        $user = User::create($data);
+
+        $seller = new Seller();
+        $seller->user_id = $user->id;
+        $seller->seller_name = $data['name'];
+        $seller->store_name = $data['store_name'];
+        $seller->store_phone = $data['store_phone'];
+        $seller->status = SellerStatus::Active;
+        $seller->save();
 
         return new UserResource($user);
     }

@@ -46,7 +46,7 @@
           </div>
           <input type="hidden" name="remember" value="true" />
 
-          <div>
+          <div class="mt-8">
             <div class="relative flex items-center">
               <input
                 id="email-address"

@@ -10,20 +10,53 @@
       </div>
 
       <div class="flex items-center p-6 h-full w-full">
-        <form class="max-w-lg w-full mx-auto">
+        <form
+          class="md:max-w-md w-full mx-auto"
+          method="POST"
+          @submit.prevent="register"
+        >
           <div class="mb-12">
             <h3 class="text-4xl font-extrabold text-indigo-600">
               Create an account
             </h3>
           </div>
 
-          <div>
+          <div
+            v-if="errorMsg"
+            class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
+          >
+            {{ errorMsg }}
+            <span
+              @click="errorMsg = ''"
+              class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <div class="mt-6">
             <label class="text-gray-800 text-xs block mb-2">Full Name</label>
             <div class="relative flex items-center">
               <input
+                id="name"
                 name="name"
                 type="text"
-                required
+                autocomplete="name"
+                required=""
+                v-model="newUser.name"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
                 placeholder="Enter name"
               />
@@ -43,12 +76,78 @@
             </div>
           </div>
           <div class="mt-6">
+            <label class="text-gray-800 text-xs block mb-2">Store Name</label>
+            <div class="relative flex items-center">
+              <input
+                id="store_name"
+                name="store_name"
+                type="text"
+                autocomplete="off"
+                required=""
+                v-model="newUser.store_name"
+                class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
+                placeholder="Enter store name"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#bbb"
+                stroke="#bbb"
+                class="w-[18px] h-[18px] absolute right-2"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="text-gray-800 text-xs block mb-2"
+              >Store Phone Number</label
+            >
+            <div class="relative flex items-center">
+              <input
+                id="store_phone"
+                name="store_phone"
+                type="tel"
+                autocomplete="tel"
+                required
+                v-model="newUser.store_phone"
+                class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
+                placeholder="Enter phone number"
+                maxlength="10"
+                pattern="[0-9]{10}"
+              />
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#bbb"
+                stroke="#bbb"
+                class="w-[18px] h-[18px] absolute right-2"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-6">
             <label class="text-gray-800 text-xs block mb-2">Email</label>
             <div class="relative flex items-center">
               <input
+                id="email-address"
                 name="email"
-                type="text"
-                required
+                type="email"
+                autocomplete="email"
+                required=""
+                v-model="newUser.email"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
                 placeholder="Enter email"
               />
@@ -87,11 +186,43 @@
             <label class="text-gray-800 text-xs block mb-2">Password</label>
             <div class="relative flex items-center">
               <input
+                id="password"
                 name="password"
                 type="password"
-                required
+                autocomplete="password"
+                required=""
+                v-model="newUser.password"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
                 placeholder="Enter password"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#bbb"
+                stroke="#bbb"
+                class="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+                viewBox="0 0 128 128"
+              >
+                <path
+                  d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
+                  data-original="#000000"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="text-gray-800 text-xs block mb-2"
+              >Confirm Password</label
+            >
+            <div class="relative flex items-center">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autocomplete="confirmPassword"
+                required=""
+                v-model="newUser.confirmPassword"
+                class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
+                placeholder="Enter Confirm Password"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -155,34 +286,51 @@
       </div>
     </div>
   </div>
+  <Toast />
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import GuestLayout from '../components/GuestLayout.vue';
+import Toast from '../components/core/Toast.vue';
 import store from '../store';
 import router from '../router';
 
 let loading = ref(false);
 let errorMsg = ref('');
 
-const user = {
+const newUser = {
+  name: '',
   email: '',
   password: '',
-  remember: false,
+  confirmPassword: '',
+  store_phone: '',
+  store_name: '',
 };
 
-function login() {
+function register() {
   loading.value = true;
+
+  if (newUser.password !== newUser.confirmPassword) {
+    loading.value = false;
+    errorMsg.value = 'Passwords do not match';
+    return;
+  }
+
   store
-    .dispatch('login', user)
-    .then(() => {
+    .dispatch('register', newUser)
+    .then((response) => {
       loading.value = false;
-      router.push({ name: 'app.dashboard' });
+      if (response.status === 201) {
+        store.commit('showToast', 'Registration successful');
+        setTimeout(() => {
+          router.push({ name: 'login' });
+        }, 1500);
+      }
     })
-    .catch(({ response }) => {
+    .catch((err) => {
       loading.value = false;
-      errorMsg.value = response.data.message;
+      errorMsg.value = err.response.data.message;
     });
 }
 </script>

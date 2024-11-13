@@ -5,6 +5,12 @@
         <h1 class="text-2xl font-semibold pb-2">{{ title }}</h1>
         <CustomInput
           class="mb-2"
+          v-model="seller.seller_name"
+          label="Name"
+          :errors="errors.seller_name"
+        />
+        <CustomInput
+          class="mb-2"
           v-model="seller.store_name"
           label="Store Name"
           :errors="errors.store_name"

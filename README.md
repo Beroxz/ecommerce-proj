@@ -77,7 +77,7 @@ Email: test.cus@gmail.com
 Password: 1303161as
 
 Customer:
-Email: test.cus@gmail.com
+Email: test.cus2@gmail.com
 Password: usertest123
 
 ```
