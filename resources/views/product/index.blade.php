@@ -38,12 +38,12 @@ $categoryList = \App\Models\Category::getActiveAsTree();
         </form>
         <x-input x-model="selectedSort" @change="updateUrl" type="select" name="sort"
             class="w-full focus:border-indigo-500 focus:ring-indigo-600 border-gray-300 rounded">
-            <option value="price">Price (ASC)</option>
-            <option value="-price">Price (DESC)</option>
-            <option value="title">Title (ASC)</option>
-            <option value="-title">Title (DESC)</option>
-            <option value="-updated_at">Last Modified at the top</option>
-            <option value="updated_at">Last Modified at the bottom</option>
+            <option value="price">Lowest Price First</option>
+            <option value="-price">Highest Price First</option>
+            <option value="title">Title: A to Z</option>
+            <option value="-title">Title: Z to A</option>
+            <option value="-updated_at">Newest Updates First</option>
+            <option value="updated_at">Oldest Updates First</option>
         </x-input>
         <x-category-list :category-list="$categoryList" />
     </div>
