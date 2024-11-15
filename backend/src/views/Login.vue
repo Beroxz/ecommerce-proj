@@ -95,20 +95,47 @@
               <input
                 id="password"
                 name="password"
-                type="password"
+                :type="isPasswordVisible ? 'text' : 'password'"
                 autocomplete="current-password"
-                required=""
+                required
                 v-model="user.password"
                 class="w-full text-sm border-b border-gray-300 focus:border-indigo-600 px-2 py-3 outline-none"
                 placeholder="Enter password"
               />
               <svg
+                v-if="isPasswordVisible"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#bbb"
+                stroke="#bbb"
+                class="w-[18px] h-[18px] absolute right-2 cursor-pointer"
+                viewBox="0 0 16 16"
+                @click="isPasswordVisible = !isPasswordVisible"
+              >
+                <!-- ไอคอน "eye-slash" -->
+                <path
+                  d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"
+                  stroke-width="0.25"
+                />
+                <path
+                  d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"
+                  stroke-width="0.25"
+                />
+                <path
+                  d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"
+                  stroke-width="0.25"
+                />
+              </svg>
+
+              <svg
+                v-else
                 xmlns="http://www.w3.org/2000/svg"
                 fill="#bbb"
                 stroke="#bbb"
                 class="w-[18px] h-[18px] absolute right-2 cursor-pointer"
                 viewBox="0 0 128 128"
+                @click="isPasswordVisible = !isPasswordVisible"
               >
+                <!-- ไอคอน "eye" -->
                 <path
                   d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
                   data-original="#000000"
@@ -198,6 +225,8 @@ import router from '../router';
 
 let loading = ref(false);
 let errorMsg = ref('');
+
+let isPasswordVisible = ref(false);
 
 const user = {
   email: '',
