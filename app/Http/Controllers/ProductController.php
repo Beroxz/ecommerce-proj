@@ -41,10 +41,10 @@ class ProductController extends Controller
         $seller = Seller::find($product->seller_id);
 
         $reviews = Review::where('product_id', $product->id)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('review_date', 'desc')
             ->get()
             ->map(function ($review) {
-                $review->review_date = $review->created_at->format('d/m/Y');
+                $review->review_date = \Carbon\Carbon::parse($review->review_date)->format('d/m/Y');
                 return $review;
             });
 
